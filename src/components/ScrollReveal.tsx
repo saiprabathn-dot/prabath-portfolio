@@ -13,6 +13,8 @@ interface ScrollRevealProps {
   style?: React.CSSProperties;
   once?: boolean;
   scale?: number;
+  amount?: number | "some" | "all";
+  margin?: any;
 }
 
 export default function ScrollReveal({
@@ -25,6 +27,8 @@ export default function ScrollReveal({
   style = {},
   once = true,
   scale = 1,
+  amount = 0.25,
+  margin = "0px 0px -100px 0px",
 }: ScrollRevealProps) {
   const getInitial = () => {
     const base: Record<string, any> = { opacity: 0 };
@@ -53,7 +57,7 @@ export default function ScrollReveal({
     <motion.div
       initial={getInitial()}
       whileInView={{ opacity: 1, x: 0, y: 0, scale: 1 }}
-      viewport={{ once, margin: "0px" }}
+      viewport={{ once, margin, amount }}
       transition={{
         duration,
         delay,
