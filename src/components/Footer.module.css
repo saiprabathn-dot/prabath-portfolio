@@ -1,0 +1,100 @@
+.footer {
+  width: 100%;
+  background: #000000;
+  border-top: 1px solid rgba(255, 255, 255, 0.05);
+  position: relative;
+  z-index: 10;
+  margin-top: auto;
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 2rem 1.5rem;
+}
+
+/* Minimalist Single Row */
+.mainRow {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 1.5rem;
+}
+
+/* Brand */
+.brand {
+  display: inline-flex;
+  align-items: center;
+  text-decoration: none;
+}
+
+.brandLogoText {
+  font-family: var(--font-sans);
+  font-weight: 700;
+  font-size: 1.12rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: #d4d4d8;
+  transition: color 0.2s ease;
+}
+
+.brand:hover .brandLogoText {
+  color: #ffffff;
+}
+
+/* Minimalist Horizontal Navigation Links */
+.navLinks {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+  list-style: none;
+  flex-wrap: wrap;
+}
+
+.navLink {
+  font-size: 0.86rem;
+  font-weight: 400;
+  color: #71717a;
+  transition: color 0.2s ease;
+}
+
+.navLink:hover {
+  color: #e4e4e7;
+}
+
+/* Minimalist Social Icons */
+.socialLinks {
+  display: flex;
+  align-items: center;
+  gap: 1.25rem;
+}
+
+.socialIcon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  color: #71717a;
+  transition: color 0.2s ease, transform 0.2s ease;
+}
+
+.socialIcon:hover {
+  color: #e4e4e7;
+  transform: translateY(-1px);
+}
+
+@media (max-width: 768px) {
+  .mainRow {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 1.25rem;
+  }
+
+  .navLinks {
+    gap: 0.85rem 1.25rem;
+  }
+
+  .container {
+    padding: 1.75rem 1.25rem;
+  }
+}
