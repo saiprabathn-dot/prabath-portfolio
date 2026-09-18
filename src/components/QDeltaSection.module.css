@@ -1,34 +1,9 @@
 .section {
   width: 100%;
   position: relative;
-  background-color: #000000;
-  padding: 5rem 1.5rem 6.5rem;
+  background-color: #babac4;
+  padding: 4rem 1.5rem 5.5rem;
   overflow: hidden;
-}
-
-/* Ambient Glassmorphic Background Glow Orbs */
-.ambientGlow1 {
-  position: absolute;
-  top: 15%;
-  left: -10%;
-  width: 550px;
-  height: 550px;
-  border-radius: 50%;
-  background: radial-gradient(circle, rgba(56, 189, 248, 0.08) 0%, transparent 70%);
-  pointer-events: none;
-  filter: blur(40px);
-}
-
-.ambientGlow2 {
-  position: absolute;
-  bottom: 10%;
-  right: -10%;
-  width: 600px;
-  height: 600px;
-  border-radius: 50%;
-  background: radial-gradient(circle, rgba(168, 85, 247, 0.07) 0%, transparent 70%);
-  pointer-events: none;
-  filter: blur(50px);
 }
 
 .container {
@@ -50,8 +25,8 @@
   background: linear-gradient(
     90deg,
     transparent 0%,
-    rgba(255, 255, 255, 0.12) 30%,
-    rgba(255, 255, 255, 0.12) 70%,
+    rgba(0, 0, 0, 0.12) 30%,
+    rgba(0, 0, 0, 0.12) 70%,
     transparent 100%
   );
 }
@@ -74,7 +49,7 @@
   font-family: var(--font-mono);
   font-size: 0.78rem;
   font-weight: 700;
-  color: #e2e8f0;
+  color: #09090b;
   letter-spacing: 0.12em;
   text-transform: uppercase;
 }
@@ -85,31 +60,29 @@
   gap: 0.5rem;
   padding: 0.28rem 0.75rem;
   border-radius: var(--radius-full);
-  background: rgba(255, 255, 255, 0.05);
-  border: 1px solid rgba(255, 255, 255, 0.1);
+  background: #a8a8b6;
+  border: 1px solid rgba(0, 0, 0, 0.14);
   font-family: var(--font-mono);
   font-size: 0.72rem;
   font-weight: 600;
-  color: #f1f5f9;
+  color: #09090b;
   letter-spacing: 0.06em;
   text-transform: uppercase;
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
 }
 
 .statusSep {
-  color: #64748b;
+  color: #475569;
 }
 
 .udyamText {
   display: inline-flex;
   align-items: center;
   gap: 0.35rem;
-  color: #f1f5f9;
+  color: #09090b;
 }
 
 .udyamIcon {
-  color: #38bdf8;
+  color: #0369a1;
 }
 
 .mainTitle {
@@ -117,14 +90,14 @@
   font-weight: 800;
   letter-spacing: -0.03em;
   line-height: 1.15;
-  color: #ffffff;
+  color: #09090b;
   margin-top: 0.25rem;
 }
 
 .introLead {
   font-size: clamp(1.02rem, 1.75vw, 1.2rem);
   line-height: 1.6;
-  color: #e2e8f0;
+  color: #1e293b;
   max-width: 960px;
   display: flex;
   flex-direction: column;
@@ -137,7 +110,7 @@
 
 .leadLine2 {
   display: block;
-  color: #94a3b8;
+  color: #334155;
 }
 
 .ghostPrefix {
@@ -146,15 +119,13 @@
   pointer-events: none;
 }
 
-/* 2. Co-Founder / Developer Bento Card (Glassmorphism) */
+/* 2. Co-Founder / Developer Bento Card */
 .founderCard {
-  background: rgba(255, 255, 255, 0.035);
-  border: 1px solid rgba(255, 255, 255, 0.1);
+  background: #c8c8d2;
+  border: 1px solid rgba(0, 0, 0, 0.12);
   border-radius: var(--radius-lg);
   padding: 2.25rem 2.5rem;
-  backdrop-filter: blur(24px);
-  -webkit-backdrop-filter: blur(24px);
-  box-shadow: 0 20px 50px -10px rgba(0, 0, 0, 0.6), inset 0 1px 0 rgba(255, 255, 255, 0.15);
+  box-shadow: 0 16px 36px -10px rgba(0, 0, 0, 0.1), 0 1px 3px rgba(0, 0, 0, 0.05);
   display: grid;
   grid-template-columns: 1.8fr auto;
   gap: 3rem;
@@ -165,23 +136,8 @@
 }
 
 .founderCard:hover {
-  background: rgba(255, 255, 255, 0.055);
-  border-color: rgba(255, 255, 255, 0.18);
-  box-shadow: 0 24px 60px -10px rgba(0, 0, 0, 0.75), inset 0 1px 0 rgba(255, 255, 255, 0.25);
-}
-
-.founderCardGlow {
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  height: 1px;
-  background: linear-gradient(
-    90deg,
-    transparent,
-    rgba(255, 255, 255, 0.25),
-    transparent
-  );
+  border-color: rgba(0, 0, 0, 0.22);
+  box-shadow: 0 20px 42px -10px rgba(0, 0, 0, 0.14);
 }
 
 .founderCardContent {
@@ -196,45 +152,43 @@
   gap: 0.45rem;
   padding: 0.25rem 0.75rem;
   border-radius: var(--radius-full);
-  background: rgba(255, 255, 255, 0.06);
-  border: 1px solid rgba(255, 255, 255, 0.12);
+  background: #b2b2be;
+  border: 1px solid rgba(0, 0, 0, 0.14);
   font-family: var(--font-mono);
   font-size: 0.72rem;
   font-weight: 600;
-  color: #e2e8f0;
+  color: #09090b;
   letter-spacing: 0.08em;
   text-transform: uppercase;
   align-self: flex-start;
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
 }
 
 .tagDot {
   width: 5px;
   height: 5px;
   border-radius: 50%;
-  background-color: #38bdf8;
+  background-color: #09090b;
 }
 
 .founderHeading {
   font-size: clamp(1.4rem, 2.4vw, 1.85rem);
   font-weight: 700;
   letter-spacing: -0.025em;
-  color: #ffffff;
+  color: #09090b;
   line-height: 1.25;
 }
 
 .founderDesc {
   font-size: 0.98rem;
   line-height: 1.65;
-  color: #cbd5e1;
+  color: #1e293b;
 }
 
 .founderMetrics {
   display: flex;
   align-items: center;
   gap: 2.25rem;
-  border-left: 1px solid rgba(255, 255, 255, 0.12);
+  border-left: 1px solid rgba(0, 0, 0, 0.15);
   padding-left: 2.5rem;
 }
 
@@ -249,7 +203,7 @@
   font-family: var(--font-mono);
   font-size: 1.85rem;
   font-weight: 700;
-  color: #ffffff;
+  color: #09090b;
   letter-spacing: -0.03em;
   line-height: 1;
 }
@@ -258,7 +212,7 @@
   font-family: var(--font-mono);
   font-size: 0.68rem;
   font-weight: 600;
-  color: #94a3b8;
+  color: #334155;
   letter-spacing: 0.1em;
   text-transform: uppercase;
 }
@@ -266,7 +220,7 @@
 .metricDivider {
   width: 1px;
   height: 36px;
-  background-color: rgba(255, 255, 255, 0.12);
+  background-color: rgba(0, 0, 0, 0.14);
 }
 
 /* 3. Products Section */
@@ -286,7 +240,7 @@
   font-family: var(--font-mono);
   font-size: 0.75rem;
   font-weight: 600;
-  color: #94a3b8;
+  color: #334155;
   letter-spacing: 0.1em;
   text-transform: uppercase;
 }
@@ -295,7 +249,7 @@
   font-size: clamp(1.45rem, 2.5vw, 1.95rem);
   font-weight: 700;
   letter-spacing: -0.025em;
-  color: #ffffff;
+  color: #09090b;
 }
 
 .productsGrid {
@@ -307,25 +261,22 @@
 }
 
 .productCard {
-  background: rgba(255, 255, 255, 0.035);
-  border: 1px solid rgba(255, 255, 255, 0.09);
+  background: #c8c8d2;
+  border: 1px solid rgba(0, 0, 0, 0.12);
   border-radius: var(--radius-lg);
   padding: 2rem 1.75rem;
-  backdrop-filter: blur(24px);
-  -webkit-backdrop-filter: blur(24px);
-  box-shadow: 0 16px 40px -10px rgba(0, 0, 0, 0.6), inset 0 1px 0 rgba(255, 255, 255, 0.12);
+  box-shadow: 0 14px 34px -10px rgba(0, 0, 0, 0.1), 0 1px 3px rgba(0, 0, 0, 0.04);
   position: relative;
   display: flex;
   flex-direction: column;
   transform-origin: center center;
   will-change: transform, opacity;
-  transition: background-color 0.25s ease, border-color 0.25s ease, box-shadow 0.25s ease;
+  transition: border-color 0.25s ease, box-shadow 0.25s ease;
 }
 
 .productCard:hover {
-  background: rgba(255, 255, 255, 0.055);
-  border-color: rgba(255, 255, 255, 0.18);
-  box-shadow: 0 22px 50px -10px rgba(0, 0, 0, 0.75), inset 0 1px 0 rgba(255, 255, 255, 0.22);
+  border-color: rgba(0, 0, 0, 0.22);
+  box-shadow: 0 20px 42px -10px rgba(0, 0, 0, 0.15);
 }
 
 .productCardInner {
@@ -358,19 +309,17 @@
   font-family: var(--font-mono);
   font-size: 0.7rem;
   font-weight: 600;
-  color: #e2e8f0;
+  color: #09090b;
   letter-spacing: 0.08em;
   text-transform: uppercase;
   padding: 0.2rem 0.6rem;
   border-radius: var(--radius-full);
-  background: rgba(255, 255, 255, 0.06);
-  border: 1px solid rgba(255, 255, 255, 0.1);
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
+  background: #b2b2be;
+  border: 1px solid rgba(0, 0, 0, 0.12);
 }
 
 .productIcon {
-  color: #94a3b8;
+  color: #334155;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -380,18 +329,18 @@
   font-size: 1.25rem;
   font-weight: 700;
   letter-spacing: -0.02em;
-  color: #ffffff;
+  color: #09090b;
   line-height: 1.25;
 }
 
 .productDesc {
   font-size: 0.88rem;
   line-height: 1.6;
-  color: #cbd5e1;
+  color: #1e293b;
 }
 
 .productAction {
-  border-top: 1px solid rgba(255, 255, 255, 0.08);
+  border-top: 1px solid rgba(0, 0, 0, 0.1);
   padding-top: 1.25rem;
 }
 
@@ -402,7 +351,7 @@
   font-family: var(--font-mono);
   font-size: 0.76rem;
   font-weight: 600;
-  color: #e2e8f0;
+  color: #09090b;
   letter-spacing: 0.06em;
   text-transform: uppercase;
   transition: var(--transition-smooth);
@@ -417,7 +366,7 @@
 }
 
 .productCard:hover .viewProjectLink {
-  color: #ffffff;
+  color: #000000;
 }
 
 /* 4. Roles Section (4-Card 3D Scroll Fan-Out Deck) */
@@ -436,26 +385,23 @@
 }
 
 .roleCard {
-  background: rgba(255, 255, 255, 0.035);
-  border: 1px solid rgba(255, 255, 255, 0.09);
+  background: #c8c8d2;
+  border: 1px solid rgba(0, 0, 0, 0.11);
   border-radius: var(--radius-md);
   padding: 1.75rem 1.4rem;
-  backdrop-filter: blur(24px);
-  -webkit-backdrop-filter: blur(24px);
   display: flex;
   flex-direction: column;
   gap: 0.85rem;
-  box-shadow: 0 12px 30px -8px rgba(0, 0, 0, 0.6), inset 0 1px 0 rgba(255, 255, 255, 0.12);
+  box-shadow: 0 10px 28px -8px rgba(0, 0, 0, 0.09), 0 1px 3px rgba(0, 0, 0, 0.04);
   position: relative;
   transform-origin: center bottom;
   will-change: transform, opacity;
-  transition: background-color 0.25s ease, border-color 0.25s ease, box-shadow 0.25s ease;
+  transition: border-color 0.25s ease, box-shadow 0.25s ease;
 }
 
 .roleCard:hover {
-  background: rgba(255, 255, 255, 0.055);
-  border-color: rgba(255, 255, 255, 0.18);
-  box-shadow: 0 20px 48px -8px rgba(0, 0, 0, 0.75), inset 0 1px 0 rgba(255, 255, 255, 0.22);
+  border-color: rgba(0, 0, 0, 0.2);
+  box-shadow: 0 16px 36px -8px rgba(0, 0, 0, 0.14);
 }
 
 .roleCardTop {
@@ -474,8 +420,8 @@
   font-family: var(--font-mono);
   font-size: 0.68rem;
   font-weight: 700;
-  color: #ffffff;
-  background: rgba(255, 255, 255, 0.08);
+  color: #09090b;
+  background: rgba(0, 0, 0, 0.08);
   padding: 0.12rem 0.4rem;
   border-radius: 4px;
 }
@@ -484,13 +430,13 @@
   font-family: var(--font-mono);
   font-size: 0.74rem;
   font-weight: 700;
-  color: #94a3b8;
+  color: #334155;
   letter-spacing: 0.1em;
   text-transform: uppercase;
 }
 
 .roleIconWrap {
-  color: #e2e8f0;
+  color: #09090b;
   display: flex;
   align-items: center;
 }
@@ -501,7 +447,7 @@
   gap: 0.35rem;
   font-size: clamp(0.85rem, 1.15vw, 0.98rem);
   font-weight: 600;
-  color: #ffffff;
+  color: #09090b;
   letter-spacing: -0.015em;
   line-height: 1.3;
   white-space: nowrap;
@@ -515,13 +461,13 @@
 
 .roleCard:hover .flowArrow {
   transform: translateX(3px);
-  color: #ffffff;
+  color: #09090b;
 }
 
 .roleDesc {
   font-size: 0.82rem;
   line-height: 1.55;
-  color: #cbd5e1;
+  color: #1e293b;
 }
 
 /* Responsive */
@@ -544,7 +490,7 @@
 
   .founderMetrics {
     border-left: none;
-    border-top: 1px solid rgba(255, 255, 255, 0.12);
+    border-top: 1px solid rgba(0, 0, 0, 0.12);
     padding-left: 0;
     padding-top: 1.5rem;
     justify-content: space-around;

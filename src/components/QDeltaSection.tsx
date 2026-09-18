@@ -212,10 +212,6 @@ export default function QDeltaSection() {
 
   return (
     <section id="qdelta" className={styles.section}>
-      {/* Ambient Glassmorphic Glow Orbs */}
-      <div className={styles.ambientGlow1} />
-      <div className={styles.ambientGlow2} />
-
       <div className={styles.container}>
         {/* 1. HEADER & HERO INTRODUCTION */}
         <div className={styles.headerBlock}>
@@ -252,8 +248,6 @@ export default function QDeltaSection() {
 
         {/* 2. CO-FOUNDER · DEVELOPER BENTO CARD */}
         <div className={styles.founderCard}>
-          <div className={styles.founderCardGlow} />
-
           <div className={styles.founderCardContent}>
             <div className={styles.founderTag}>
               <span className={styles.tagDot} />
