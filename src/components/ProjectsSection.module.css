@@ -99,9 +99,6 @@
   will-change: transform;
 }
 
-.carouselWrapper:hover .trackGroup {
-  animation-play-state: paused;
-}
 
 @keyframes marquee {
   0% {

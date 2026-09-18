@@ -5,6 +5,7 @@ import BlurText from "@/components/BlurText";
 import About from "@/components/About";
 import QDeltaSection from "@/components/QDeltaSection";
 import ProjectsSection from "@/components/ProjectsSection";
+import SkillsSection from "@/components/SkillsSection";
 import Link from "next/link";
 import { ArrowUpRight } from "lucide-react";
 
@@ -163,8 +164,10 @@ export default function Home() {
       {/* Featured Projects with Live Architecture Flow */}
       <ProjectsSection />
 
+      {/* Skills & Tech Arsenal Section */}
+      <SkillsSection />
+
       {/* Target Section Anchors for Remaining Navigation Links */}
-      <section id="skills" style={{ minHeight: "40vh", padding: "4rem 0" }} />
       <section id="contact" style={{ minHeight: "40vh", padding: "4rem 0" }} />
     </div>
   );
