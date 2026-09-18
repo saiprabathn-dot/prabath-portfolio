@@ -72,6 +72,7 @@ export default function CardStack() {
   const card2Ref = useRef<HTMLDivElement>(null);
   const card3Ref = useRef<HTMLDivElement>(null);
   const card4Ref = useRef<HTMLDivElement>(null);
+  const bottomHintRef = useRef<HTMLDivElement>(null);
   const [activePageIndex, setActivePageIndex] = useState(1);
 
   useEffect(() => {
@@ -82,6 +83,7 @@ export default function CardStack() {
     const card2 = card2Ref.current;
     const card3 = card3Ref.current;
     const card4 = card4Ref.current;
+    const bottomHint = bottomHintRef.current;
 
     let raf = 0;
 
@@ -98,6 +100,13 @@ export default function CardStack() {
       else if (progress < 0.59) setActivePageIndex(2);
       else if (progress < 0.88) setActivePageIndex(3);
       else setActivePageIndex(4);
+
+      // Bottom Hint Fade near the end of the section
+      if (bottomHint) {
+        const fadeOut = smoothstep(0.88, 0.98, progress);
+        bottomHint.style.opacity = `${Math.max(0, 1 - fadeOut)}`;
+        bottomHint.style.transform = `translate(-50%, ${6 * fadeOut}px)`;
+      }
 
       // Transitions with extended reading plateaus
       const t1 = smoothstep(0.22, 0.36, progress); // Card 1 flies off, Card 2 enters
@@ -427,6 +436,12 @@ export default function CardStack() {
                 </div>
               </div>
             </div>
+          </div>
+
+          {/* Animated Bottom Center Scroll Indicator */}
+          <div ref={bottomHintRef} className={styles.bottomScrollHint}>
+            <span>Scroll to explore</span>
+            <span className={styles.bottomArrow}>↓</span>
           </div>
         </div>
       </div>
