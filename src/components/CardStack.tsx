@@ -94,15 +94,15 @@ export default function CardStack() {
       const progress = clamp(-rect.top / scrollSpan, 0, 1);
 
       // Active indicator
-      if (progress < 0.28) setActivePageIndex(1);
-      else if (progress < 0.58) setActivePageIndex(2);
-      else if (progress < 0.86) setActivePageIndex(3);
+      if (progress < 0.29) setActivePageIndex(1);
+      else if (progress < 0.59) setActivePageIndex(2);
+      else if (progress < 0.88) setActivePageIndex(3);
       else setActivePageIndex(4);
 
-      // Transitions
-      const t1 = smoothstep(0.20, 0.36, progress); // Card 1 flies off, Card 2 enters
-      const t2 = smoothstep(0.50, 0.66, progress); // Card 2 flies off, Card 3 enters
-      const t3 = smoothstep(0.78, 0.94, progress); // Card 3 flies off, Card 4 enters
+      // Transitions with extended reading plateaus
+      const t1 = smoothstep(0.22, 0.36, progress); // Card 1 flies off, Card 2 enters
+      const t2 = smoothstep(0.52, 0.66, progress); // Card 2 flies off, Card 3 enters
+      const t3 = smoothstep(0.82, 0.94, progress); // Card 3 flies off, Card 4 enters
 
       // --- CARD 1 (Top card initially, fans away to the left) ---
       if (card1) {

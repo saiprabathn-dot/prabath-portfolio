@@ -4,11 +4,11 @@
   background-color: #000000;
 }
 
-/* Scroll track for smooth sticky scrolling */
+/* Scroll track for smooth sticky scrolling (extended for relaxed reading scroll time) */
 .track {
   position: relative;
   width: 100%;
-  height: 380vh;
+  height: 500vh;
 }
 
 .stage {
