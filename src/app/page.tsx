@@ -2,6 +2,7 @@
 
 import ScrollExpand from "@/components/ScrollExpand";
 import BlurText from "@/components/BlurText";
+import About from "@/components/About";
 import Link from "next/link";
 import { ArrowUpRight } from "lucide-react";
 
@@ -152,8 +153,10 @@ export default function Home() {
         </ScrollExpand>
       </section>
 
+      {/* About Section */}
+      <About />
+
       {/* Target Section Anchors for Navigation Links */}
-      <section id="about" style={{ minHeight: "40vh", padding: "4rem 0" }} />
       <section id="projects" style={{ minHeight: "40vh", padding: "4rem 0" }} />
       <section id="qdelta" style={{ minHeight: "40vh", padding: "4rem 0" }} />
       <section id="skills" style={{ minHeight: "40vh", padding: "4rem 0" }} />
