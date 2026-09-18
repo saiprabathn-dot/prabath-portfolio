@@ -29,7 +29,6 @@ export default function Home() {
             />
           }
           backdropText="PRABATH"
-          scrollHint="Scroll to expand ↓"
           useWindowScroll={true}
           startWidth={48}
           startHeight={36}

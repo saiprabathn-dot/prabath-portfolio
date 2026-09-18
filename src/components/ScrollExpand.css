@@ -122,28 +122,17 @@
   position: absolute;
   left: 0;
   right: 0;
-  bottom: 2.25rem;
+  bottom: 2rem;
   text-align: center;
-  font-family: var(--font-mono);
-  font-size: 0.78rem;
+  font-size: 0.82rem;
   letter-spacing: 0.08em;
   text-transform: uppercase;
-  color: #d4d4d8;
+  color: rgba(212, 212, 216, 0.55);
   pointer-events: none;
   will-change: opacity, transform;
   display: flex;
   flex-direction: column;
   align-items: center;
   gap: 0.35rem;
-  z-index: 10;
-  animation: heroHintBounce 2.2s ease-in-out infinite;
-}
-
-@keyframes heroHintBounce {
-  0%, 100% {
-    transform: translateY(0);
-  }
-  50% {
-    transform: translateY(5px);
-  }
+  z-index: 3;
 }

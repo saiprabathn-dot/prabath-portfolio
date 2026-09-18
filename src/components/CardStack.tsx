@@ -72,7 +72,6 @@ export default function CardStack() {
   const card2Ref = useRef<HTMLDivElement>(null);
   const card3Ref = useRef<HTMLDivElement>(null);
   const card4Ref = useRef<HTMLDivElement>(null);
-  const bottomHintRef = useRef<HTMLDivElement>(null);
   const [activePageIndex, setActivePageIndex] = useState(1);
 
   useEffect(() => {
@@ -83,24 +82,8 @@ export default function CardStack() {
     const card2 = card2Ref.current;
     const card3 = card3Ref.current;
     const card4 = card4Ref.current;
-    const bottomHint = bottomHintRef.current;
 
     let raf = 0;
-    let idleTimer: NodeJS.Timeout | null = null;
-
-    const showHint = () => {
-      if (bottomHint) {
-        bottomHint.style.opacity = "1";
-        bottomHint.style.transform = "translate(-50%, 0) scale(1)";
-      }
-    };
-
-    const hideHint = () => {
-      if (bottomHint) {
-        bottomHint.style.opacity = "0";
-        bottomHint.style.transform = "translate(-50%, 8px) scale(0.96)";
-      }
-    };
 
     const onScroll = () => {
       if (!track) return;
@@ -115,18 +98,6 @@ export default function CardStack() {
       else if (progress < 0.59) setActivePageIndex(2);
       else if (progress < 0.88) setActivePageIndex(3);
       else setActivePageIndex(4);
-
-      // While scrolling, immediately hide hint so it never breaks user experience
-      hideHint();
-      if (idleTimer) clearTimeout(idleTimer);
-
-      const inView = rect.top <= 100 && rect.bottom >= window.innerHeight - 100;
-      // Only show hint when user STOPS scrolling for 750ms and has more cards to explore
-      if (inView && progress < 0.88) {
-        idleTimer = setTimeout(() => {
-          showHint();
-        }, 750);
-      }
 
       // Transitions with extended reading plateaus
       const t1 = smoothstep(0.22, 0.36, progress); // Card 1 flies off, Card 2 enters
@@ -257,7 +228,6 @@ export default function CardStack() {
     return () => {
       window.removeEventListener("scroll", onScroll);
       if (raf) cancelAnimationFrame(raf);
-      if (idleTimer) clearTimeout(idleTimer);
     };
   }, []);
 
@@ -270,9 +240,11 @@ export default function CardStack() {
             <div className={styles.header}>
               <div className={styles.headerLeft}>
                 <h2 className={styles.title}>
-                  Turning ideas into digital products —{" "}
-                  <span className={styles.titleGradient}>
-                    crafted with full-stack precision.
+                  <span className={styles.titleLine1}>
+                    Turning ideas into digital products
+                  </span>
+                  <span className={styles.titleLine2}>
+                    — crafted with full&#8209;stack precision.
                   </span>
                 </h2>
               </div>
@@ -293,7 +265,7 @@ export default function CardStack() {
 
                   <div className={styles.cardBody}>
                     <h3 className={styles.cardHeading}>
-                      Turning ambitious ideas into functional digital products.
+                      Engineering ambitious digital systems that scale and perform.
                     </h3>
                     <p className={styles.cardLead}>
                       I’m <strong>Prabath Sai Nagireddy</strong>, a Full-Stack Developer
@@ -457,12 +429,6 @@ export default function CardStack() {
                 </div>
               </div>
             </div>
-          </div>
-
-          {/* Animated Bottom Center Scroll Indicator */}
-          <div ref={bottomHintRef} className={styles.bottomScrollHint}>
-            <span>Scroll to explore</span>
-            <span className={styles.bottomArrow}>↓</span>
           </div>
         </div>
       </div>

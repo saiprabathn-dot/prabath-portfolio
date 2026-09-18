@@ -40,51 +40,41 @@
 
 /* Header */
 .header {
-  display: flex;
-  align-items: flex-end;
-  justify-content: space-between;
-  gap: 1rem;
-  margin-bottom: 2rem;
-  flex-wrap: wrap;
+  width: 100%;
+  max-width: 900px;
+  margin: 0 auto 2rem auto;
+  display: block;
 }
 
 .headerLeft {
-  display: flex;
-  flex-direction: column;
-  gap: 0.5rem;
-}
-
-.badge {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.5rem;
-  padding: 0.3rem 0.8rem;
-  border-radius: var(--radius-full);
-  background: rgba(255, 255, 255, 0.04);
-  border: 1px solid rgba(255, 255, 255, 0.08);
-  font-family: var(--font-mono);
-  font-size: 0.75rem;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-  color: #a1a1aa;
+  width: 100%;
+  display: block;
 }
 
 .title {
-  font-size: clamp(1.75rem, 3.2vw, 2.5rem);
+  width: 100%;
+  font-size: clamp(1.6rem, 2.8vw, 2.25rem);
   font-weight: 700;
   letter-spacing: -0.03em;
-  line-height: 1.15;
+  line-height: 1.35;
   color: #f4f4f5;
-}
-
-.titleGradient {
-  color: #71717a;
-}
-
-.headerRight {
   display: flex;
-  align-items: center;
-  gap: 0.75rem;
+  flex-direction: column;
+}
+
+.titleLine1 {
+  display: block;
+  color: #ffffff;
+  text-align: left;
+  width: 100%;
+}
+
+.titleLine2 {
+  display: block;
+  color: #71717a;
+  text-align: right;
+  width: 100%;
+  margin-top: 0.35rem;
 }
 
 .scrollPill {
@@ -138,11 +128,13 @@
   height: 100%;
   position: absolute;
   inset: 0;
-  background: #0d0d12;
-  border: 1px solid rgba(255, 255, 255, 0.1);
+  background: rgba(10, 10, 14, 0.95);
+  border: 1px solid rgba(255, 255, 255, 0.09);
   border-radius: var(--radius-lg);
   padding: 2.25rem 2.5rem;
-  box-shadow: 0 25px 60px rgba(0, 0, 0, 0.95);
+  backdrop-filter: blur(24px);
+  -webkit-backdrop-filter: blur(24px);
+  box-shadow: 0 25px 60px rgba(0, 0, 0, 0.9);
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -154,50 +146,7 @@
 }
 
 .card:hover {
-  border-color: rgba(255, 255, 255, 0.18);
-}
-
-/* Animated Bottom Center Scroll Hint (Shows only when user pauses/stops scrolling) */
-.bottomScrollHint {
-  position: absolute;
-  bottom: 2rem;
-  left: 50%;
-  transform: translate(-50%, 8px) scale(0.96);
-  opacity: 0;
-  display: inline-flex;
-  align-items: center;
-  gap: 0.5rem;
-  padding: 0.45rem 1.15rem;
-  border-radius: var(--radius-full);
-  background: rgba(18, 18, 24, 0.9);
-  border: 1px solid rgba(255, 255, 255, 0.14);
-  backdrop-filter: blur(16px);
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.7);
-  font-family: var(--font-mono);
-  font-size: 0.76rem;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-  color: #d4d4d8;
-  pointer-events: none;
-  transition: opacity 0.4s cubic-bezier(0.16, 1, 0.3, 1), transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
-  z-index: 20;
-}
-
-.bottomArrow {
-  display: inline-block;
-  color: #ffffff;
-  animation: arrowPulse 1.6s ease-in-out infinite;
-}
-
-@keyframes arrowPulse {
-  0%, 100% {
-    transform: translateY(0);
-    opacity: 0.7;
-  }
-  50% {
-    transform: translateY(3px);
-    opacity: 1;
-  }
+  border-color: rgba(255, 255, 255, 0.16);
 }
 
 .cardHeader {
