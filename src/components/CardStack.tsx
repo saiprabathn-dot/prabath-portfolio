@@ -239,10 +239,6 @@ export default function CardStack() {
             {/* Header */}
             <div className={styles.header}>
               <div className={styles.headerLeft}>
-                <div className={styles.badge}>
-                  <Sparkles size={13} />
-                  <span>01 // ABOUT ME</span>
-                </div>
                 <h2 className={styles.title}>
                   Turning ideas into digital products —{" "}
                   <span className={styles.titleGradient}>
