@@ -113,6 +113,35 @@
   border-color: rgba(255, 255, 255, 0.14);
 }
 
+.connectButton {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.42rem;
+  padding: 0.44rem 1.05rem;
+  border-radius: var(--radius-full);
+  background: #ffffff;
+  color: #000000;
+  font-size: 0.84rem;
+  font-weight: 600;
+  text-decoration: none;
+  transition: var(--transition-smooth);
+  box-shadow: 0 4px 14px rgba(255, 255, 255, 0.12);
+}
+
+.connectButton:hover {
+  background: #e4e4e7;
+  transform: translateY(-1px);
+  box-shadow: 0 6px 20px rgba(255, 255, 255, 0.22);
+}
+
+.connectArrow {
+  transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.connectButton:hover .connectArrow {
+  transform: translate(1.5px, -1.5px);
+}
+
 .mobileMenuToggle {
   display: none;
   align-items: center;
@@ -142,6 +171,10 @@
   }
 
   .githubButton {
+    display: none;
+  }
+
+  .connectButton {
     display: none;
   }
 
@@ -195,6 +228,26 @@
     font-weight: 500;
     font-size: 0.95rem;
     border: 1px solid rgba(255, 255, 255, 0.08);
+  }
+
+  .mobileConnectBtn {
+    margin-top: 0.25rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    padding: 0.85rem;
+    border-radius: var(--radius-md);
+    background: #ffffff;
+    color: #000000;
+    font-weight: 600;
+    font-size: 0.95rem;
+    text-decoration: none;
+    transition: var(--transition-smooth);
+  }
+
+  .mobileConnectBtn:hover {
+    background: #e4e4e7;
   }
 }
 

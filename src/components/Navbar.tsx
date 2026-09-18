@@ -2,7 +2,7 @@
 
 import { useState, useEffect } from "react";
 import Link from "next/link";
-import { Menu, X } from "lucide-react";
+import { Menu, X, ArrowUpRight } from "lucide-react";
 import FoldText from "./FoldText";
 import styles from "./Navbar.module.css";
 
@@ -89,7 +89,7 @@ export default function Navbar() {
           </ul>
         </nav>
 
-        {/* Actions & GitHub Button */}
+        {/* Actions & Buttons */}
         <div className={styles.actions}>
           <a
             href="https://github.com"
@@ -110,6 +110,25 @@ export default function Navbar() {
               fontWeight={500}
               color="inherit"
             />
+          </a>
+
+          <a
+            href="#contact"
+            className={styles.connectButton}
+            aria-label="Let's Connect"
+          >
+            <FoldText
+              text="Let's Connect"
+              trigger="hover"
+              splitBy="char"
+              hinge="top"
+              duration={0.42}
+              stagger={0.025}
+              fontSize="0.84rem"
+              fontWeight={600}
+              color="inherit"
+            />
+            <ArrowUpRight size={14} className={styles.connectArrow} />
           </a>
 
           <button
@@ -155,6 +174,14 @@ export default function Navbar() {
           >
             <GithubIcon size={18} />
             <span>GitHub</span>
+          </a>
+          <a
+            href="#contact"
+            className={styles.mobileConnectBtn}
+            onClick={closeMenu}
+          >
+            <span>Let's Connect</span>
+            <ArrowUpRight size={15} />
           </a>
         </div>
       )}

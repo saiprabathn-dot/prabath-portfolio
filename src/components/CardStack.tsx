@@ -27,41 +27,37 @@ const CORE_STACK = [
   "Node.js",
   "Express",
   "MongoDB",
-  "Next.js 16",
-  "TypeScript",
   "Supabase",
-  "Tailwind CSS",
-  "Docker & Cloud",
+  "Tailwind",
+  "Docker",
 ];
 
 const AI_STACK = [
   "Gemini",
   "Claude",
-  "MCP (Model Context Protocol)",
-  "Ollama",
   "Codex",
-  "AI Automations",
-  "Supabase AI",
-  "Agentic Workflows",
+  "Ollama",
+  "MCP",
+  "AI Automation",
 ];
 
 const PRODUCTS = [
   {
     tag: "DEV PLATFORM",
     name: "Web Tool Finder (WTF)",
-    desc: "A developer-focused platform designed to make discovering useful web tools and utilities effortless.",
+    desc: "A developer-focused platform for discovering useful web tools faster.",
     icon: <Compass size={17} />,
   },
   {
-    tag: "INTERNAL OPS",
-    name: "Internal Agency CRM",
-    desc: "A custom high-efficiency client and operations system built to power QDelta Agency's workflows.",
+    tag: "INTERNAL PRODUCT",
+    name: "QDelta CRM",
+    desc: "A custom CRM built to power QDelta's internal workflows.",
     icon: <Zap size={17} />,
   },
   {
     tag: "AGENCY PLATFORM",
-    name: "QDelta Agency Site",
-    desc: "The flagship digital agency presence showcasing product engineering and modern digital experiences.",
+    name: "QDelta Agency",
+    desc: "The digital home of QDelta and its services.",
     icon: <FolderGit2 size={17} />,
   },
 ];
@@ -258,46 +254,41 @@ export default function CardStack() {
                   <div className={styles.cardHeader}>
                     <span className={styles.cardTag}>
                       <UserCheck size={13} />
-                      Co-Founder @ QDelta
+                      CO-FOUNDER @ QDELTA
                     </span>
                     <span className={styles.cardNum}>01</span>
                   </div>
 
                   <div className={styles.cardBody}>
                     <h3 className={styles.cardHeading}>
-                      Engineering ambitious digital systems that scale and perform.
+                      Building digital products from idea to reality.
                     </h3>
                     <p className={styles.cardLead}>
-                      I’m <strong>Prabath Sai Nagireddy</strong>, a Full-Stack Developer
+                      I’m <strong>Nagireddy Sai Prabath</strong>, a Full-Stack Developer
                       and Co-founder of <strong>QDelta Agency</strong>.
                     </p>
                     <p className={styles.cardText}>
-                      My work spans engineering scalable web applications, designing intuitive
-                      interfaces, and building production tools that solve real problems.
-                      I believe in engineering excellence combined with clean, thoughtful design.
+                      I build practical digital products where engineering, product thinking, and design come together.
                     </p>
 
                     <div className={styles.pillGrid}>
                       <span className={styles.pillItem}>
                         <Code2 size={13} />
-                        <span>Full-Stack Architecture</span>
+                        <span>Full-Stack Development</span>
                       </span>
                       <span className={styles.pillItem}>
                         <FolderGit2 size={13} />
                         <span>Product Engineering</span>
                       </span>
                       <span className={styles.pillItem}>
-                        <Zap size={13} />
-                        <span>High Performance</span>
+                        <Sparkles size={13} />
+                        <span>AI & Modern Web</span>
                       </span>
                     </div>
                   </div>
 
                   <div className={styles.cardFooter}>
-                    <a href="#contact" className={styles.primaryBtn}>
-                      <span>Let's Connect</span>
-                      <ArrowUpRight size={14} />
-                    </a>
+                    <span className={styles.cardTag}>Co-Founder & Lead</span>
                     <span className={styles.cardNum}>Scroll ↓</span>
                   </div>
                 </div>
@@ -307,23 +298,17 @@ export default function CardStack() {
                   <div className={styles.cardHeader}>
                     <span className={styles.cardTag}>
                       <Cpu size={13} />
-                      Full-Stack Stack
+                      FULL-STACK ENGINEERING
                     </span>
                     <span className={styles.cardNum}>02</span>
                   </div>
 
                   <div className={styles.cardBody}>
                     <h3 className={styles.cardHeading}>
-                      Full-stack engineering built on modern foundations.
+                      From interface to infrastructure.
                     </h3>
                     <p className={styles.cardLead}>
-                      From responsive React interfaces to high-throughput Node.js backends and
-                      optimized MongoDB & Supabase data models.
-                    </p>
-
-                    <p className={styles.pageText}>
-                      I engineer systems that scale effortlessly, with clean TypeScript types,
-                      resilient REST & GraphQL APIs, and robust cloud deployments.
+                      I build complete web applications — from clean React interfaces to Node.js backends, databases, APIs, and deployment.
                     </p>
 
                     <div className={styles.pillGrid}>
@@ -337,7 +322,7 @@ export default function CardStack() {
                   </div>
 
                   <div className={styles.cardFooter}>
-                    <span className={styles.cardTag}>Engineering Core</span>
+                    <span className={styles.cardTag}>Engineering Stack</span>
                     <span className={styles.cardNum}>Scroll ↓</span>
                   </div>
                 </div>
@@ -347,14 +332,14 @@ export default function CardStack() {
                   <div className={styles.cardHeader}>
                     <span className={styles.cardTag}>
                       <FolderGit2 size={13} />
-                      Shipped via QDelta
+                      BUILT AT QDELTA
                     </span>
                     <span className={styles.cardNum}>03</span>
                   </div>
 
                   <div className={styles.cardBody}>
                     <h3 className={styles.cardHeading}>
-                      Products & Platforms Built from Concept to Reality.
+                      Products built from idea to reality.
                     </h3>
 
                     <div className={styles.productsList}>
@@ -374,7 +359,7 @@ export default function CardStack() {
                   </div>
 
                   <div className={styles.cardFooter}>
-                    <span className={styles.cardTag}>3 Active Platforms</span>
+                    <span className={styles.cardTag}>03 PRODUCTS BUILT</span>
                     <span className={styles.cardNum}>Scroll ↓</span>
                   </div>
                 </div>
@@ -384,7 +369,7 @@ export default function CardStack() {
                   <div className={styles.cardHeader}>
                     <span className={styles.cardTag}>
                       <Bot size={13} />
-                      AI & Philosophy
+                      ENGINEERING PHILOSOPHY
                     </span>
                     <span className={styles.cardNum}>04</span>
                   </div>
@@ -392,21 +377,21 @@ export default function CardStack() {
                   <div className={styles.cardBody}>
                     <div className={styles.matrixGrid}>
                       <div className={styles.matrixItem}>
-                        <span className={styles.matrixNum}>01 // LOGIC</span>
+                        <span className={styles.matrixNum}>01 // BUILD</span>
                         <span className={styles.matrixLabel}>Technology</span>
                       </div>
                       <div className={styles.matrixItem}>
-                        <span className={styles.matrixNum}>02 // PURPOSE</span>
+                        <span className={styles.matrixNum}>02 // SOLVE</span>
                         <span className={styles.matrixLabel}>Product</span>
                       </div>
                       <div className={styles.matrixItem}>
-                        <span className={styles.matrixNum}>03 // FEEL</span>
+                        <span className={styles.matrixNum}>03 // REFINE</span>
                         <span className={styles.matrixLabel}>Design</span>
                       </div>
                     </div>
 
                     <div className={styles.quoteBox}>
-                      “Building software that is not only technically solid, but also simple, useful, and genuinely enjoyable to use.”
+                      “Build software that is technically solid, genuinely useful, and simple to use.”
                     </div>
 
                     <div className={styles.pillGrid}>
@@ -424,7 +409,7 @@ export default function CardStack() {
                       <span>Start a Project</span>
                       <ArrowUpRight size={14} />
                     </a>
-                    <span className={styles.cardNum}>[ COMPLETE ]</span>
+                    <span className={styles.cardTag}>AI & Engineering</span>
                   </div>
                 </div>
               </div>
