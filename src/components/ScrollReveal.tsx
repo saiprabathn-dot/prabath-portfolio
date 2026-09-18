@@ -53,7 +53,7 @@ export default function ScrollReveal({
     <motion.div
       initial={getInitial()}
       whileInView={{ opacity: 1, x: 0, y: 0, scale: 1 }}
-      viewport={{ once, margin: "-50px" }}
+      viewport={{ once, margin: "0px" }}
       transition={{
         duration,
         delay,
