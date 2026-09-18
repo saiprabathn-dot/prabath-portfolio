@@ -1,8 +1,8 @@
 "use client";
 
 import React from "react";
-import CardStack from "./CardStack";
+import AboutCarousel from "./AboutCarousel";
 
 export default function About() {
-  return <CardStack />;
+  return <AboutCarousel />;
 }

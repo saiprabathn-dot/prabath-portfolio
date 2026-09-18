@@ -6,63 +6,86 @@ import styles from "./GlobalScrollHint.module.css";
 
 export default function GlobalScrollHint() {
   const [isVisible, setIsVisible] = useState(false);
-  const [isNearFooter, setIsNearFooter] = useState(false);
-  const timeoutRef = useRef<NodeJS.Timeout | null>(null);
+  const scrollTimeoutRef = useRef<NodeJS.Timeout | null>(null);
 
   useEffect(() => {
-    // 1. Initial appearance after page load
-    const initialTimer = setTimeout(() => {
-      setIsVisible(true);
-    }, 600);
-
-    const checkProximity = () => {
-      const scrollY = window.scrollY || window.pageYOffset;
+    const isSectionAllowed = () => {
       const windowHeight = window.innerHeight;
-      const docHeight = document.documentElement.scrollHeight;
+      const aboutElem = document.getElementById("about");
+      const qdeltaElem = document.getElementById("qdelta");
+      const footerElem = document.querySelector("footer");
 
-      // Check footer proximity
-      const footerElement = document.querySelector("footer");
-      let nearFooter = false;
-
-      if (footerElement) {
-        const footerRect = footerElement.getBoundingClientRect();
-        // If footer is within 100px of bottom of screen or visible
-        nearFooter = footerRect.top <= windowHeight + 60;
-      } else {
-        nearFooter = scrollY + windowHeight >= docHeight - 200;
+      // 1. Footer proximity: Never show near footer
+      if (footerElem) {
+        const footerRect = footerElem.getBoundingClientRect();
+        if (footerRect.top <= windowHeight + 40) {
+          return false;
+        }
       }
 
-      setIsNearFooter(nearFooter);
-      return nearFooter;
+      // 2. QDelta section: When QDelta has entered 20% into viewport
+      let qdeltaEntered20 = false;
+      if (qdeltaElem) {
+        const qdeltaRect = qdeltaElem.getBoundingClientRect();
+        if (qdeltaRect.top <= windowHeight * 0.8 && qdeltaRect.bottom > 0) {
+          qdeltaEntered20 = true;
+        }
+      }
+
+      // 3. About section: When About has entered 50% into viewport
+      let aboutReached50 = false;
+      if (aboutElem) {
+        const aboutRect = aboutElem.getBoundingClientRect();
+        if (aboutRect.top <= windowHeight * 0.5 && aboutRect.bottom >= 0) {
+          aboutReached50 = true;
+        }
+      }
+
+      // If QDelta entered 20%, section is allowed
+      if (qdeltaEntered20) {
+        return true;
+      }
+
+      // If About reached 50% (and before QDelta enters 20%), strictly forbidden
+      if (aboutReached50) {
+        return false;
+      }
+
+      // Hero / Top of page is allowed
+      return true;
     };
 
+    // Initial appearance on page load (if in an allowed section)
+    const initialTimer = setTimeout(() => {
+      if (isSectionAllowed()) {
+        setIsVisible(true);
+      }
+    }, 600);
+
     const handleScroll = () => {
-      // Hide immediately while scrolling
+      // 1. Immediately hide while active scrolling is happening
       setIsVisible(false);
 
-      const nearFooter = checkProximity();
-
-      // Clear any pending timer
-      if (timeoutRef.current) {
-        clearTimeout(timeoutRef.current);
+      if (scrollTimeoutRef.current) {
+        clearTimeout(scrollTimeoutRef.current);
       }
 
-      // If user stopped scrolling and not near footer, bring it back
-      if (!nearFooter) {
-        timeoutRef.current = setTimeout(() => {
+      // 2. Only become visible after user stops scrolling (idle pause) and if the section allows it
+      scrollTimeoutRef.current = setTimeout(() => {
+        if (isSectionAllowed()) {
           setIsVisible(true);
-        }, 900);
-      }
+        }
+      }, 700);
     };
 
     window.addEventListener("scroll", handleScroll, { passive: true });
-    window.addEventListener("resize", checkProximity, { passive: true });
+    window.addEventListener("resize", handleScroll, { passive: true });
 
     return () => {
       clearTimeout(initialTimer);
-      if (timeoutRef.current) clearTimeout(timeoutRef.current);
+      if (scrollTimeoutRef.current) clearTimeout(scrollTimeoutRef.current);
       window.removeEventListener("scroll", handleScroll);
-      window.removeEventListener("resize", checkProximity);
+      window.removeEventListener("resize", handleScroll);
     };
   }, []);
 
@@ -73,11 +96,9 @@ export default function GlobalScrollHint() {
     });
   };
 
-  const shouldShow = isVisible && !isNearFooter;
-
   return (
     <div
-      className={`${styles.container} ${shouldShow ? styles.visible : styles.hidden}`}
+      className={`${styles.container} ${isVisible ? styles.visible : styles.hidden}`}
       onClick={scrollToNext}
       role="button"
       tabIndex={0}
