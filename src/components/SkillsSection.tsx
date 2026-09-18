@@ -40,6 +40,7 @@ import {
   Code2,
   ShieldCheck,
 } from "lucide-react";
+import ScrollReveal from "./ScrollReveal";
 import styles from "./SkillsSection.module.css";
 
 interface SkillItem {
@@ -193,28 +194,37 @@ export default function SkillsSection() {
     <section id="skills" className={styles.skillsSection}>
       {/* Section Header */}
       <div className={styles.header}>
-        <div className={styles.sectionBadge}>
-          <Sparkles size={13} className={styles.badgeIcon} />
-          <span>TECH ARSENAL &amp; CAPABILITIES</span>
-        </div>
-        <h2 className={styles.title}>
-          Engineered with <span className={styles.titleGradient}>Frontier Tools</span>
-        </h2>
-        <p className={styles.subtitle}>
-          A curated ecosystem of distributed architectures, high-craft reactive frontends, and autonomous AI systems.
-        </p>
+        <ScrollReveal delay={0.05} direction="up" distance={20}>
+          <div className={styles.sectionBadge}>
+            <Sparkles size={13} className={styles.badgeIcon} />
+            <span>TECH ARSENAL &amp; CAPABILITIES</span>
+          </div>
+        </ScrollReveal>
+
+        <ScrollReveal delay={0.15} direction="up" distance={25}>
+          <h2 className={styles.title}>
+            Engineered with <span className={styles.titleGradient}>Frontier Tools</span>
+          </h2>
+        </ScrollReveal>
+
+        <ScrollReveal delay={0.25} direction="up" distance={25}>
+          <p className={styles.subtitle}>
+            A curated ecosystem of distributed architectures, high-craft reactive frontends, and autonomous AI systems.
+          </p>
+        </ScrollReveal>
       </div>
 
       {/* Central Kinetic Orbital Solar System (4 Layers) */}
-      <div
-        ref={orbitRef}
-        className={styles.orbitWrapper}
-        onMouseMove={handleOrbitMouseMove}
-        onMouseLeave={handleOrbitMouseLeave}
-        style={{
-          transform: `perspective(1100px) rotateX(${mousePos.y * -20}deg) rotateY(${mousePos.x * 24}deg) translateX(${mousePos.x * 20}px) translateY(${mousePos.y * 16}px)`,
-        }}
-      >
+      <ScrollReveal delay={0.15} scale={0.94} duration={0.9} distance={0}>
+        <div
+          ref={orbitRef}
+          className={styles.orbitWrapper}
+          onMouseMove={handleOrbitMouseMove}
+          onMouseLeave={handleOrbitMouseLeave}
+          style={{
+            transform: `perspective(1100px) rotateX(${mousePos.y * -20}deg) rotateY(${mousePos.x * 24}deg) translateX(${mousePos.x * 20}px) translateY(${mousePos.y * 16}px)`,
+          }}
+        >
         {/* Central Core Hub */}
         <div className={styles.coreHub}>
           <div className={styles.corePulseRing} />
@@ -301,57 +311,60 @@ export default function SkillsSection() {
           })}
         </div>
       </div>
+      </ScrollReveal>
 
       {/* Kinetic Infinite Fluid Streams (Boxless, flowing bidirectional ribbons) */}
-      <div className={styles.streamsContainer}>
-        {/* Stream 1: Frontend & Interface Velocity */}
-        <div className={styles.streamTrack}>
-          <div className={`${styles.streamRibbon} ${styles.scrollLeft}`}>
-            {[...STREAM_1, ...STREAM_1, ...STREAM_1].map((skill, idx) => (
-              <div
-                key={`${skill.name}-${idx}`}
-                className={styles.streamItem}
-              >
-                <span className={styles.streamIcon}>{skill.icon}</span>
-                <span className={styles.streamName}>{skill.name}</span>
-                <span className={styles.streamTag}>{skill.categoryLabel}</span>
-              </div>
-            ))}
+      <ScrollReveal delay={0.25} direction="up" distance={30}>
+        <div className={styles.streamsContainer}>
+          {/* Stream 1: Frontend & Interface Velocity */}
+          <div className={styles.streamTrack}>
+            <div className={`${styles.streamRibbon} ${styles.scrollLeft}`}>
+              {[...STREAM_1, ...STREAM_1, ...STREAM_1].map((skill, idx) => (
+                <div
+                  key={`${skill.name}-${idx}`}
+                  className={styles.streamItem}
+                >
+                  <span className={styles.streamIcon}>{skill.icon}</span>
+                  <span className={styles.streamName}>{skill.name}</span>
+                  <span className={styles.streamTag}>{skill.categoryLabel}</span>
+                </div>
+              ))}
+            </div>
           </div>
-        </div>
 
-        {/* Stream 2: AI & Agentic Systems (Opposite Direction) */}
-        <div className={styles.streamTrack}>
-          <div className={`${styles.streamRibbon} ${styles.scrollRight}`}>
-            {[...STREAM_2, ...STREAM_2, ...STREAM_2].map((skill, idx) => (
-              <div
-                key={`${skill.name}-${idx}`}
-                className={`${styles.streamItem} ${styles.streamHighlightAI}`}
-              >
-                <span className={styles.streamIcon}>{skill.icon}</span>
-                <span className={styles.streamName}>{skill.name}</span>
-                <span className={styles.streamTag}>{skill.categoryLabel}</span>
-              </div>
-            ))}
+          {/* Stream 2: AI & Agentic Systems (Opposite Direction) */}
+          <div className={styles.streamTrack}>
+            <div className={`${styles.streamRibbon} ${styles.scrollRight}`}>
+              {[...STREAM_2, ...STREAM_2, ...STREAM_2].map((skill, idx) => (
+                <div
+                  key={`${skill.name}-${idx}`}
+                  className={`${styles.streamItem} ${styles.streamHighlightAI}`}
+                >
+                  <span className={styles.streamIcon}>{skill.icon}</span>
+                  <span className={styles.streamName}>{skill.name}</span>
+                  <span className={styles.streamTag}>{skill.categoryLabel}</span>
+                </div>
+              ))}
+            </div>
           </div>
-        </div>
 
-        {/* Stream 3: Distributed Backend, Queues & Cloud */}
-        <div className={styles.streamTrack}>
-          <div className={`${styles.streamRibbon} ${styles.scrollLeft}`}>
-            {[...STREAM_3, ...STREAM_3, ...STREAM_3].map((skill, idx) => (
-              <div
-                key={`${skill.name}-${idx}`}
-                className={styles.streamItem}
-              >
-                <span className={styles.streamIcon}>{skill.icon}</span>
-                <span className={styles.streamName}>{skill.name}</span>
-                <span className={styles.streamTag}>{skill.categoryLabel}</span>
-              </div>
-            ))}
+          {/* Stream 3: Distributed Backend, Queues & Cloud */}
+          <div className={styles.streamTrack}>
+            <div className={`${styles.streamRibbon} ${styles.scrollLeft}`}>
+              {[...STREAM_3, ...STREAM_3, ...STREAM_3].map((skill, idx) => (
+                <div
+                  key={`${skill.name}-${idx}`}
+                  className={styles.streamItem}
+                >
+                  <span className={styles.streamIcon}>{skill.icon}</span>
+                  <span className={styles.streamName}>{skill.name}</span>
+                  <span className={styles.streamTag}>{skill.categoryLabel}</span>
+                </div>
+              ))}
+            </div>
           </div>
         </div>
-      </div>
+      </ScrollReveal>
     </section>
   );
 }

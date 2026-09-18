@@ -11,10 +11,11 @@ import {
   Bot,
   Layers,
   FolderGit2,
-  Compass,
   UserCheck,
+  Compass,
   Terminal,
 } from "lucide-react";
+import ScrollReveal from "./ScrollReveal";
 import styles from "./AboutCarousel.module.css";
 
 interface CardData {
@@ -228,25 +229,34 @@ export default function AboutCarousel() {
     <section id="about" className={styles.aboutSection} ref={containerRef}>
       {/* Section Header */}
       <div className={styles.header}>
-        <div className={styles.sectionBadge}>
-          <Sparkles size={13} className={styles.badgeIcon} />
-          <span>ABOUT ME</span>
-        </div>
-        <h2 className={styles.title}>
-          Turning ideas into digital products <span className={styles.titleGradient}>— crafted with precision.</span>
-        </h2>
-        <p className={styles.subtitle}>
-          Explore my background, full-stack architecture, shipped products, AI workflows, and design philosophy.
-        </p>
+        <ScrollReveal delay={0.05} direction="up" distance={20}>
+          <div className={styles.sectionBadge}>
+            <Sparkles size={13} className={styles.badgeIcon} />
+            <span>ABOUT ME</span>
+          </div>
+        </ScrollReveal>
+
+        <ScrollReveal delay={0.15} direction="up" distance={25}>
+          <h2 className={styles.title}>
+            Turning ideas into digital products <span className={styles.titleGradient}>— crafted with precision.</span>
+          </h2>
+        </ScrollReveal>
+
+        <ScrollReveal delay={0.25} direction="up" distance={25}>
+          <p className={styles.subtitle}>
+            Explore my background, full-stack architecture, shipped products, AI workflows, and design philosophy.
+          </p>
+        </ScrollReveal>
       </div>
 
       {/* 3D Carousel Stage */}
-      <div
-        ref={wrapperRef}
-        className={styles.carouselWrapper}
-        onTouchStart={handleTouchStart}
-        onTouchEnd={handleTouchEnd}
-      >
+      <ScrollReveal delay={0.2} scale={0.96} duration={0.9} distance={0}>
+        <div
+          ref={wrapperRef}
+          className={styles.carouselWrapper}
+          onTouchStart={handleTouchStart}
+          onTouchEnd={handleTouchEnd}
+        >
         {/* Full-height side click hitboxes guaranteeing every pixel on left & right works */}
         <button
           type="button"
@@ -402,6 +412,7 @@ export default function AboutCarousel() {
           })}
         </div>
       </div>
+    </ScrollReveal>
 
       {/* Navigation Controls Below */}
       <div className={styles.controlsRow}>

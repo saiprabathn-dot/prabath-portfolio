@@ -2,6 +2,7 @@
 
 import React from "react";
 import { ExternalLink, Layers } from "lucide-react";
+import ScrollReveal from "./ScrollReveal";
 import styles from "./ProjectsSection.module.css";
 
 interface Project {
@@ -97,39 +98,47 @@ export default function ProjectsSection() {
       <div className={styles.container}>
         {/* Section Header */}
         <div className={styles.header}>
-          <div className={styles.categoryBadge}>
-            <Layers size={13} />
-            <span>FEATURED PROJECTS</span>
-          </div>
+          <ScrollReveal delay={0.05} direction="up" distance={20}>
+            <div className={styles.categoryBadge}>
+              <Layers size={13} />
+              <span>FEATURED PROJECTS</span>
+            </div>
+          </ScrollReveal>
 
-          <h2 className={styles.heading}>
-            Built with Engineering Rigor{" "}
-            <span className={styles.headingAccent}>& Product Craft.</span>
-          </h2>
+          <ScrollReveal delay={0.15} direction="up" distance={25}>
+            <h2 className={styles.heading}>
+              Built with Engineering Rigor{" "}
+              <span className={styles.headingAccent}>& Product Craft.</span>
+            </h2>
+          </ScrollReveal>
 
-          <p className={styles.subheading}>
-            A curated showcase of production applications, developer platforms, and agency software engineered end-to-end.
-          </p>
+          <ScrollReveal delay={0.25} direction="up" distance={25}>
+            <p className={styles.subheading}>
+              A curated showcase of production applications, developer platforms, and agency software engineered end-to-end.
+            </p>
+          </ScrollReveal>
         </div>
 
         {/* AUTOMATIC INFINITE HORIZONTAL MARQUEE */}
-        <div className={styles.carouselWrapper}>
-          <div className={styles.trackGroup}>
-            {PROJECTS.map((project, idx) =>
-              renderCard(project, `set1-${project.id}-${idx}`)
-            )}
+        <ScrollReveal delay={0.2} scale={0.96} duration={0.85} distance={0}>
+          <div className={styles.carouselWrapper}>
+            <div className={styles.trackGroup}>
+              {PROJECTS.map((project, idx) =>
+                renderCard(project, `set1-${project.id}-${idx}`)
+              )}
+            </div>
+            <div className={styles.trackGroup} aria-hidden="true">
+              {PROJECTS.map((project, idx) =>
+                renderCard(project, `set2-${project.id}-${idx}`)
+              )}
+            </div>
+            <div className={styles.trackGroup} aria-hidden="true">
+              {PROJECTS.map((project, idx) =>
+                renderCard(project, `set3-${project.id}-${idx}`)
+              )}
+            </div>
           </div>
-          <div className={styles.trackGroup} aria-hidden="true">
-            {PROJECTS.map((project, idx) =>
-              renderCard(project, `set2-${project.id}-${idx}`)
-            )}
-          </div>
-          <div className={styles.trackGroup} aria-hidden="true">
-            {PROJECTS.map((project, idx) =>
-              renderCard(project, `set3-${project.id}-${idx}`)
-            )}
-          </div>
-        </div>
+        </ScrollReveal>
       </div>
     </section>
   );

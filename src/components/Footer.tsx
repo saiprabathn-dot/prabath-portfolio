@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import ScrollReveal from "./ScrollReveal";
 import styles from "./Footer.module.css";
 
 function GithubIcon({ size = 17 }: { size?: number }) {
@@ -45,75 +46,77 @@ function MailIcon({ size = 17 }: { size?: number }) {
 export default function Footer() {
   return (
     <footer className={styles.footer}>
-      <div className={styles.container}>
-        {/* Clean Single Row */}
-        <div className={styles.mainRow}>
-          {/* Brand */}
-          <Link href="/" className={styles.brand} aria-label="NSP Home">
-            <span className={styles.brandLogoText}>NSP</span>
-          </Link>
+      <ScrollReveal delay={0.05} direction="up" distance={15}>
+        <div className={styles.container}>
+          {/* Clean Single Row */}
+          <div className={styles.mainRow}>
+            {/* Brand */}
+            <Link href="/" className={styles.brand} aria-label="NSP Home">
+              <span className={styles.brandLogoText}>NSP</span>
+            </Link>
 
-          {/* Minimalist Horizontal Navigation Links */}
-          <ul className={styles.navLinks}>
-            <li>
-              <Link href="/" className={styles.navLink}>Home</Link>
-            </li>
-            <li>
-              <a href="#about" className={styles.navLink}>About</a>
-            </li>
-            <li>
-              <a href="#projects" className={styles.navLink}>Projects</a>
-            </li>
-            <li>
-              <a href="#qdelta" className={styles.navLink}>QDelta</a>
-            </li>
-            <li>
-              <a href="#skills" className={styles.navLink}>Skills</a>
-            </li>
-            <li>
-              <a href="#contact" className={styles.navLink}>Contact</a>
-            </li>
-          </ul>
+            {/* Minimalist Horizontal Navigation Links */}
+            <ul className={styles.navLinks}>
+              <li>
+                <Link href="/" className={styles.navLink}>Home</Link>
+              </li>
+              <li>
+                <a href="#about" className={styles.navLink}>About</a>
+              </li>
+              <li>
+                <a href="#projects" className={styles.navLink}>Projects</a>
+              </li>
+              <li>
+                <a href="#qdelta" className={styles.navLink}>QDelta</a>
+              </li>
+              <li>
+                <a href="#skills" className={styles.navLink}>Skills</a>
+              </li>
+              <li>
+                <a href="#contact" className={styles.navLink}>Contact</a>
+              </li>
+            </ul>
 
-          {/* Minimalist Social Links */}
-          <div className={styles.socialLinks}>
-            <a
-              href="https://github.com"
-              target="_blank"
-              rel="noopener noreferrer"
-              className={styles.socialIcon}
-              aria-label="GitHub Profile"
-            >
-              <GithubIcon size={17} />
-            </a>
-            <a
-              href="https://linkedin.com"
-              target="_blank"
-              rel="noopener noreferrer"
-              className={styles.socialIcon}
-              aria-label="LinkedIn Profile"
-            >
-              <LinkedinIcon size={17} />
-            </a>
-            <a
-              href="https://twitter.com"
-              target="_blank"
-              rel="noopener noreferrer"
-              className={styles.socialIcon}
-              aria-label="Twitter / X Profile"
-            >
-              <TwitterIcon size={17} />
-            </a>
-            <a
-              href="mailto:contact@example.com"
-              className={styles.socialIcon}
-              aria-label="Send Email"
-            >
-              <MailIcon size={17} />
-            </a>
+            {/* Minimalist Social Links */}
+            <div className={styles.socialLinks}>
+              <a
+                href="https://github.com"
+                target="_blank"
+                rel="noopener noreferrer"
+                className={styles.socialIcon}
+                aria-label="GitHub Profile"
+              >
+                <GithubIcon size={17} />
+              </a>
+              <a
+                href="https://linkedin.com"
+                target="_blank"
+                rel="noopener noreferrer"
+                className={styles.socialIcon}
+                aria-label="LinkedIn Profile"
+              >
+                <LinkedinIcon size={17} />
+              </a>
+              <a
+                href="https://twitter.com"
+                target="_blank"
+                rel="noopener noreferrer"
+                className={styles.socialIcon}
+                aria-label="Twitter / X Profile"
+              >
+                <TwitterIcon size={17} />
+              </a>
+              <a
+                href="mailto:saiprabath.n@gmail.com"
+                className={styles.socialIcon}
+                aria-label="Send Email"
+              >
+                <MailIcon size={17} />
+              </a>
+            </div>
           </div>
         </div>
-      </div>
+      </ScrollReveal>
     </footer>
   );
 }

@@ -9,9 +9,10 @@ import {
   FolderGit2,
   Box,
   Palette,
-  Code2,
   Sparkles,
+  Code2,
 } from "lucide-react";
+import ScrollReveal from "./ScrollReveal";
 import styles from "./QDeltaSection.module.css";
 
 interface ProductItem {
@@ -214,77 +215,83 @@ export default function QDeltaSection() {
     <section id="qdelta" className={styles.section}>
       <div className={styles.container}>
         {/* 1. HEADER & HERO INTRODUCTION */}
-        <div className={styles.headerBlock}>
-          <div className={styles.eyebrowRow}>
-            <span className={styles.agencyLabel}>QDELTA AGENCY</span>
-            <div className={styles.statusBadge}>
-              <span>LAUNCHED SEPTEMBER 2026</span>
-              <span className={styles.statusSep}>·</span>
-              <span className={styles.udyamText}>
-                <ShieldCheck size={13} className={styles.udyamIcon} />
-                UDYAM REGISTERED
-              </span>
-            </div>
-          </div>
-
-          <h2 className={styles.mainTitle}>
-            Crafting Digital Products from Concept to Code
-          </h2>
-
-          <p className={styles.introLead}>
-            <span className={styles.leadLine1}>
-              As Co-Founder and Developer, I design, code, and deploy QDelta’s products
-            </span>
-            <span className={styles.leadLine2}>
-              <span className={styles.ghostPrefix} aria-hidden="true">
-                {"As Co-Founder and Developer, I "}
-              </span>
-              <span>
-                — bridging intuitive interface design with scalable backend infrastructure.
-              </span>
-            </span>
-          </p>
-        </div>
-
-        {/* 2. CO-FOUNDER · DEVELOPER BENTO CARD */}
-        <div className={styles.founderCard}>
-          <div className={styles.founderCardContent}>
-            <div className={styles.founderTag}>
-              <span className={styles.tagDot} />
-              <span>CO-FOUNDER · DEVELOPER</span>
+        <ScrollReveal delay={0.05} direction="up" distance={25}>
+          <div className={styles.headerBlock}>
+            <div className={styles.eyebrowRow}>
+              <span className={styles.agencyLabel}>QDELTA AGENCY</span>
+              <div className={styles.statusBadge}>
+                <span>LAUNCHED SEPTEMBER 2026</span>
+                <span className={styles.statusSep}>·</span>
+                <span className={styles.udyamText}>
+                  <ShieldCheck size={13} className={styles.udyamIcon} />
+                  UDYAM REGISTERED
+                </span>
+              </div>
             </div>
 
-            <h3 className={styles.founderHeading}>
-              Building the technology behind QDelta
-            </h3>
+            <h2 className={styles.mainTitle}>
+              Crafting Digital Products from Concept to Code
+            </h2>
 
-            <p className={styles.founderDesc}>
-              I co-founded QDelta and lead the development of our digital
-              products.
+            <p className={styles.introLead}>
+              <span className={styles.leadLine1}>
+                As Co-Founder and Developer, I design, code, and deploy QDelta’s products
+              </span>
+              <span className={styles.leadLine2}>
+                <span className={styles.ghostPrefix} aria-hidden="true">
+                  {"As Co-Founder and Developer, I "}
+                </span>
+                <span>
+                  — bridging intuitive interface design with scalable backend infrastructure.
+                </span>
+              </span>
             </p>
           </div>
+        </ScrollReveal>
 
-          <div className={styles.founderMetrics}>
-            <div className={styles.metricBox}>
-              <span className={styles.metricNumber}>03</span>
-              <span className={styles.metricLabel}>PRODUCTS</span>
+        {/* 2. CO-FOUNDER · DEVELOPER BENTO CARD */}
+        <ScrollReveal delay={0.15} direction="up" distance={30}>
+          <div className={styles.founderCard}>
+            <div className={styles.founderCardContent}>
+              <div className={styles.founderTag}>
+                <span className={styles.tagDot} />
+                <span>CO-FOUNDER · DEVELOPER</span>
+              </div>
+
+              <h3 className={styles.founderHeading}>
+                Building the technology behind QDelta
+              </h3>
+
+              <p className={styles.founderDesc}>
+                I co-founded QDelta and lead the development of our digital
+                products.
+              </p>
             </div>
-            <div className={styles.metricDivider} />
-            <div className={styles.metricBox}>
-              <span className={styles.metricNumber}>2026</span>
-              <span className={styles.metricLabel}>FOUNDED</span>
+
+            <div className={styles.founderMetrics}>
+              <div className={styles.metricBox}>
+                <span className={styles.metricNumber}>03</span>
+                <span className={styles.metricLabel}>PRODUCTS</span>
+              </div>
+              <div className={styles.metricDivider} />
+              <div className={styles.metricBox}>
+                <span className={styles.metricNumber}>2026</span>
+                <span className={styles.metricLabel}>FOUNDED</span>
+              </div>
             </div>
           </div>
-        </div>
+        </ScrollReveal>
 
         {/* 3. SECTION PRODUCTS (SCROLL FAN-OUT ANIMATION) */}
         <div className={styles.productsSection}>
-          <div className={styles.sectionHeader}>
-            <span className={styles.sectionNumber}>PRODUCTS</span>
-            <h3 className={styles.sectionSubtitle}>
-              Three products. One direction.
-            </h3>
-          </div>
+          <ScrollReveal delay={0.05} direction="up" distance={20}>
+            <div className={styles.sectionHeader}>
+              <span className={styles.sectionNumber}>PRODUCTS</span>
+              <h3 className={styles.sectionSubtitle}>
+                Three products. One direction.
+              </h3>
+            </div>
+          </ScrollReveal>
 
           <div ref={productsGridRef} className={styles.productsGrid}>
             {PRODUCTS.map((prod, idx) => (
@@ -334,12 +341,14 @@ export default function QDeltaSection() {
 
         {/* 4. SECTION MY ROLE (4-CARD 3D SCROLL FAN-OUT) */}
         <div className={styles.roleSection}>
-          <div className={styles.sectionHeader}>
-            <span className={styles.sectionNumber}>MY ROLE</span>
-            <h3 className={styles.sectionSubtitle}>
-              From idea to shipped product.
-            </h3>
-          </div>
+          <ScrollReveal delay={0.05} direction="up" distance={20}>
+            <div className={styles.sectionHeader}>
+              <span className={styles.sectionNumber}>MY ROLE</span>
+              <h3 className={styles.sectionSubtitle}>
+                From idea to shipped product.
+              </h3>
+            </div>
+          </ScrollReveal>
 
           <div ref={rolesGridRef} className={styles.rolesGrid}>
             {ROLES.map((role, idx) => (
