@@ -2,7 +2,6 @@
 
 import React from "react";
 import { ExternalLink, Layers } from "lucide-react";
-import { motion } from "motion/react";
 import ScrollReveal from "./ScrollReveal";
 import styles from "./ProjectsSection.module.css";
 
@@ -97,75 +96,27 @@ export default function ProjectsSection() {
   return (
     <section id="projects" className={styles.section}>
       <div className={styles.container}>
-        {/* Section Header with Kinetic Text Scroll Motion */}
+        {/* Section Header */}
         <div className={styles.header}>
-          <motion.div
-            initial={{ opacity: 0, y: 18, scale: 0.94 }}
-            whileInView={{ opacity: 1, y: 0, scale: 1 }}
-            viewport={{ once: true, margin: "0px" }}
-            transition={{ duration: 0.6, delay: 0.05, ease: [0.16, 1, 0.3, 1] }}
-            className={styles.categoryBadge}
-          >
-            <Layers size={13} />
-            <span>FEATURED PROJECTS</span>
-          </motion.div>
+          <ScrollReveal delay={0.05} direction="up" distance={20}>
+            <div className={styles.categoryBadge}>
+              <Layers size={13} />
+              <span>FEATURED PROJECTS</span>
+            </div>
+          </ScrollReveal>
 
-          <h2 className={styles.heading}>
-            {[
-              { text: "Built", accent: false },
-              { text: "with", accent: false },
-              { text: "Engineering", accent: false },
-              { text: "Rigor", accent: false },
-              { text: "&", accent: true },
-              { text: "Product", accent: true },
-              { text: "Craft.", accent: true },
-            ].map((word, i) => (
-              <motion.span
-                key={i}
-                initial={{ filter: "blur(14px)", opacity: 0, y: 32, scale: 0.94 }}
-                whileInView={{ filter: "blur(0px)", opacity: 1, y: 0, scale: 1 }}
-                viewport={{ once: true, margin: "0px" }}
-                transition={{
-                  duration: 0.75,
-                  delay: 0.12 + i * 0.065,
-                  ease: [0.16, 1, 0.3, 1],
-                }}
-                className={word.accent ? styles.headingAccent : undefined}
-                style={{
-                  display: "inline-block",
-                  marginRight: i === 6 ? 0 : "0.28em",
-                  willChange: "transform, filter, opacity",
-                }}
-              >
-                {word.text}
-              </motion.span>
-            ))}
-          </h2>
+          <ScrollReveal delay={0.15} direction="up" distance={25}>
+            <h2 className={styles.heading}>
+              Built with Engineering Rigor{" "}
+              <span className={styles.headingAccent}>& Product Craft.</span>
+            </h2>
+          </ScrollReveal>
 
-          <p className={styles.subheading}>
-            {"A curated showcase of production applications, developer platforms, and agency software engineered end-to-end."
-              .split(" ")
-              .map((word, i) => (
-                <motion.span
-                  key={i}
-                  initial={{ filter: "blur(8px)", opacity: 0, y: 16 }}
-                  whileInView={{ filter: "blur(0px)", opacity: 1, y: 0 }}
-                  viewport={{ once: true, margin: "0px" }}
-                  transition={{
-                    duration: 0.6,
-                    delay: 0.4 + i * 0.022,
-                    ease: [0.16, 1, 0.3, 1],
-                  }}
-                  style={{
-                    display: "inline-block",
-                    marginRight: "0.26em",
-                    willChange: "transform, filter, opacity",
-                  }}
-                >
-                  {word}
-                </motion.span>
-              ))}
-          </p>
+          <ScrollReveal delay={0.25} direction="up" distance={25}>
+            <p className={styles.subheading}>
+              A curated showcase of production applications, developer platforms, and agency software engineered end-to-end.
+            </p>
+          </ScrollReveal>
         </div>
 
         {/* AUTOMATIC INFINITE HORIZONTAL MARQUEE */}

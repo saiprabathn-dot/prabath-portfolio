@@ -40,6 +40,7 @@ import {
   Code2,
   ShieldCheck,
 } from "lucide-react";
+import ScrollReveal from "./ScrollReveal";
 import styles from "./SkillsSection.module.css";
 
 interface SkillItem {
@@ -193,18 +194,24 @@ export default function SkillsSection() {
     <section id="skills" className={styles.skillsSection}>
       {/* Section Header */}
       <div className={styles.header}>
-        <div className={styles.sectionBadge}>
-          <Sparkles size={13} className={styles.badgeIcon} />
-          <span>TECH ARSENAL &amp; CAPABILITIES</span>
-        </div>
+        <ScrollReveal delay={0.05} direction="up" distance={18}>
+          <div className={styles.sectionBadge}>
+            <Sparkles size={13} className={styles.badgeIcon} />
+            <span>TECH ARSENAL &amp; CAPABILITIES</span>
+          </div>
+        </ScrollReveal>
 
-        <h2 className={styles.title}>
-          Engineered with <span className={styles.titleGradient}>Frontier Tools</span>
-        </h2>
+        <ScrollReveal delay={0.15} direction="up" distance={22}>
+          <h2 className={styles.title}>
+            Engineered with <span className={styles.titleGradient}>Frontier Tools</span>
+          </h2>
+        </ScrollReveal>
 
-        <p className={styles.subtitle}>
-          A curated ecosystem of distributed architectures, high-craft reactive frontends, and autonomous AI systems.
-        </p>
+        <ScrollReveal delay={0.25} direction="up" distance={22}>
+          <p className={styles.subtitle}>
+            A curated ecosystem of distributed architectures, high-craft reactive frontends, and autonomous AI systems.
+          </p>
+        </ScrollReveal>
       </div>
 
       {/* Central Kinetic Orbital Solar System (4 Layers) */}
