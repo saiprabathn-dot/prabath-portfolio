@@ -4,11 +4,11 @@
   background-color: #000000;
 }
 
-/* Scroll track for smooth sticky scrolling (extended for relaxed reading scroll time) */
+/* Scroll track for smooth sticky scrolling (tuned to 570vh for balanced reading pace) */
 .track {
   position: relative;
   width: 100%;
-  height: 500vh;
+  height: 570vh;
 }
 
 .stage {
