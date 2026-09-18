@@ -246,13 +246,6 @@ export default function CardStack() {
                   </span>
                 </h2>
               </div>
-
-              <div className={styles.headerRight}>
-                <span className={styles.scrollPill}>Scroll to explore ↓</span>
-                <span className={styles.pageIndicator}>
-                  0{activePageIndex} // 04
-                </span>
-              </div>
             </div>
 
             {/* Stacking Card Deck Stage */}
