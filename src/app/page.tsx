@@ -6,6 +6,7 @@ import About from "@/components/About";
 import QDeltaSection from "@/components/QDeltaSection";
 import ProjectsSection from "@/components/ProjectsSection";
 import SkillsSection from "@/components/SkillsSection";
+import ContactSection from "@/components/ContactSection";
 import Link from "next/link";
 import { ArrowUpRight } from "lucide-react";
 
@@ -167,8 +168,8 @@ export default function Home() {
       {/* Skills & Tech Arsenal Section */}
       <SkillsSection />
 
-      {/* Target Section Anchors for Remaining Navigation Links */}
-      <section id="contact" style={{ minHeight: "40vh", padding: "4rem 0" }} />
+      {/* Contact & Collaboration Section */}
+      <ContactSection />
     </div>
   );
 }
