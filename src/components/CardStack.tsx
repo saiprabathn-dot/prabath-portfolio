@@ -86,6 +86,21 @@ export default function CardStack() {
     const bottomHint = bottomHintRef.current;
 
     let raf = 0;
+    let idleTimer: NodeJS.Timeout | null = null;
+
+    const showHint = () => {
+      if (bottomHint) {
+        bottomHint.style.opacity = "1";
+        bottomHint.style.transform = "translate(-50%, 0) scale(1)";
+      }
+    };
+
+    const hideHint = () => {
+      if (bottomHint) {
+        bottomHint.style.opacity = "0";
+        bottomHint.style.transform = "translate(-50%, 8px) scale(0.96)";
+      }
+    };
 
     const onScroll = () => {
       if (!track) return;
@@ -101,11 +116,16 @@ export default function CardStack() {
       else if (progress < 0.88) setActivePageIndex(3);
       else setActivePageIndex(4);
 
-      // Bottom Hint Fade near the end of the section
-      if (bottomHint) {
-        const fadeOut = smoothstep(0.88, 0.98, progress);
-        bottomHint.style.opacity = `${Math.max(0, 1 - fadeOut)}`;
-        bottomHint.style.transform = `translate(-50%, ${6 * fadeOut}px)`;
+      // While scrolling, immediately hide hint so it never breaks user experience
+      hideHint();
+      if (idleTimer) clearTimeout(idleTimer);
+
+      const inView = rect.top <= 100 && rect.bottom >= window.innerHeight - 100;
+      // Only show hint when user STOPS scrolling for 750ms and has more cards to explore
+      if (inView && progress < 0.88) {
+        idleTimer = setTimeout(() => {
+          showHint();
+        }, 750);
       }
 
       // Transitions with extended reading plateaus
@@ -237,6 +257,7 @@ export default function CardStack() {
     return () => {
       window.removeEventListener("scroll", onScroll);
       if (raf) cancelAnimationFrame(raf);
+      if (idleTimer) clearTimeout(idleTimer);
     };
   }, []);
 
