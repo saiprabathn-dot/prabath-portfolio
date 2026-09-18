@@ -16,9 +16,25 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Prabath | Software Engineer & Developer",
-  description: "Personal portfolio website of Prabath. Discover projects, tech stack, experience, and get in touch.",
-  keywords: ["Prabath", "Portfolio", "Software Engineer", "Web Developer", "Next.js", "React"],
+  title: "Sai Prabath — Full-Stack Developer & Software Architect",
+  description:
+    "Official portfolio of Sai Prabath — Full-Stack Developer, Systems Architect, and Co-Founder at QDelta. Engineering high-craft web systems, scalable backend platforms, and fluid digital products.",
+  keywords: [
+    "Sai Prabath",
+    "Prabath",
+    "Full-Stack Developer",
+    "Software Architect",
+    "QDelta",
+    "Portfolio",
+    "Next.js",
+    "React",
+    "TypeScript",
+  ],
+  icons: {
+    icon: "/favicon.svg",
+    shortcut: "/favicon.svg",
+    apple: "/favicon.svg",
+  },
 };
 
 export default function RootLayout({
