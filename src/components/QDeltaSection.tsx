@@ -212,6 +212,10 @@ export default function QDeltaSection() {
 
   return (
     <section id="qdelta" className={styles.section}>
+      {/* Ambient Glassmorphic Glow Orbs */}
+      <div className={styles.ambientGlow1} />
+      <div className={styles.ambientGlow2} />
+
       <div className={styles.container}>
         {/* 1. HEADER & HERO INTRODUCTION */}
         <div className={styles.headerBlock}>

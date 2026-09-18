@@ -1,9 +1,34 @@
 .section {
   width: 100%;
   position: relative;
-  background-color: #babac4;
-  padding: 2.75rem 1.5rem 5rem;
+  background-color: #000000;
+  padding: 5rem 1.5rem 6.5rem;
   overflow: hidden;
+}
+
+/* Ambient Glassmorphic Background Glow Orbs */
+.ambientGlow1 {
+  position: absolute;
+  top: 15%;
+  left: -10%;
+  width: 550px;
+  height: 550px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(56, 189, 248, 0.08) 0%, transparent 70%);
+  pointer-events: none;
+  filter: blur(40px);
+}
+
+.ambientGlow2 {
+  position: absolute;
+  bottom: 10%;
+  right: -10%;
+  width: 600px;
+  height: 600px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(168, 85, 247, 0.07) 0%, transparent 70%);
+  pointer-events: none;
+  filter: blur(50px);
 }
 
 .container {
@@ -14,6 +39,7 @@
   flex-direction: column;
   gap: 3.5rem;
   position: relative;
+  z-index: 2;
 }
 
 /* Divider Lines */
@@ -24,8 +50,8 @@
   background: linear-gradient(
     90deg,
     transparent 0%,
-    rgba(0, 0, 0, 0.18) 30%,
-    rgba(0, 0, 0, 0.18) 70%,
+    rgba(255, 255, 255, 0.12) 30%,
+    rgba(255, 255, 255, 0.12) 70%,
     transparent 100%
   );
 }
@@ -48,7 +74,7 @@
   font-family: var(--font-mono);
   font-size: 0.78rem;
   font-weight: 700;
-  color: #09090b;
+  color: #e2e8f0;
   letter-spacing: 0.12em;
   text-transform: uppercase;
 }
@@ -59,14 +85,16 @@
   gap: 0.5rem;
   padding: 0.28rem 0.75rem;
   border-radius: var(--radius-full);
-  background: rgba(0, 0, 0, 0.08);
-  border: 1px solid rgba(0, 0, 0, 0.14);
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.1);
   font-family: var(--font-mono);
   font-size: 0.72rem;
   font-weight: 600;
-  color: #09090b;
+  color: #f1f5f9;
   letter-spacing: 0.06em;
   text-transform: uppercase;
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
 }
 
 .statusSep {
@@ -77,11 +105,11 @@
   display: inline-flex;
   align-items: center;
   gap: 0.35rem;
-  color: #09090b;
+  color: #f1f5f9;
 }
 
 .udyamIcon {
-  color: #0369a1;
+  color: #38bdf8;
 }
 
 .mainTitle {
@@ -89,14 +117,14 @@
   font-weight: 800;
   letter-spacing: -0.03em;
   line-height: 1.15;
-  color: #09090b;
+  color: #ffffff;
   margin-top: 0.25rem;
 }
 
 .introLead {
   font-size: clamp(1.02rem, 1.75vw, 1.2rem);
   line-height: 1.6;
-  color: #1e293b;
+  color: #e2e8f0;
   max-width: 960px;
   display: flex;
   flex-direction: column;
@@ -109,7 +137,7 @@
 
 .leadLine2 {
   display: block;
-  color: #334155;
+  color: #94a3b8;
 }
 
 .ghostPrefix {
@@ -118,13 +146,15 @@
   pointer-events: none;
 }
 
-/* 2. Co-Founder / Developer Bento Card */
+/* 2. Co-Founder / Developer Bento Card (Glassmorphism) */
 .founderCard {
-  background: #c8c8d2;
-  border: 1px solid rgba(0, 0, 0, 0.12);
+  background: rgba(255, 255, 255, 0.035);
+  border: 1px solid rgba(255, 255, 255, 0.1);
   border-radius: var(--radius-lg);
   padding: 2.25rem 2.5rem;
-  box-shadow: 0 16px 36px -10px rgba(0, 0, 0, 0.1), 0 1px 3px rgba(0, 0, 0, 0.05);
+  backdrop-filter: blur(24px);
+  -webkit-backdrop-filter: blur(24px);
+  box-shadow: 0 20px 50px -10px rgba(0, 0, 0, 0.6), inset 0 1px 0 rgba(255, 255, 255, 0.15);
   display: grid;
   grid-template-columns: 1.8fr auto;
   gap: 3rem;
@@ -135,9 +165,9 @@
 }
 
 .founderCard:hover {
-  background: #d0d0dc;
-  border-color: rgba(0, 0, 0, 0.2);
-  box-shadow: 0 22px 48px -10px rgba(0, 0, 0, 0.15);
+  background: rgba(255, 255, 255, 0.055);
+  border-color: rgba(255, 255, 255, 0.18);
+  box-shadow: 0 24px 60px -10px rgba(0, 0, 0, 0.75), inset 0 1px 0 rgba(255, 255, 255, 0.25);
 }
 
 .founderCardGlow {
@@ -149,7 +179,7 @@
   background: linear-gradient(
     90deg,
     transparent,
-    rgba(0, 0, 0, 0.1),
+    rgba(255, 255, 255, 0.25),
     transparent
   );
 }
@@ -166,43 +196,45 @@
   gap: 0.45rem;
   padding: 0.25rem 0.75rem;
   border-radius: var(--radius-full);
-  background: #b2b2be;
-  border: 1px solid rgba(0, 0, 0, 0.14);
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(255, 255, 255, 0.12);
   font-family: var(--font-mono);
   font-size: 0.72rem;
   font-weight: 600;
-  color: #09090b;
+  color: #e2e8f0;
   letter-spacing: 0.08em;
   text-transform: uppercase;
   align-self: flex-start;
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
 }
 
 .tagDot {
   width: 5px;
   height: 5px;
   border-radius: 50%;
-  background-color: #09090b;
+  background-color: #38bdf8;
 }
 
 .founderHeading {
   font-size: clamp(1.4rem, 2.4vw, 1.85rem);
   font-weight: 700;
   letter-spacing: -0.025em;
-  color: #09090b;
+  color: #ffffff;
   line-height: 1.25;
 }
 
 .founderDesc {
   font-size: 0.98rem;
   line-height: 1.65;
-  color: #1e293b;
+  color: #cbd5e1;
 }
 
 .founderMetrics {
   display: flex;
   align-items: center;
   gap: 2.25rem;
-  border-left: 1px solid rgba(0, 0, 0, 0.15);
+  border-left: 1px solid rgba(255, 255, 255, 0.12);
   padding-left: 2.5rem;
 }
 
@@ -217,7 +249,7 @@
   font-family: var(--font-mono);
   font-size: 1.85rem;
   font-weight: 700;
-  color: #09090b;
+  color: #ffffff;
   letter-spacing: -0.03em;
   line-height: 1;
 }
@@ -226,7 +258,7 @@
   font-family: var(--font-mono);
   font-size: 0.68rem;
   font-weight: 600;
-  color: #334155;
+  color: #94a3b8;
   letter-spacing: 0.1em;
   text-transform: uppercase;
 }
@@ -234,7 +266,7 @@
 .metricDivider {
   width: 1px;
   height: 36px;
-  background-color: rgba(0, 0, 0, 0.14);
+  background-color: rgba(255, 255, 255, 0.12);
 }
 
 /* 3. Products Section */
@@ -254,7 +286,7 @@
   font-family: var(--font-mono);
   font-size: 0.75rem;
   font-weight: 600;
-  color: #334155;
+  color: #94a3b8;
   letter-spacing: 0.1em;
   text-transform: uppercase;
 }
@@ -263,7 +295,7 @@
   font-size: clamp(1.45rem, 2.5vw, 1.95rem);
   font-weight: 700;
   letter-spacing: -0.025em;
-  color: #09090b;
+  color: #ffffff;
 }
 
 .productsGrid {
@@ -275,11 +307,13 @@
 }
 
 .productCard {
-  background: #c8c8d2;
-  border: 1px solid rgba(0, 0, 0, 0.12);
+  background: rgba(255, 255, 255, 0.035);
+  border: 1px solid rgba(255, 255, 255, 0.09);
   border-radius: var(--radius-lg);
   padding: 2rem 1.75rem;
-  box-shadow: 0 14px 34px -10px rgba(0, 0, 0, 0.1), 0 1px 3px rgba(0, 0, 0, 0.04);
+  backdrop-filter: blur(24px);
+  -webkit-backdrop-filter: blur(24px);
+  box-shadow: 0 16px 40px -10px rgba(0, 0, 0, 0.6), inset 0 1px 0 rgba(255, 255, 255, 0.12);
   position: relative;
   display: flex;
   flex-direction: column;
@@ -289,9 +323,9 @@
 }
 
 .productCard:hover {
-  background: #d0d0dc;
-  border-color: rgba(0, 0, 0, 0.2);
-  box-shadow: 0 22px 48px -10px rgba(0, 0, 0, 0.18);
+  background: rgba(255, 255, 255, 0.055);
+  border-color: rgba(255, 255, 255, 0.18);
+  box-shadow: 0 22px 50px -10px rgba(0, 0, 0, 0.75), inset 0 1px 0 rgba(255, 255, 255, 0.22);
 }
 
 .productCardInner {
@@ -324,17 +358,19 @@
   font-family: var(--font-mono);
   font-size: 0.7rem;
   font-weight: 600;
-  color: #09090b;
+  color: #e2e8f0;
   letter-spacing: 0.08em;
   text-transform: uppercase;
   padding: 0.2rem 0.6rem;
   border-radius: var(--radius-full);
-  background: #b2b2be;
-  border: 1px solid rgba(0, 0, 0, 0.12);
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
 }
 
 .productIcon {
-  color: #334155;
+  color: #94a3b8;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -344,18 +380,18 @@
   font-size: 1.25rem;
   font-weight: 700;
   letter-spacing: -0.02em;
-  color: #09090b;
+  color: #ffffff;
   line-height: 1.25;
 }
 
 .productDesc {
   font-size: 0.88rem;
   line-height: 1.6;
-  color: #1e293b;
+  color: #cbd5e1;
 }
 
 .productAction {
-  border-top: 1px solid rgba(0, 0, 0, 0.1);
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
   padding-top: 1.25rem;
 }
 
@@ -366,7 +402,7 @@
   font-family: var(--font-mono);
   font-size: 0.76rem;
   font-weight: 600;
-  color: #09090b;
+  color: #e2e8f0;
   letter-spacing: 0.06em;
   text-transform: uppercase;
   transition: var(--transition-smooth);
@@ -381,7 +417,7 @@
 }
 
 .productCard:hover .viewProjectLink {
-  color: #000000;
+  color: #ffffff;
 }
 
 /* 4. Roles Section (4-Card 3D Scroll Fan-Out Deck) */
@@ -400,14 +436,16 @@
 }
 
 .roleCard {
-  background: #c8c8d2;
-  border: 1px solid rgba(0, 0, 0, 0.11);
+  background: rgba(255, 255, 255, 0.035);
+  border: 1px solid rgba(255, 255, 255, 0.09);
   border-radius: var(--radius-md);
   padding: 1.75rem 1.4rem;
+  backdrop-filter: blur(24px);
+  -webkit-backdrop-filter: blur(24px);
   display: flex;
   flex-direction: column;
   gap: 0.85rem;
-  box-shadow: 0 10px 28px -8px rgba(0, 0, 0, 0.09), 0 1px 3px rgba(0, 0, 0, 0.04);
+  box-shadow: 0 12px 30px -8px rgba(0, 0, 0, 0.6), inset 0 1px 0 rgba(255, 255, 255, 0.12);
   position: relative;
   transform-origin: center bottom;
   will-change: transform, opacity;
@@ -415,9 +453,9 @@
 }
 
 .roleCard:hover {
-  background: #d0d0dc;
-  border-color: rgba(0, 0, 0, 0.18);
-  box-shadow: 0 20px 45px -8px rgba(0, 0, 0, 0.16);
+  background: rgba(255, 255, 255, 0.055);
+  border-color: rgba(255, 255, 255, 0.18);
+  box-shadow: 0 20px 48px -8px rgba(0, 0, 0, 0.75), inset 0 1px 0 rgba(255, 255, 255, 0.22);
 }
 
 .roleCardTop {
@@ -436,8 +474,8 @@
   font-family: var(--font-mono);
   font-size: 0.68rem;
   font-weight: 700;
-  color: #09090b;
-  background: rgba(0, 0, 0, 0.08);
+  color: #ffffff;
+  background: rgba(255, 255, 255, 0.08);
   padding: 0.12rem 0.4rem;
   border-radius: 4px;
 }
@@ -446,13 +484,13 @@
   font-family: var(--font-mono);
   font-size: 0.74rem;
   font-weight: 700;
-  color: #334155;
+  color: #94a3b8;
   letter-spacing: 0.1em;
   text-transform: uppercase;
 }
 
 .roleIconWrap {
-  color: #09090b;
+  color: #e2e8f0;
   display: flex;
   align-items: center;
 }
@@ -463,7 +501,7 @@
   gap: 0.35rem;
   font-size: clamp(0.85rem, 1.15vw, 0.98rem);
   font-weight: 600;
-  color: #09090b;
+  color: #ffffff;
   letter-spacing: -0.015em;
   line-height: 1.3;
   white-space: nowrap;
@@ -477,13 +515,13 @@
 
 .roleCard:hover .flowArrow {
   transform: translateX(3px);
-  color: #09090b;
+  color: #ffffff;
 }
 
 .roleDesc {
   font-size: 0.82rem;
   line-height: 1.55;
-  color: #1e293b;
+  color: #cbd5e1;
 }
 
 /* Responsive */
@@ -506,7 +544,7 @@
 
   .founderMetrics {
     border-left: none;
-    border-top: 1px solid rgba(0, 0, 0, 0.12);
+    border-top: 1px solid rgba(255, 255, 255, 0.12);
     padding-left: 0;
     padding-top: 1.5rem;
     justify-content: space-around;

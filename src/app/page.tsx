@@ -4,6 +4,7 @@ import ScrollExpand from "@/components/ScrollExpand";
 import BlurText from "@/components/BlurText";
 import About from "@/components/About";
 import QDeltaSection from "@/components/QDeltaSection";
+import ProjectsSection from "@/components/ProjectsSection";
 import Link from "next/link";
 import { ArrowUpRight } from "lucide-react";
 
@@ -159,8 +160,10 @@ export default function Home() {
       {/* QDelta Agency & Products Section */}
       <QDeltaSection />
 
-      {/* Target Section Anchors for Navigation Links */}
-      <section id="projects" style={{ minHeight: "40vh", padding: "4rem 0" }} />
+      {/* Featured Projects with Live Architecture Flow */}
+      <ProjectsSection />
+
+      {/* Target Section Anchors for Remaining Navigation Links */}
       <section id="skills" style={{ minHeight: "40vh", padding: "4rem 0" }} />
       <section id="contact" style={{ minHeight: "40vh", padding: "4rem 0" }} />
     </div>
