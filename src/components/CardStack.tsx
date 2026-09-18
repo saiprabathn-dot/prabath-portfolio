@@ -261,11 +261,11 @@ export default function CardStack() {
                 {/* CARD 1: THE FOUNDER */}
                 <div ref={card1Ref} className={styles.card}>
                   <div className={styles.cardHeader}>
-                    <span className={styles.cardNum}>Card 01 // 04</span>
                     <span className={styles.cardTag}>
                       <UserCheck size={13} />
                       Co-Founder @ QDelta
                     </span>
+                    <span className={styles.cardNum}>01</span>
                   </div>
 
                   <div className={styles.cardBody}>
@@ -303,18 +303,18 @@ export default function CardStack() {
                       <span>Let's Connect</span>
                       <ArrowUpRight size={14} />
                     </a>
-                    <span className={styles.cardNum}>[ SCROLL FOR NEXT CARD ↓ ]</span>
+                    <span className={styles.cardNum}>Scroll ↓</span>
                   </div>
                 </div>
 
                 {/* CARD 2: CORE STACK & SYSTEMS */}
                 <div ref={card2Ref} className={styles.card}>
                   <div className={styles.cardHeader}>
-                    <span className={styles.cardNum}>Card 02 // 04</span>
                     <span className={styles.cardTag}>
                       <Cpu size={13} />
                       Full-Stack Stack
                     </span>
+                    <span className={styles.cardNum}>02</span>
                   </div>
 
                   <div className={styles.cardBody}>
@@ -343,18 +343,18 @@ export default function CardStack() {
 
                   <div className={styles.cardFooter}>
                     <span className={styles.cardTag}>Engineering Core</span>
-                    <span className={styles.cardNum}>[ SCROLL FOR PRODUCTS ↓ ]</span>
+                    <span className={styles.cardNum}>Scroll ↓</span>
                   </div>
                 </div>
 
                 {/* CARD 3: SHIPPED PRODUCTS */}
                 <div ref={card3Ref} className={styles.card}>
                   <div className={styles.cardHeader}>
-                    <span className={styles.cardNum}>Card 03 // 04</span>
                     <span className={styles.cardTag}>
                       <FolderGit2 size={13} />
                       Shipped via QDelta
                     </span>
+                    <span className={styles.cardNum}>03</span>
                   </div>
 
                   <div className={styles.cardBody}>
@@ -380,18 +380,18 @@ export default function CardStack() {
 
                   <div className={styles.cardFooter}>
                     <span className={styles.cardTag}>3 Active Platforms</span>
-                    <span className={styles.cardNum}>[ SCROLL FOR AI LAB ↓ ]</span>
+                    <span className={styles.cardNum}>Scroll ↓</span>
                   </div>
                 </div>
 
                 {/* CARD 4: AI LAB & PHILOSOPHY */}
                 <div ref={card4Ref} className={styles.card}>
                   <div className={styles.cardHeader}>
-                    <span className={styles.cardNum}>Card 04 // 04</span>
                     <span className={styles.cardTag}>
                       <Bot size={13} />
                       AI & Philosophy
                     </span>
+                    <span className={styles.cardNum}>04</span>
                   </div>
 
                   <div className={styles.cardBody}>
