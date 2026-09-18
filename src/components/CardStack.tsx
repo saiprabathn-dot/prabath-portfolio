@@ -256,7 +256,6 @@ export default function CardStack() {
                       <UserCheck size={13} />
                       CO-FOUNDER @ QDELTA
                     </span>
-                    <span className={styles.cardNum}>01</span>
                   </div>
 
                   <div className={styles.cardBody}>
@@ -289,7 +288,6 @@ export default function CardStack() {
 
                   <div className={styles.cardFooter}>
                     <span className={styles.cardTag}>Co-Founder & Lead</span>
-                    <span className={styles.cardNum}>Scroll ↓</span>
                   </div>
                 </div>
 
@@ -300,7 +298,6 @@ export default function CardStack() {
                       <Cpu size={13} />
                       FULL-STACK ENGINEERING
                     </span>
-                    <span className={styles.cardNum}>02</span>
                   </div>
 
                   <div className={styles.cardBody}>
@@ -323,7 +320,6 @@ export default function CardStack() {
 
                   <div className={styles.cardFooter}>
                     <span className={styles.cardTag}>Engineering Stack</span>
-                    <span className={styles.cardNum}>Scroll ↓</span>
                   </div>
                 </div>
 
@@ -334,7 +330,6 @@ export default function CardStack() {
                       <FolderGit2 size={13} />
                       BUILT AT QDELTA
                     </span>
-                    <span className={styles.cardNum}>03</span>
                   </div>
 
                   <div className={styles.cardBody}>
@@ -360,7 +355,6 @@ export default function CardStack() {
 
                   <div className={styles.cardFooter}>
                     <span className={styles.cardTag}>03 PRODUCTS BUILT</span>
-                    <span className={styles.cardNum}>Scroll ↓</span>
                   </div>
                 </div>
 
@@ -371,7 +365,6 @@ export default function CardStack() {
                       <Bot size={13} />
                       ENGINEERING PHILOSOPHY
                     </span>
-                    <span className={styles.cardNum}>04</span>
                   </div>
 
                   <div className={styles.cardBody}>
@@ -405,10 +398,6 @@ export default function CardStack() {
                   </div>
 
                   <div className={styles.cardFooter}>
-                    <a href="#contact" className={styles.primaryBtn}>
-                      <span>Start a Project</span>
-                      <ArrowUpRight size={14} />
-                    </a>
                     <span className={styles.cardTag}>AI & Engineering</span>
                   </div>
                 </div>

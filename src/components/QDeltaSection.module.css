@@ -1,7 +1,7 @@
 .section {
   width: 100%;
   position: relative;
-  background-color: #d2d2d9;
+  background-color: #babac4;
   padding: 2.75rem 1.5rem 5rem;
   overflow: hidden;
 }
@@ -24,8 +24,8 @@
   background: linear-gradient(
     90deg,
     transparent 0%,
-    rgba(0, 0, 0, 0.14) 30%,
-    rgba(0, 0, 0, 0.14) 70%,
+    rgba(0, 0, 0, 0.18) 30%,
+    rgba(0, 0, 0, 0.18) 70%,
     transparent 100%
   );
 }
@@ -53,60 +53,35 @@
   text-transform: uppercase;
 }
 
-.eyebrowDivider {
-  color: #64748b;
-  font-size: 0.9rem;
-}
-
 .statusBadge {
   display: inline-flex;
   align-items: center;
   gap: 0.5rem;
   padding: 0.28rem 0.75rem;
   border-radius: var(--radius-full);
-  background: rgba(0, 0, 0, 0.06);
-  border: 1px solid rgba(0, 0, 0, 0.1);
+  background: rgba(0, 0, 0, 0.08);
+  border: 1px solid rgba(0, 0, 0, 0.14);
   font-family: var(--font-mono);
   font-size: 0.72rem;
   font-weight: 600;
-  color: #1e293b;
+  color: #09090b;
   letter-spacing: 0.06em;
   text-transform: uppercase;
 }
 
-.pulseDot {
-  width: 6px;
-  height: 6px;
-  border-radius: 50%;
-  background-color: #15803d;
-  box-shadow: 0 0 8px #22c55e;
-  animation: pulseGreen 2s infinite ease-in-out;
-}
-
-@keyframes pulseGreen {
-  0%, 100% {
-    transform: scale(1);
-    opacity: 1;
-  }
-  50% {
-    transform: scale(1.35);
-    opacity: 0.5;
-  }
-}
-
 .statusSep {
-  color: #94a3b8;
+  color: #64748b;
 }
 
 .udyamText {
   display: inline-flex;
   align-items: center;
   gap: 0.35rem;
-  color: #1e293b;
+  color: #09090b;
 }
 
 .udyamIcon {
-  color: #0284c7;
+  color: #0369a1;
 }
 
 .mainTitle {
@@ -121,7 +96,7 @@
 .introLead {
   font-size: clamp(1.02rem, 1.75vw, 1.2rem);
   line-height: 1.6;
-  color: #334155;
+  color: #1e293b;
   max-width: 960px;
   display: flex;
   flex-direction: column;
@@ -134,7 +109,7 @@
 
 .leadLine2 {
   display: block;
-  color: #475569;
+  color: #334155;
 }
 
 .ghostPrefix {
@@ -145,11 +120,11 @@
 
 /* 2. Co-Founder / Developer Bento Card */
 .founderCard {
-  background: #dedee6;
-  border: 1px solid rgba(0, 0, 0, 0.1);
+  background: #c8c8d2;
+  border: 1px solid rgba(0, 0, 0, 0.12);
   border-radius: var(--radius-lg);
   padding: 2.25rem 2.5rem;
-  box-shadow: 0 16px 36px -10px rgba(0, 0, 0, 0.08), 0 1px 3px rgba(0, 0, 0, 0.04);
+  box-shadow: 0 16px 36px -10px rgba(0, 0, 0, 0.1), 0 1px 3px rgba(0, 0, 0, 0.05);
   display: grid;
   grid-template-columns: 1.8fr auto;
   gap: 3rem;
@@ -160,9 +135,9 @@
 }
 
 .founderCard:hover {
-  background: #e6e6ee;
-  border-color: rgba(0, 0, 0, 0.18);
-  box-shadow: 0 22px 48px -10px rgba(0, 0, 0, 0.12);
+  background: #d0d0dc;
+  border-color: rgba(0, 0, 0, 0.2);
+  box-shadow: 0 22px 48px -10px rgba(0, 0, 0, 0.15);
 }
 
 .founderCardGlow {
@@ -174,7 +149,7 @@
   background: linear-gradient(
     90deg,
     transparent,
-    rgba(0, 0, 0, 0.08),
+    rgba(0, 0, 0, 0.1),
     transparent
   );
 }
@@ -191,8 +166,8 @@
   gap: 0.45rem;
   padding: 0.25rem 0.75rem;
   border-radius: var(--radius-full);
-  background: #cacace;
-  border: 1px solid rgba(0, 0, 0, 0.1);
+  background: #b2b2be;
+  border: 1px solid rgba(0, 0, 0, 0.14);
   font-family: var(--font-mono);
   font-size: 0.72rem;
   font-weight: 600;
@@ -220,14 +195,14 @@
 .founderDesc {
   font-size: 0.98rem;
   line-height: 1.65;
-  color: #334155;
+  color: #1e293b;
 }
 
 .founderMetrics {
   display: flex;
   align-items: center;
   gap: 2.25rem;
-  border-left: 1px solid rgba(0, 0, 0, 0.12);
+  border-left: 1px solid rgba(0, 0, 0, 0.15);
   padding-left: 2.5rem;
 }
 
@@ -251,7 +226,7 @@
   font-family: var(--font-mono);
   font-size: 0.68rem;
   font-weight: 600;
-  color: #475569;
+  color: #334155;
   letter-spacing: 0.1em;
   text-transform: uppercase;
 }
@@ -259,7 +234,7 @@
 .metricDivider {
   width: 1px;
   height: 36px;
-  background-color: rgba(0, 0, 0, 0.1);
+  background-color: rgba(0, 0, 0, 0.14);
 }
 
 /* 3. Products Section */
@@ -279,7 +254,7 @@
   font-family: var(--font-mono);
   font-size: 0.75rem;
   font-weight: 600;
-  color: #475569;
+  color: #334155;
   letter-spacing: 0.1em;
   text-transform: uppercase;
 }
@@ -295,25 +270,28 @@
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   gap: 1.5rem;
+  position: relative;
+  perspective: 1200px;
 }
 
 .productCard {
-  background: #dedee6;
-  border: 1px solid rgba(0, 0, 0, 0.1);
+  background: #c8c8d2;
+  border: 1px solid rgba(0, 0, 0, 0.12);
   border-radius: var(--radius-lg);
   padding: 2rem 1.75rem;
-  box-shadow: 0 12px 30px -10px rgba(0, 0, 0, 0.07), 0 1px 3px rgba(0, 0, 0, 0.03);
-  transition: var(--transition-smooth);
+  box-shadow: 0 14px 34px -10px rgba(0, 0, 0, 0.1), 0 1px 3px rgba(0, 0, 0, 0.04);
   position: relative;
   display: flex;
   flex-direction: column;
+  transform-origin: center center;
+  will-change: transform, opacity;
+  transition: background-color 0.25s ease, border-color 0.25s ease, box-shadow 0.25s ease;
 }
 
 .productCard:hover {
-  background: #e6e6ee;
-  border-color: rgba(0, 0, 0, 0.18);
-  transform: translateY(-4px);
-  box-shadow: 0 20px 45px -10px rgba(0, 0, 0, 0.12);
+  background: #d0d0dc;
+  border-color: rgba(0, 0, 0, 0.2);
+  box-shadow: 0 22px 48px -10px rgba(0, 0, 0, 0.18);
 }
 
 .productCardInner {
@@ -322,6 +300,11 @@
   justify-content: space-between;
   height: 100%;
   gap: 1.75rem;
+  transition: transform 0.25s ease;
+}
+
+.productCard:hover .productCardInner {
+  transform: translateY(-3px);
 }
 
 .productTop {
@@ -341,17 +324,17 @@
   font-family: var(--font-mono);
   font-size: 0.7rem;
   font-weight: 600;
-  color: #334155;
+  color: #09090b;
   letter-spacing: 0.08em;
   text-transform: uppercase;
   padding: 0.2rem 0.6rem;
   border-radius: var(--radius-full);
-  background: #cacace;
-  border: 1px solid rgba(0, 0, 0, 0.08);
+  background: #b2b2be;
+  border: 1px solid rgba(0, 0, 0, 0.12);
 }
 
 .productIcon {
-  color: #475569;
+  color: #334155;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -368,11 +351,11 @@
 .productDesc {
   font-size: 0.88rem;
   line-height: 1.6;
-  color: #334155;
+  color: #1e293b;
 }
 
 .productAction {
-  border-top: 1px solid rgba(0, 0, 0, 0.08);
+  border-top: 1px solid rgba(0, 0, 0, 0.1);
   padding-top: 1.25rem;
 }
 
@@ -401,7 +384,7 @@
   color: #000000;
 }
 
-/* 4. Roles Section */
+/* 4. Roles Section (4-Card 3D Scroll Fan-Out Deck) */
 .roleSection {
   display: flex;
   flex-direction: column;
@@ -412,25 +395,29 @@
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   gap: 1.25rem;
+  position: relative;
+  perspective: 1200px;
 }
 
 .roleCard {
-  background: #dedee6;
-  border: 1px solid rgba(0, 0, 0, 0.09);
+  background: #c8c8d2;
+  border: 1px solid rgba(0, 0, 0, 0.11);
   border-radius: var(--radius-md);
-  padding: 1.75rem 1.5rem;
+  padding: 1.75rem 1.4rem;
   display: flex;
   flex-direction: column;
   gap: 0.85rem;
-  box-shadow: 0 8px 24px -8px rgba(0, 0, 0, 0.06);
-  transition: var(--transition-smooth);
+  box-shadow: 0 10px 28px -8px rgba(0, 0, 0, 0.09), 0 1px 3px rgba(0, 0, 0, 0.04);
+  position: relative;
+  transform-origin: center bottom;
+  will-change: transform, opacity;
+  transition: background-color 0.25s ease, border-color 0.25s ease, box-shadow 0.25s ease;
 }
 
 .roleCard:hover {
-  background: #e6e6ee;
-  border-color: rgba(0, 0, 0, 0.16);
-  box-shadow: 0 16px 36px -8px rgba(0, 0, 0, 0.1);
-  transform: translateY(-3px);
+  background: #d0d0dc;
+  border-color: rgba(0, 0, 0, 0.18);
+  box-shadow: 0 20px 45px -8px rgba(0, 0, 0, 0.16);
 }
 
 .roleCardTop {
@@ -439,11 +426,27 @@
   justify-content: space-between;
 }
 
+.roleStepTag {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+}
+
+.roleStepNum {
+  font-family: var(--font-mono);
+  font-size: 0.68rem;
+  font-weight: 700;
+  color: #09090b;
+  background: rgba(0, 0, 0, 0.08);
+  padding: 0.12rem 0.4rem;
+  border-radius: 4px;
+}
+
 .roleTitle {
   font-family: var(--font-mono);
-  font-size: 0.75rem;
+  font-size: 0.74rem;
   font-weight: 700;
-  color: #475569;
+  color: #334155;
   letter-spacing: 0.1em;
   text-transform: uppercase;
 }
@@ -455,17 +458,32 @@
 }
 
 .roleFlow {
-  font-size: 1.05rem;
+  display: flex;
+  align-items: center;
+  gap: 0.35rem;
+  font-size: clamp(0.85rem, 1.15vw, 0.98rem);
   font-weight: 600;
   color: #09090b;
   letter-spacing: -0.015em;
   line-height: 1.3;
+  white-space: nowrap;
+}
+
+.flowArrow {
+  color: #64748b;
+  transition: transform 0.25s ease, color 0.25s ease;
+  flex-shrink: 0;
+}
+
+.roleCard:hover .flowArrow {
+  transform: translateX(3px);
+  color: #09090b;
 }
 
 .roleDesc {
   font-size: 0.82rem;
   line-height: 1.55;
-  color: #334155;
+  color: #1e293b;
 }
 
 /* Responsive */
@@ -488,7 +506,7 @@
 
   .founderMetrics {
     border-left: none;
-    border-top: 1px solid rgba(0, 0, 0, 0.1);
+    border-top: 1px solid rgba(0, 0, 0, 0.12);
     padding-left: 0;
     padding-top: 1.5rem;
     justify-content: space-around;
