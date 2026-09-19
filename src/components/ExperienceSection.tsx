@@ -117,9 +117,10 @@ export default function ExperienceSection() {
         {LEDGER_ITEMS.map((item, idx) => (
           <ScrollReveal
             key={item.id}
-            delay={0.05 + idx * 0.07}
+            delay={0.08 + idx * 0.09}
             direction="up"
-            distance={16}
+            distance={22}
+            duration={0.7}
           >
             {item.verifyUrl ? (
               <a
