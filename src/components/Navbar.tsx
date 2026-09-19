@@ -12,6 +12,7 @@ const NAV_ITEMS = [
   { label: "QDelta", href: "#qdelta" },
   { label: "Projects", href: "#projects" },
   { label: "Skills", href: "#skills" },
+  { label: "Experience", href: "#experience" },
   { label: "Contact", href: "#contact" },
 ];
 

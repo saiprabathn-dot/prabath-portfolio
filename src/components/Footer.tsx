@@ -73,6 +73,9 @@ export default function Footer() {
                 <a href="#skills" className={styles.navLink}>Skills</a>
               </li>
               <li>
+                <a href="#experience" className={styles.navLink}>Experience</a>
+              </li>
+              <li>
                 <a href="#contact" className={styles.navLink}>Contact</a>
               </li>
             </ul>

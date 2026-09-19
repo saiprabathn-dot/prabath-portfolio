@@ -6,6 +6,7 @@ import About from "@/components/About";
 import QDeltaSection from "@/components/QDeltaSection";
 import ProjectsSection from "@/components/ProjectsSection";
 import SkillsSection from "@/components/SkillsSection";
+import ExperienceSection from "@/components/ExperienceSection";
 import ContactSection from "@/components/ContactSection";
 import Link from "next/link";
 import { ArrowUpRight } from "lucide-react";
@@ -167,6 +168,9 @@ export default function Home() {
 
       {/* Skills & Tech Arsenal Section */}
       <SkillsSection />
+
+      {/* Experience & Verified Credentials Section */}
+      <ExperienceSection />
 
       {/* Contact & Collaboration Section */}
       <ContactSection />
