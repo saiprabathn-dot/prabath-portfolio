@@ -1,100 +1,161 @@
 "use client";
 
-import React from "react";
+import React, { useState } from "react";
 import {
   ArrowUpRight,
   Sparkles,
-  Briefcase,
+  ShieldCheck,
+  Zap,
+  Building2,
   Award,
-  CheckCircle2,
+  Bot,
+  Layers,
+  Terminal,
 } from "lucide-react";
 import { SiGoogle } from "react-icons/si";
+import { motion, AnimatePresence } from "motion/react";
 import ScrollReveal from "./ScrollReveal";
 import styles from "./ExperienceSection.module.css";
 
-interface ExperienceItem {
-  company: string;
-  role: string;
-  period: string;
-  type: string;
-  isActive?: boolean;
-  description: string;
-  tech: string[];
-}
-
-interface CredentialItem {
+interface ProofItem {
+  id: string;
+  index: string;
+  category: string;
   title: string;
+  subtitle: string;
   issuer: string;
   issuerIcon: React.ReactNode;
-  badge?: string;
+  badge: string;
+  isActiveVenture?: boolean;
+  period: string;
   description: string;
-  verifyUrl: string;
-  verifyCode: string;
+  metrics: string[];
   skills: string[];
+  verifyUrl?: string;
+  verifyCode?: string;
+  actionText: string;
 }
 
-const EXPERIENCES: ExperienceItem[] = [
+const PROOF_ITEMS: ProofItem[] = [
   {
-    company: "QDelta Agency",
-    role: "Co-Founder & Lead Architect",
+    id: "qdelta",
+    index: "01",
+    category: "Venture",
+    title: "Co-Founder & Lead Architect",
+    subtitle: "QDelta Agency Platform",
+    issuer: "QDelta Agency",
+    issuerIcon: <Zap size={16} />,
+    badge: "⚡ Active Venture",
+    isActiveVenture: true,
     period: "2024 — PRESENT",
-    type: "Active Venture",
-    isActive: true,
     description:
       "Co-founded agency operations and architected high-performance web systems, internal CRM pipelines, and client-facing digital products with modern motion craft.",
-    tech: ["Next.js 15", "TypeScript", "Node.js", "System Architecture", "Tailwind CSS"],
+    metrics: [
+      "Production Systems",
+      "Client Digital Products",
+      "Internal CRM Engine",
+    ],
+    skills: ["Next.js 15", "TypeScript", "Node.js", "System Architecture", "Tailwind CSS"],
+    verifyUrl: "https://qdelta.agency",
+    actionText: "Explore Agency Platform",
   },
   {
-    company: "Rengy Private Limited",
-    role: "MERN Stack Developer Intern",
-    period: "INTERNSHIP",
-    type: "Engineering Internship",
-    isActive: false,
+    id: "rengy",
+    index: "02",
+    category: "Internship",
+    title: "MERN Stack Developer Intern",
+    subtitle: "Rengy Private Limited",
+    issuer: "Rengy Pvt Ltd",
+    issuerIcon: <Building2 size={16} />,
+    badge: "Engineering Internship",
+    period: "INDUSTRY INTERNSHIP",
     description:
       "Engineered production web modules, designed reactive UI components, and integrated scalable RESTful APIs with MongoDB database pipelines.",
-    tech: ["React.js", "Express.js", "Node.js", "MongoDB", "REST APIs"],
+    metrics: [
+      "Full-Stack MERN",
+      "REST API Pipelines",
+      "Reactive UI Modules",
+    ],
+    skills: ["React.js", "Express.js", "Node.js", "MongoDB", "REST APIs"],
+    actionText: "MERN Production Role",
   },
-];
-
-const CREDENTIALS: CredentialItem[] = [
   {
-    title: "Google Cybersecurity Professional Certificate",
-    issuer: "Google",
-    issuerIcon: <SiGoogle size={14} className={styles.issuerIcon} />,
+    id: "google-cybersecurity",
+    index: "03",
+    category: "Specialization",
+    title: "Google Cybersecurity Specialization",
+    subtitle: "8-Course Professional Program",
+    issuer: "Google · Coursera",
+    issuerIcon: <SiGoogle size={14} />,
     badge: "8-Course Specialization",
+    period: "GOOGLE VERIFIED",
     description:
-      "Hands-on mastery of Python security automation, Linux administration, SQL querying, SIEM tools, and intrusion detection & threat mitigation.",
+      "Hands-on mastery of Python security automation, Linux administration, SQL database querying, SIEM tools, and intrusion detection & threat mitigation.",
+    metrics: [
+      "8 Courses Completed",
+      "Python Security",
+      "SIEM & IDS",
+      "Threat Mitigation",
+    ],
+    skills: ["Python Automation", "Linux CLI", "SQL Queries", "SIEM Tools", "Network Security"],
     verifyUrl:
       "https://www.coursera.org/account/accomplishments/specialization/644G6PR3P2XZ",
     verifyCode: "ID: 644G6PR3P2XZ",
-    skills: ["Python Automation", "Linux", "SQL", "SIEM & IDS", "Threat Mitigation"],
+    actionText: "Verify on Coursera",
   },
   {
+    id: "google-ai",
+    index: "04",
+    category: "AI Certificate",
     title: "Google AI Essentials",
-    issuer: "Google",
-    issuerIcon: <SiGoogle size={14} className={styles.issuerIcon} />,
+    subtitle: "Generative AI & Prompt Engineering",
+    issuer: "Google · Coursera",
+    issuerIcon: <Bot size={16} />,
     badge: "97% Grade Achieved",
+    period: "GOOGLE VERIFIED",
     description:
       "Applied generative AI tools, prompt engineering frameworks, and workflow automation to solve modern software and productivity challenges.",
+    metrics: [
+      "97% Grade Score",
+      "Prompt Frameworks",
+      "GenAI Tooling",
+      "Workflow Automation",
+    ],
+    skills: ["Prompt Engineering", "Generative AI", "Workflow Automation", "LLM Tooling"],
     verifyUrl:
       "https://www.coursera.org/account/accomplishments/verify/VSZWLX9Z9URR",
     verifyCode: "ID: VSZWLX9Z9URR",
-    skills: ["Generative AI", "Prompt Engineering", "AI Workflows", "Productivity"],
+    actionText: "Verify on Coursera",
   },
   {
+    id: "innomatics-mern",
+    index: "05",
+    category: "Full-Stack",
     title: "MERN Full Stack Web Development",
+    subtitle: "Innomatics Research Labs",
     issuer: "Innomatics Research Labs",
-    issuerIcon: <Award size={14} className={styles.issuerIcon} />,
-    badge: "Verified Certificate",
+    issuerIcon: <Award size={16} />,
+    badge: "Verified Credential",
+    period: "INNOMATICS VERIFIED",
     description:
-      "Comprehensive full-stack engineering covering React frontend architectures, Node/Express backend servers, and MongoDB database design.",
+      "Comprehensive full-stack engineering covering React frontend architectures, Node/Express backend servers, and MongoDB database modeling.",
+    metrics: [
+      "Full-Stack Architecture",
+      "MongoDB Modeling",
+      "Express REST APIs",
+      "React 19",
+    ],
+    skills: ["MongoDB Atlas", "Express.js", "React.js", "Node.js", "RESTful APIs"],
     verifyUrl: "https://online.innomatics.in/verify/CC_501142",
     verifyCode: "ID: CC_501142",
-    skills: ["MongoDB", "Express.js", "React.js", "Node.js", "REST APIs"],
+    actionText: "Verify on Innomatics",
   },
 ];
 
 export default function ExperienceSection() {
+  const [activeIndex, setActiveIndex] = useState(0);
+  const activeItem = PROOF_ITEMS[activeIndex];
+
   return (
     <section id="experience" className={styles.experienceSection}>
       {/* Section Header */}
@@ -108,148 +169,129 @@ export default function ExperienceSection() {
 
         <ScrollReveal delay={0.15} direction="up" distance={22}>
           <h2 className={styles.title}>
-            Experience &amp; <span className={styles.titleGradient}>Verified Proof.</span>
+            Proof of Work &amp; <span className={styles.titleGradient}>Frontier Mastery.</span>
           </h2>
         </ScrollReveal>
 
         <ScrollReveal delay={0.25} direction="up" distance={22}>
           <p className={styles.subtitle}>
-            Hands-on engineering leadership paired with frontier cybersecurity, generative AI, and full-stack credentials.
+            Interactive ledger tracking production engineering leadership and verified Google &amp; Innomatics credentials.
           </p>
         </ScrollReveal>
       </div>
 
-      {/* Dual Column Horizon Grid (No Heavy Boxes) */}
-      <div className={styles.dualGrid}>
-        {/* Left Column: Career Trajectory */}
-        <div className={styles.column}>
-          <ScrollReveal delay={0.1} direction="up" distance={20}>
-            <div className={styles.columnHeader}>
-              <Briefcase size={16} className={styles.columnIcon} />
-              <h3 className={styles.columnTitle}>Career Trajectory</h3>
-              <span className={styles.columnCount}>02 ROLES</span>
-            </div>
-          </ScrollReveal>
-
-          <div className={styles.timelineTrack}>
-            <div className={styles.timelineFilament} />
-
-            {EXPERIENCES.map((exp, idx) => (
-              <ScrollReveal
-                key={exp.company}
-                delay={0.15 + idx * 0.1}
-                direction="up"
-                distance={24}
+      {/* Interactive 2-Panel Stage (No Box Containers) */}
+      <div className={styles.stageGrid}>
+        {/* Left: Interactive Milestone Spectrum */}
+        <div className={styles.milestonesList}>
+          {PROOF_ITEMS.map((item, idx) => {
+            const isCurrent = idx === activeIndex;
+            return (
+              <div
+                key={item.id}
+                onClick={() => setActiveIndex(idx)}
+                onMouseEnter={() => setActiveIndex(idx)}
+                className={`${styles.milestoneItem} ${
+                  isCurrent ? styles.milestoneActive : ""
+                }`}
+                role="button"
+                tabIndex={0}
+                aria-label={`Select ${item.title}`}
               >
-                <div className={styles.experienceRow}>
-                  {/* Node marker on vertical timeline line */}
-                  <div
-                    className={`${styles.nodeMarker} ${
-                      exp.isActive ? styles.nodeMarkerActive : ""
-                    }`}
-                  />
-
-                  {/* Top Meta Line */}
-                  <div className={styles.metaTopLine}>
-                    <span className={styles.periodBadge}>{exp.period}</span>
-                    <span
-                      className={`${styles.statusPill} ${
-                        !exp.isActive ? styles.statusPillIntern : ""
-                      }`}
-                    >
-                      {exp.isActive && <span className={styles.greenDot} />}
-                      <span>{exp.type}</span>
-                    </span>
-                  </div>
-
-                  {/* Role & Company */}
-                  <h4 className={styles.roleTitle}>{exp.role}</h4>
-                  <div className={styles.companyRow}>
-                    <span>{exp.company}</span>
-                  </div>
-
-                  {/* Punchy Description */}
-                  <p className={styles.roleDescription}>{exp.description}</p>
-
-                  {/* Tech Tags */}
-                  <div className={styles.techPills}>
-                    {exp.tech.map((t) => (
-                      <span key={t} className={styles.techPill}>
-                        {t}
-                      </span>
-                    ))}
+                <div className={styles.milestoneLeft}>
+                  <span className={styles.itemIndex}>{item.index}</span>
+                  <div className={styles.itemMeta}>
+                    <h3 className={styles.itemTitle}>{item.title}</h3>
+                    <span className={styles.itemSubtitle}>{item.subtitle}</span>
                   </div>
                 </div>
-              </ScrollReveal>
-            ))}
-          </div>
+
+                <span className={styles.categoryPill}>{item.category}</span>
+              </div>
+            );
+          })}
         </div>
 
-        {/* Right Column: Verified Credentials */}
-        <div className={styles.column}>
-          <ScrollReveal delay={0.1} direction="up" distance={20}>
-            <div className={styles.columnHeader}>
-              <CheckCircle2 size={16} className={styles.columnIcon} />
-              <h3 className={styles.columnTitle}>Verified Credentials</h3>
-              <span className={styles.columnCount}>03 ISSUANCES</span>
-            </div>
-          </ScrollReveal>
-
-          <div className={styles.credentialsList}>
-            {CREDENTIALS.map((cred, idx) => (
-              <ScrollReveal
-                key={cred.title}
-                delay={0.15 + idx * 0.1}
-                direction="up"
-                distance={24}
-              >
-                <div className={styles.credentialRow}>
-                  {/* Top: Issuer + Grade Badge + Verification Link */}
-                  <div className={styles.credentialTop}>
-                    <div className={styles.credIssuerInfo}>
-                      <span className={styles.issuerTag}>
-                        {cred.issuerIcon}
-                        <span>{cred.issuer}</span>
-                      </span>
-
-                      {cred.badge && (
-                        <span className={styles.gradePill}>{cred.badge}</span>
-                      )}
-                    </div>
-
-                    <a
-                      href={cred.verifyUrl}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className={styles.verifyButton}
-                      title={`Verify ${cred.title}`}
-                    >
-                      <span>Verify Credential</span>
-                      <ArrowUpRight size={13} className={styles.verifyArrow} />
-                    </a>
+        {/* Right: Luminous Telemetry HUD */}
+        <div className={styles.telemetryHUD}>
+          <AnimatePresence mode="wait">
+            <motion.div
+              key={activeItem.id}
+              initial={{ opacity: 0, y: 14, scale: 0.98 }}
+              animate={{ opacity: 1, y: 0, scale: 1 }}
+              exit={{ opacity: 0, y: -14, scale: 0.98 }}
+              transition={{ duration: 0.35, ease: [0.16, 1, 0.3, 1] }}
+              style={{ display: "flex", flexDirection: "column", gap: "1.25rem", width: "100%" }}
+            >
+              {/* HUD Top Bar */}
+              <div className={styles.hudTop}>
+                <div className={styles.hudIssuer}>
+                  <div className={styles.issuerIconWrap}>
+                    {activeItem.issuerIcon}
                   </div>
-
-                  {/* Credential Name */}
-                  <h4 className={styles.credentialTitle}>{cred.title}</h4>
-
-                  {/* Description */}
-                  <p className={styles.credentialDesc}>{cred.description}</p>
-
-                  {/* Footer with Verification Code & Skills */}
-                  <div className={styles.credFooter}>
-                    <span className={styles.credCodeTag}>{cred.verifyCode}</span>
-                    <div className={styles.techPills}>
-                      {cred.skills.map((s) => (
-                        <span key={s} className={styles.techPill}>
-                          {s}
-                        </span>
-                      ))}
-                    </div>
-                  </div>
+                  <span className={styles.issuerName}>{activeItem.issuer}</span>
                 </div>
-              </ScrollReveal>
-            ))}
-          </div>
+
+                <span
+                  className={`${styles.hudBadge} ${
+                    activeItem.isActiveVenture ? styles.badgeActiveVenture : ""
+                  }`}
+                >
+                  {activeItem.isActiveVenture && <span className={styles.greenPulse} />}
+                  <span>{activeItem.badge}</span>
+                </span>
+              </div>
+
+              {/* HUD Main Title & Description */}
+              <div className={styles.hudMain}>
+                <span className={styles.hudPeriod}>{activeItem.period}</span>
+                <h4 className={styles.hudHeadline}>{activeItem.title}</h4>
+                <p className={styles.hudDesc}>{activeItem.description}</p>
+              </div>
+
+              {/* Live Telemetry Metrics Chips */}
+              <div className={styles.metricsGrid}>
+                {activeItem.metrics.map((m, i) => (
+                  <div key={i} className={styles.metricChip}>
+                    <span className={styles.metricDot} />
+                    <span>{m}</span>
+                  </div>
+                ))}
+              </div>
+
+              {/* Verified Tech Arsenal */}
+              <div className={styles.hudTechPills}>
+                {activeItem.skills.map((s) => (
+                  <span key={s} className={styles.hudTechPill}>
+                    {s}
+                  </span>
+                ))}
+              </div>
+
+              {/* HUD Action Row */}
+              <div className={styles.hudActionRow}>
+                <span className={styles.verifyCodeTag}>
+                  {activeItem.verifyCode || "PROD ROLE"}
+                </span>
+
+                {activeItem.verifyUrl ? (
+                  <a
+                    href={activeItem.verifyUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className={styles.actionButton}
+                  >
+                    <span>{activeItem.actionText}</span>
+                    <ArrowUpRight size={14} className={styles.actionArrow} />
+                  </a>
+                ) : (
+                  <span className={styles.hudBadge}>
+                    <span>{activeItem.actionText}</span>
+                  </span>
+                )}
+              </div>
+            </motion.div>
+          </AnimatePresence>
         </div>
       </div>
     </section>

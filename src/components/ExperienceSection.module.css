@@ -1,4 +1,6 @@
-/* Experience & Verified Credentials Section */
+/* ==========================================================================
+   EXPERIENCE & VERIFIED PROOF SECTION (OPTION 1: HOLOGRAPHIC TELEMETRY HUD)
+   ========================================================================== */
 .experienceSection {
   position: relative;
   width: 100%;
@@ -12,7 +14,7 @@
 .header {
   text-align: center;
   max-width: 720px;
-  margin: 0 auto 4.5rem;
+  margin: 0 auto 4rem;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -62,150 +64,327 @@
   max-width: 580px;
 }
 
-/* Dual Editorial Grid (No Box Containers) */
-.dualGrid {
+/* ==========================================================================
+   INTERACTIVE PROOF STAGE (2-PANEL SPLIT WITHOUT HEAVY BOX CONTAINERS)
+   ========================================================================== */
+.stageGrid {
   display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 4.5rem;
+  grid-template-columns: 1.15fr 1.35fr;
+  gap: 3.5rem;
   align-items: start;
   width: 100%;
 }
 
-/* Column Wrappers */
-.column {
+/* Left: Interactive Milestone Spectrum */
+.milestonesList {
   display: flex;
   flex-direction: column;
-  gap: 2.2rem;
+  gap: 0.5rem;
 }
 
-.columnHeader {
+.milestoneItem {
+  position: relative;
   display: flex;
   align-items: center;
-  gap: 0.65rem;
-  padding-bottom: 1rem;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  justify-content: space-between;
+  padding: 1.15rem 1.4rem;
+  border-radius: 14px;
+  background: transparent;
+  border: 1px solid transparent;
+  cursor: pointer;
+  text-align: left;
+  transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+  user-select: none;
 }
 
-.columnIcon {
+.milestoneItem:hover {
+  background: rgba(255, 255, 255, 0.03);
+  border-color: rgba(255, 255, 255, 0.06);
+}
+
+.milestoneActive {
+  background: rgba(255, 255, 255, 0.05);
+  border-color: rgba(255, 255, 255, 0.15);
+  box-shadow: 0 4px 28px rgba(0, 0, 0, 0.6),
+              inset 0 0 20px rgba(255, 255, 255, 0.02);
+}
+
+.milestoneLeft {
+  display: flex;
+  align-items: center;
+  gap: 1.1rem;
+}
+
+.itemIndex {
+  font-family: var(--font-geist-mono, monospace);
+  font-size: 0.85rem;
+  font-weight: 700;
+  color: #52525b;
+  transition: color 0.2s ease;
+}
+
+.milestoneActive .itemIndex {
+  color: #ffffff;
+}
+
+.itemMeta {
+  display: flex;
+  flex-direction: column;
+  gap: 0.2rem;
+}
+
+.itemTitle {
+  font-size: 1.05rem;
+  font-weight: 600;
+  color: #a1a1aa;
+  letter-spacing: -0.015em;
+  margin: 0;
+  transition: color 0.2s ease;
+}
+
+.milestoneActive .itemTitle {
+  color: #ffffff;
+  font-weight: 700;
+}
+
+.itemSubtitle {
+  font-size: 0.78rem;
+  color: #52525b;
+  transition: color 0.2s ease;
+}
+
+.milestoneActive .itemSubtitle {
   color: #a1a1aa;
 }
 
-.columnTitle {
-  font-size: 0.82rem;
+/* Category Pill */
+.categoryPill {
+  font-size: 0.65rem;
   font-weight: 700;
-  letter-spacing: 0.14em;
-  color: #f4f4f5;
+  letter-spacing: 0.08em;
+  padding: 0.2rem 0.55rem;
+  border-radius: 9999px;
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  color: #71717a;
   text-transform: uppercase;
-  margin: 0;
+  transition: all 0.2s ease;
 }
 
-.columnCount {
-  font-size: 0.72rem;
-  font-weight: 600;
-  color: #71717a;
-  margin-left: auto;
-  letter-spacing: 0.05em;
+.milestoneActive .categoryPill {
+  background: rgba(255, 255, 255, 0.1);
+  border-color: rgba(255, 255, 255, 0.25);
+  color: #ffffff;
 }
 
 /* ==========================================================================
-   LEFT COLUMN: CAREER TIMELINE (Filament + Open Rows)
+   RIGHT: LUMINOUS TELEMETRY HUD (Active Milestone Dossier)
    ========================================================================== */
-.timelineTrack {
-  position: relative;
+.telemetryHUD {
+  position: sticky;
+  top: 6rem;
   display: flex;
   flex-direction: column;
-  gap: 2.75rem;
-  padding-left: 1.75rem;
+  gap: 1.5rem;
+  padding: 2.2rem;
+  border-radius: 20px;
+  background: rgba(10, 10, 12, 0.7);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.8),
+              inset 0 1px 0 rgba(255, 255, 255, 0.1);
 }
 
-/* Slender luminous vertical filament */
-.timelineFilament {
-  position: absolute;
-  top: 0.5rem;
-  bottom: 0.5rem;
-  left: 0.35rem;
-  width: 1px;
-  background: linear-gradient(
-    180deg,
-    rgba(255, 255, 255, 0.3) 0%,
-    rgba(255, 255, 255, 0.12) 50%,
-    rgba(255, 255, 255, 0.02) 100%
-  );
-}
-
-.experienceRow {
-  position: relative;
-  display: flex;
-  flex-direction: column;
-  gap: 0.65rem;
-  transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1);
-}
-
-/* Node marker on the timeline line */
-.nodeMarker {
-  position: absolute;
-  left: -1.75rem;
-  top: 0.25rem;
-  width: 9px;
-  height: 9px;
-  border-radius: 50%;
-  background: #ffffff;
-  box-shadow: 0 0 12px rgba(255, 255, 255, 0.8),
-              0 0 24px rgba(255, 255, 255, 0.3);
-  transform: translateX(-0.5px);
-  z-index: 2;
-}
-
-.nodeMarkerActive {
-  background: #22c55e;
-  box-shadow: 0 0 12px rgba(34, 197, 94, 0.9),
-              0 0 24px rgba(34, 197, 94, 0.4);
-}
-
-/* Row Meta Top Line */
-.metaTopLine {
+/* HUD Top Row */
+.hudTop {
   display: flex;
   align-items: center;
-  gap: 0.75rem;
-  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 1rem;
+  padding-bottom: 1.25rem;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
 }
 
-.periodBadge {
-  font-size: 0.72rem;
+.hudIssuer {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+}
+
+.issuerIconWrap {
+  width: 32px;
+  height: 32px;
+  border-radius: 8px;
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #ffffff;
+}
+
+.issuerName {
+  font-size: 0.82rem;
   font-weight: 700;
-  letter-spacing: 0.08em;
-  color: #a1a1aa;
+  color: #f4f4f5;
+  letter-spacing: 0.04em;
   text-transform: uppercase;
 }
 
-.statusPill {
+.hudBadge {
   display: inline-flex;
   align-items: center;
   gap: 0.35rem;
-  padding: 0.18rem 0.6rem;
+  padding: 0.22rem 0.7rem;
   border-radius: 9999px;
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  font-size: 0.72rem;
+  font-weight: 700;
+  color: #ffffff;
+  letter-spacing: 0.04em;
+}
+
+.badgeActiveVenture {
   background: rgba(34, 197, 94, 0.08);
-  border: 1px solid rgba(34, 197, 94, 0.25);
-  font-size: 0.65rem;
-  font-weight: 600;
-  letter-spacing: 0.06em;
+  border-color: rgba(34, 197, 94, 0.28);
   color: #4ade80;
+}
+
+.greenPulse {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: #22c55e;
+  box-shadow: 0 0 8px #22c55e;
+  animation: pulseGreen 2.2s infinite;
+}
+
+/* HUD Main Content */
+.hudMain {
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+}
+
+.hudHeadline {
+  font-size: 1.45rem;
+  font-weight: 700;
+  color: #ffffff;
+  letter-spacing: -0.025em;
+  margin: 0;
+  line-height: 1.25;
+}
+
+.hudPeriod {
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: #a1a1aa;
+  letter-spacing: 0.06em;
   text-transform: uppercase;
 }
 
-.statusPillIntern {
-  background: rgba(255, 255, 255, 0.04);
-  border-color: rgba(255, 255, 255, 0.1);
+.hudDesc {
+  font-size: 0.92rem;
   color: #a1a1aa;
+  line-height: 1.6;
+  margin: 0.3rem 0 0;
 }
 
-.greenDot {
-  width: 5px;
-  height: 5px;
+/* Key Telemetry Metrics Chips */
+.metricsGrid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  padding: 0.9rem 0;
+}
+
+.metricChip {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  padding: 0.35rem 0.75rem;
+  border-radius: 8px;
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.07);
+  font-size: 0.76rem;
+  font-weight: 600;
+  color: #e4e4e7;
+  letter-spacing: 0.01em;
+}
+
+.metricDot {
+  width: 4px;
+  height: 4px;
   border-radius: 50%;
-  background: #22c55e;
-  box-shadow: 0 0 6px #22c55e;
-  animation: pulseGreen 2.2s infinite;
+  background: rgba(255, 255, 255, 0.5);
+}
+
+/* Tech Pills Row */
+.hudTechPills {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.45rem;
+}
+
+.hudTechPill {
+  display: inline-flex;
+  align-items: center;
+  padding: 0.22rem 0.65rem;
+  border-radius: 9999px;
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  font-size: 0.72rem;
+  color: #a1a1aa;
+  font-weight: 500;
+}
+
+/* Action Footer */
+.hudActionRow {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  padding-top: 1.25rem;
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+  margin-top: 0.4rem;
+}
+
+.verifyCodeTag {
+  font-family: var(--font-geist-mono, monospace);
+  font-size: 0.72rem;
+  color: #71717a;
+  letter-spacing: 0.06em;
+}
+
+.actionButton {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.6rem 1.25rem;
+  border-radius: 9999px;
+  background: #ffffff;
+  color: #09090b;
+  font-size: 0.82rem;
+  font-weight: 700;
+  text-decoration: none;
+  transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+  box-shadow: 0 4px 20px rgba(255, 255, 255, 0.2);
+}
+
+.actionButton:hover {
+  background: #e4e4e7;
+  transform: translateY(-2px);
+  box-shadow: 0 8px 30px rgba(255, 255, 255, 0.35);
+}
+
+.actionArrow {
+  transition: transform 0.2s ease;
+}
+
+.actionButton:hover .actionArrow {
+  transform: translate(2px, -2px);
 }
 
 @keyframes pulseGreen {
@@ -213,202 +392,15 @@
   50% { opacity: 0.4; transform: scale(0.85); }
 }
 
-/* Role & Company */
-.roleTitle {
-  font-size: 1.25rem;
-  font-weight: 700;
-  color: #f4f4f5;
-  letter-spacing: -0.025em;
-  margin: 0;
-  line-height: 1.3;
-}
-
-.companyRow {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.5rem;
-  font-size: 0.9rem;
-  font-weight: 600;
-  color: #d4d4d8;
-}
-
-.companySub {
-  font-size: 0.75rem;
-  color: #71717a;
-  font-weight: 400;
-}
-
-.roleDescription {
-  font-size: 0.88rem;
-  color: #8e8e93;
-  line-height: 1.6;
-  margin: 0.2rem 0 0;
-}
-
-/* Tech Pills Row */
-.techPills {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 0.45rem;
-  margin-top: 0.4rem;
-}
-
-.techPill {
-  display: inline-flex;
-  align-items: center;
-  padding: 0.22rem 0.65rem;
-  border-radius: 9999px;
-  background: rgba(255, 255, 255, 0.03);
-  border: 1px solid rgba(255, 255, 255, 0.06);
-  font-size: 0.72rem;
-  color: #a1a1aa;
-  font-weight: 500;
-  letter-spacing: 0.02em;
-  transition: all 0.2s ease;
-}
-
-.experienceRow:hover .techPill {
-  border-color: rgba(255, 255, 255, 0.15);
-  color: #e4e4e7;
-}
-
-/* ==========================================================================
-   RIGHT COLUMN: VERIFIED CREDENTIALS (Frameless Rows with Verification Links)
-   ========================================================================== */
-.credentialsList {
-  display: flex;
-  flex-direction: column;
-  gap: 2rem;
-}
-
-.credentialRow {
-  position: relative;
-  display: flex;
-  flex-direction: column;
-  gap: 0.75rem;
-  padding-bottom: 2rem;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.06);
-  transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
-}
-
-.credentialRow:last-child {
-  border-bottom: none;
-  padding-bottom: 0;
-}
-
-.credentialTop {
-  display: flex;
-  align-items: flex-start;
-  justify-content: space-between;
-  gap: 1rem;
-}
-
-.credIssuerInfo {
-  display: flex;
-  align-items: center;
-  gap: 0.6rem;
-  flex-wrap: wrap;
-}
-
-.issuerTag {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.4rem;
-  font-size: 0.74rem;
-  font-weight: 700;
-  letter-spacing: 0.06em;
-  color: #a1a1aa;
-  text-transform: uppercase;
-}
-
-.issuerIcon {
-  color: #ffffff;
-}
-
-.gradePill {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.25rem;
-  padding: 0.15rem 0.55rem;
-  border-radius: 9999px;
-  background: rgba(255, 255, 255, 0.05);
-  border: 1px solid rgba(255, 255, 255, 0.12);
-  font-size: 0.68rem;
-  font-weight: 700;
-  color: #ffffff;
-  letter-spacing: 0.04em;
-}
-
-/* Verify Action Button */
-.verifyButton {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.4rem;
-  padding: 0.35rem 0.8rem;
-  border-radius: 9999px;
-  background: rgba(255, 255, 255, 0.04);
-  border: 1px solid rgba(255, 255, 255, 0.1);
-  font-size: 0.72rem;
-  font-weight: 600;
-  letter-spacing: 0.04em;
-  color: #d4d4d8;
-  text-decoration: none;
-  white-space: nowrap;
-  transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
-}
-
-.verifyButton:hover {
-  background: #ffffff;
-  border-color: #ffffff;
-  color: #000000;
-  transform: translateY(-2px);
-  box-shadow: 0 4px 20px rgba(255, 255, 255, 0.25);
-}
-
-.verifyArrow {
-  transition: transform 0.2s ease;
-}
-
-.verifyButton:hover .verifyArrow {
-  transform: translate(2px, -2px);
-}
-
-.credentialTitle {
-  font-size: 1.15rem;
-  font-weight: 700;
-  color: #ffffff;
-  letter-spacing: -0.02em;
-  margin: 0;
-  line-height: 1.35;
-}
-
-.credentialDesc {
-  font-size: 0.85rem;
-  color: #8e8e93;
-  line-height: 1.55;
-  margin: 0;
-}
-
-.credFooter {
-  display: flex;
-  align-items: center;
-  gap: 0.6rem;
-  flex-wrap: wrap;
-  margin-top: 0.2rem;
-}
-
-.credCodeTag {
-  font-family: var(--font-geist-mono, monospace);
-  font-size: 0.68rem;
-  color: #52525b;
-  letter-spacing: 0.05em;
-}
-
 /* Responsive */
 @media (max-width: 960px) {
-  .dualGrid {
+  .stageGrid {
     grid-template-columns: 1fr;
-    gap: 3.5rem;
+    gap: 2.5rem;
+  }
+
+  .telemetryHUD {
+    position: static;
   }
 }
 
@@ -418,20 +410,19 @@
   }
 
   .header {
-    margin-bottom: 3.5rem;
+    margin-bottom: 3rem;
   }
 
-  .roleTitle {
-    font-size: 1.15rem;
+  .hudHeadline {
+    font-size: 1.25rem;
   }
 
-  .credentialTitle {
-    font-size: 1.05rem;
+  .telemetryHUD {
+    padding: 1.5rem;
   }
 
-  .credentialTop {
+  .hudActionRow {
     flex-direction: column;
     align-items: flex-start;
-    gap: 0.6rem;
   }
 }
