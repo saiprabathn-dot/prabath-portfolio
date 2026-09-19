@@ -4,26 +4,25 @@ import React, { useState } from "react";
 import {
   ArrowUpRight,
   Sparkles,
-  ShieldCheck,
+  ArrowRight,
   Zap,
   Building2,
   Award,
   Bot,
-  Layers,
-  Terminal,
+  ShieldCheck,
+  ChevronRight,
 } from "lucide-react";
 import { SiGoogle } from "react-icons/si";
 import { motion, AnimatePresence } from "motion/react";
 import ScrollReveal from "./ScrollReveal";
 import styles from "./ExperienceSection.module.css";
 
-interface ProofItem {
+interface RibbonItem {
   id: string;
   index: string;
   category: string;
-  title: string;
-  subtitle: string;
-  issuer: string;
+  role: string;
+  company: string;
   issuerIcon: React.ReactNode;
   badge: string;
   isActiveVenture?: boolean;
@@ -36,24 +35,23 @@ interface ProofItem {
   actionText: string;
 }
 
-const PROOF_ITEMS: ProofItem[] = [
+const RIBBON_ITEMS: RibbonItem[] = [
   {
     id: "qdelta",
     index: "01",
-    category: "Venture",
-    title: "Co-Founder & Lead Architect",
-    subtitle: "QDelta Agency Platform",
-    issuer: "QDelta Agency",
-    issuerIcon: <Zap size={16} />,
-    badge: "⚡ Active Venture",
+    category: "Agency Venture",
+    role: "Co-Founder & Lead Architect",
+    company: "QDelta Agency Platform",
+    issuerIcon: <Zap size={15} className={styles.companyIcon} />,
+    badge: "⚡ 2024 — PRESENT",
     isActiveVenture: true,
     period: "2024 — PRESENT",
     description:
-      "Co-founded agency operations and architected high-performance web systems, internal CRM pipelines, and client-facing digital products with modern motion craft.",
+      "Co-founded agency operations, architecting high-performance web applications, internal CRM business platforms, and client digital systems built with modern motion craft.",
     metrics: [
-      "Production Systems",
-      "Client Digital Products",
+      "Full-Stack Web Systems",
       "Internal CRM Engine",
+      "Client Digital Products",
     ],
     skills: ["Next.js 15", "TypeScript", "Node.js", "System Architecture", "Tailwind CSS"],
     verifyUrl: "https://qdelta.agency",
@@ -62,18 +60,17 @@ const PROOF_ITEMS: ProofItem[] = [
   {
     id: "rengy",
     index: "02",
-    category: "Internship",
-    title: "MERN Stack Developer Intern",
-    subtitle: "Rengy Private Limited",
-    issuer: "Rengy Pvt Ltd",
-    issuerIcon: <Building2 size={16} />,
-    badge: "Engineering Internship",
-    period: "INDUSTRY INTERNSHIP",
+    category: "Industry Role",
+    role: "MERN Stack Developer Intern",
+    company: "Rengy Private Limited",
+    issuerIcon: <Building2 size={15} className={styles.companyIcon} />,
+    badge: "Industry Internship",
+    period: "2024",
     description:
       "Engineered production web modules, designed reactive UI components, and integrated scalable RESTful APIs with MongoDB database pipelines.",
     metrics: [
-      "Full-Stack MERN",
-      "REST API Pipelines",
+      "MERN Production Stack",
+      "RESTful API Pipelines",
       "Reactive UI Modules",
     ],
     skills: ["React.js", "Express.js", "Node.js", "MongoDB", "REST APIs"],
@@ -83,10 +80,9 @@ const PROOF_ITEMS: ProofItem[] = [
     id: "google-cybersecurity",
     index: "03",
     category: "Specialization",
-    title: "Google Cybersecurity Specialization",
-    subtitle: "8-Course Professional Program",
-    issuer: "Google · Coursera",
-    issuerIcon: <SiGoogle size={14} />,
+    role: "Google Cybersecurity Specialization",
+    company: "Google · Coursera Specialization",
+    issuerIcon: <SiGoogle size={14} className={styles.companyIcon} />,
     badge: "8-Course Specialization",
     period: "GOOGLE VERIFIED",
     description:
@@ -106,11 +102,10 @@ const PROOF_ITEMS: ProofItem[] = [
   {
     id: "google-ai",
     index: "04",
-    category: "AI Certificate",
-    title: "Google AI Essentials",
-    subtitle: "Generative AI & Prompt Engineering",
-    issuer: "Google · Coursera",
-    issuerIcon: <Bot size={16} />,
+    category: "AI Credential",
+    role: "Google AI Essentials",
+    company: "Google · Coursera Credential",
+    issuerIcon: <Bot size={15} className={styles.companyIcon} />,
     badge: "97% Grade Achieved",
     period: "GOOGLE VERIFIED",
     description:
@@ -130,11 +125,10 @@ const PROOF_ITEMS: ProofItem[] = [
   {
     id: "innomatics-mern",
     index: "05",
-    category: "Full-Stack",
-    title: "MERN Full Stack Web Development",
-    subtitle: "Innomatics Research Labs",
-    issuer: "Innomatics Research Labs",
-    issuerIcon: <Award size={16} />,
+    category: "Full-Stack Web",
+    role: "MERN Full Stack Web Development",
+    company: "Innomatics Research Labs",
+    issuerIcon: <Award size={15} className={styles.companyIcon} />,
     badge: "Verified Credential",
     period: "INNOMATICS VERIFIED",
     description:
@@ -153,8 +147,11 @@ const PROOF_ITEMS: ProofItem[] = [
 ];
 
 export default function ExperienceSection() {
-  const [activeIndex, setActiveIndex] = useState(0);
-  const activeItem = PROOF_ITEMS[activeIndex];
+  const [expandedId, setExpandedId] = useState<string>("qdelta");
+
+  const toggleExpand = (id: string) => {
+    setExpandedId((prev) => (prev === id ? "" : id));
+  };
 
   return (
     <section id="experience" className={styles.experienceSection}>
@@ -169,130 +166,137 @@ export default function ExperienceSection() {
 
         <ScrollReveal delay={0.15} direction="up" distance={22}>
           <h2 className={styles.title}>
-            Proof of Work &amp; <span className={styles.titleGradient}>Frontier Mastery.</span>
+            Proof of Work &amp; <span className={styles.titleGradient}>Career Milestones.</span>
           </h2>
         </ScrollReveal>
 
         <ScrollReveal delay={0.25} direction="up" distance={22}>
           <p className={styles.subtitle}>
-            Interactive ledger tracking production engineering leadership and verified Google &amp; Innomatics credentials.
+            An interactive editorial ledger spanning agency architecture, industry engineering, and verified Google credentials.
           </p>
         </ScrollReveal>
       </div>
 
-      {/* Interactive 2-Panel Stage (No Box Containers) */}
-      <div className={styles.stageGrid}>
-        {/* Left: Interactive Milestone Spectrum */}
-        <div className={styles.milestonesList}>
-          {PROOF_ITEMS.map((item, idx) => {
-            const isCurrent = idx === activeIndex;
-            return (
-              <div
-                key={item.id}
-                onClick={() => setActiveIndex(idx)}
-                onMouseEnter={() => setActiveIndex(idx)}
-                className={`${styles.milestoneItem} ${
-                  isCurrent ? styles.milestoneActive : ""
-                }`}
-                role="button"
-                tabIndex={0}
-                aria-label={`Select ${item.title}`}
-              >
-                <div className={styles.milestoneLeft}>
-                  <span className={styles.itemIndex}>{item.index}</span>
-                  <div className={styles.itemMeta}>
-                    <h3 className={styles.itemTitle}>{item.title}</h3>
-                    <span className={styles.itemSubtitle}>{item.subtitle}</span>
-                  </div>
-                </div>
+      {/* Full-Width Kinetic Ribbon Accordion */}
+      <div className={styles.ribbonList}>
+        {RIBBON_ITEMS.map((item, idx) => {
+          const isExpanded = expandedId === item.id;
 
-                <span className={styles.categoryPill}>{item.category}</span>
-              </div>
-            );
-          })}
-        </div>
-
-        {/* Right: Luminous Telemetry HUD */}
-        <div className={styles.telemetryHUD}>
-          <AnimatePresence mode="wait">
-            <motion.div
-              key={activeItem.id}
-              initial={{ opacity: 0, y: 14, scale: 0.98 }}
-              animate={{ opacity: 1, y: 0, scale: 1 }}
-              exit={{ opacity: 0, y: -14, scale: 0.98 }}
-              transition={{ duration: 0.35, ease: [0.16, 1, 0.3, 1] }}
-              style={{ display: "flex", flexDirection: "column", gap: "1.25rem", width: "100%" }}
+          return (
+            <ScrollReveal
+              key={item.id}
+              delay={0.05 + idx * 0.08}
+              direction="up"
+              distance={20}
             >
-              {/* HUD Top Bar */}
-              <div className={styles.hudTop}>
-                <div className={styles.hudIssuer}>
-                  <div className={styles.issuerIconWrap}>
-                    {activeItem.issuerIcon}
-                  </div>
-                  <span className={styles.issuerName}>{activeItem.issuer}</span>
-                </div>
-
-                <span
-                  className={`${styles.hudBadge} ${
-                    activeItem.isActiveVenture ? styles.badgeActiveVenture : ""
-                  }`}
+              <div
+                className={`${styles.ribbonRow} ${
+                  isExpanded ? styles.ribbonRowExpanded : ""
+                }`}
+              >
+                {/* Clickable Ribbon Header */}
+                <button
+                  type="button"
+                  onClick={() => toggleExpand(item.id)}
+                  className={styles.ribbonHeader}
+                  aria-expanded={isExpanded}
                 >
-                  {activeItem.isActiveVenture && <span className={styles.greenPulse} />}
-                  <span>{activeItem.badge}</span>
-                </span>
-              </div>
+                  <div className={styles.ribbonLeft}>
+                    <span className={styles.giantIndex}>{item.index}</span>
 
-              {/* HUD Main Title & Description */}
-              <div className={styles.hudMain}>
-                <span className={styles.hudPeriod}>{activeItem.period}</span>
-                <h4 className={styles.hudHeadline}>{activeItem.title}</h4>
-                <p className={styles.hudDesc}>{activeItem.description}</p>
-              </div>
-
-              {/* Live Telemetry Metrics Chips */}
-              <div className={styles.metricsGrid}>
-                {activeItem.metrics.map((m, i) => (
-                  <div key={i} className={styles.metricChip}>
-                    <span className={styles.metricDot} />
-                    <span>{m}</span>
+                    <div className={styles.ribbonTitleGroup}>
+                      <h3 className={styles.ribbonRole}>{item.role}</h3>
+                      <div className={styles.ribbonCompanyRow}>
+                        {item.issuerIcon}
+                        <span>{item.company}</span>
+                      </div>
+                    </div>
                   </div>
-                ))}
-              </div>
 
-              {/* Verified Tech Arsenal */}
-              <div className={styles.hudTechPills}>
-                {activeItem.skills.map((s) => (
-                  <span key={s} className={styles.hudTechPill}>
-                    {s}
-                  </span>
-                ))}
-              </div>
+                  <div className={styles.ribbonRight}>
+                    <span className={styles.typePill}>{item.category}</span>
 
-              {/* HUD Action Row */}
-              <div className={styles.hudActionRow}>
-                <span className={styles.verifyCodeTag}>
-                  {activeItem.verifyCode || "PROD ROLE"}
-                </span>
+                    <span
+                      className={`${styles.scoreBadge} ${
+                        item.isActiveVenture ? styles.activeVentureBadge : ""
+                      }`}
+                    >
+                      {item.isActiveVenture && <span className={styles.pulseDot} />}
+                      <span>{item.badge}</span>
+                    </span>
 
-                {activeItem.verifyUrl ? (
-                  <a
-                    href={activeItem.verifyUrl}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className={styles.actionButton}
-                  >
-                    <span>{activeItem.actionText}</span>
-                    <ArrowUpRight size={14} className={styles.actionArrow} />
-                  </a>
-                ) : (
-                  <span className={styles.hudBadge}>
-                    <span>{activeItem.actionText}</span>
-                  </span>
-                )}
+                    <div className={styles.expandCircle}>
+                      <ChevronRight size={17} />
+                    </div>
+                  </div>
+                </button>
+
+                {/* Expanded Dossier with Spring Kinetics */}
+                <AnimatePresence>
+                  {isExpanded && (
+                    <motion.div
+                      initial={{ height: 0, opacity: 0 }}
+                      animate={{ height: "auto", opacity: 1 }}
+                      exit={{ height: 0, opacity: 0 }}
+                      transition={{ duration: 0.38, ease: [0.16, 1, 0.3, 1] }}
+                      className={styles.accordionBody}
+                    >
+                      <div className={styles.accordionContent}>
+                        {/* Left Details & Metrics */}
+                        <div className={styles.accordionDetails}>
+                          <p className={styles.accordionDesc}>{item.description}</p>
+
+                          <div className={styles.metricsRow}>
+                            {item.metrics.map((m, i) => (
+                              <div key={i} className={styles.metricBadge}>
+                                <span className={styles.metricBullet} />
+                                <span>{m}</span>
+                              </div>
+                            ))}
+                          </div>
+                        </div>
+
+                        {/* Right Verified Arsenal & Direct Link */}
+                        <div className={styles.accordionRight}>
+                          <span className={styles.skillsHeader}>Verified Competencies</span>
+                          <div className={styles.skillsPills}>
+                            {item.skills.map((s) => (
+                              <span key={s} className={styles.skillPill}>
+                                {s}
+                              </span>
+                            ))}
+                          </div>
+
+                          <div className={styles.actionRow}>
+                            <span className={styles.verifyIdCode}>
+                              {item.verifyCode || "PROD VERIFIED"}
+                            </span>
+
+                            {item.verifyUrl ? (
+                              <a
+                                href={item.verifyUrl}
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                className={styles.actionBtn}
+                              >
+                                <span>{item.actionText}</span>
+                                <ArrowUpRight size={14} className={styles.arrowIcon} />
+                              </a>
+                            ) : (
+                              <span className={styles.scoreBadge}>
+                                <span>{item.actionText}</span>
+                              </span>
+                            )}
+                          </div>
+                        </div>
+                      </div>
+                    </motion.div>
+                  )}
+                </AnimatePresence>
               </div>
-            </motion.div>
-          </AnimatePresence>
-        </div>
+            </ScrollReveal>
+          );
+        })}
       </div>
     </section>
   );
