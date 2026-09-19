@@ -1,28 +1,29 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import {
+  ArrowLeft,
+  ArrowRight,
   ArrowUpRight,
   Sparkles,
-  ArrowRight,
   Zap,
   Building2,
   Award,
   Bot,
   ShieldCheck,
-  ChevronRight,
 } from "lucide-react";
 import { SiGoogle } from "react-icons/si";
 import { motion, AnimatePresence } from "motion/react";
 import ScrollReveal from "./ScrollReveal";
 import styles from "./ExperienceSection.module.css";
 
-interface RibbonItem {
+interface SpotlightItem {
   id: string;
   index: string;
-  category: string;
-  role: string;
-  company: string;
+  stationTag: string;
+  title: string;
+  subtitle: string;
+  issuer: string;
   issuerIcon: React.ReactNode;
   badge: string;
   isActiveVenture?: boolean;
@@ -35,23 +36,24 @@ interface RibbonItem {
   actionText: string;
 }
 
-const RIBBON_ITEMS: RibbonItem[] = [
+const SPOTLIGHT_ITEMS: SpotlightItem[] = [
   {
     id: "qdelta",
     index: "01",
-    category: "Agency Venture",
-    role: "Co-Founder & Lead Architect",
-    company: "QDelta Agency Platform",
-    issuerIcon: <Zap size={15} className={styles.companyIcon} />,
+    stationTag: "01 QDelta",
+    title: "Co-Founder & Lead Architect",
+    subtitle: "QDelta Agency Platform",
+    issuer: "QDelta Agency",
+    issuerIcon: <Zap size={15} className={styles.issuerIcon} />,
     badge: "⚡ 2024 — PRESENT",
     isActiveVenture: true,
     period: "2024 — PRESENT",
     description:
-      "Co-founded agency operations, architecting high-performance web applications, internal CRM business platforms, and client digital systems built with modern motion craft.",
+      "Co-founded agency operations and architected high-performance web systems, internal CRM pipelines, and client-facing digital products with modern motion craft.",
     metrics: [
-      "Full-Stack Web Systems",
+      "Production Web Systems",
       "Internal CRM Engine",
-      "Client Digital Products",
+      "Client Digital Platforms",
     ],
     skills: ["Next.js 15", "TypeScript", "Node.js", "System Architecture", "Tailwind CSS"],
     verifyUrl: "https://qdelta.agency",
@@ -60,10 +62,11 @@ const RIBBON_ITEMS: RibbonItem[] = [
   {
     id: "rengy",
     index: "02",
-    category: "Industry Role",
-    role: "MERN Stack Developer Intern",
-    company: "Rengy Private Limited",
-    issuerIcon: <Building2 size={15} className={styles.companyIcon} />,
+    stationTag: "02 Rengy",
+    title: "MERN Stack Developer Intern",
+    subtitle: "Rengy Private Limited",
+    issuer: "Rengy Pvt Ltd",
+    issuerIcon: <Building2 size={15} className={styles.issuerIcon} />,
     badge: "Industry Internship",
     period: "2024",
     description:
@@ -79,10 +82,11 @@ const RIBBON_ITEMS: RibbonItem[] = [
   {
     id: "google-cybersecurity",
     index: "03",
-    category: "Specialization",
-    role: "Google Cybersecurity Specialization",
-    company: "Google · Coursera Specialization",
-    issuerIcon: <SiGoogle size={14} className={styles.companyIcon} />,
+    stationTag: "03 CyberSec",
+    title: "Google Cybersecurity Specialization",
+    subtitle: "8-Course Professional Program",
+    issuer: "Google · Coursera",
+    issuerIcon: <SiGoogle size={14} className={styles.issuerIcon} />,
     badge: "8-Course Specialization",
     period: "GOOGLE VERIFIED",
     description:
@@ -102,10 +106,11 @@ const RIBBON_ITEMS: RibbonItem[] = [
   {
     id: "google-ai",
     index: "04",
-    category: "AI Credential",
-    role: "Google AI Essentials",
-    company: "Google · Coursera Credential",
-    issuerIcon: <Bot size={15} className={styles.companyIcon} />,
+    stationTag: "04 Google AI",
+    title: "Google AI Essentials",
+    subtitle: "Generative AI & Prompt Engineering",
+    issuer: "Google · Coursera",
+    issuerIcon: <Bot size={15} className={styles.issuerIcon} />,
     badge: "97% Grade Achieved",
     period: "GOOGLE VERIFIED",
     description:
@@ -125,10 +130,11 @@ const RIBBON_ITEMS: RibbonItem[] = [
   {
     id: "innomatics-mern",
     index: "05",
-    category: "Full-Stack Web",
-    role: "MERN Full Stack Web Development",
-    company: "Innomatics Research Labs",
-    issuerIcon: <Award size={15} className={styles.companyIcon} />,
+    stationTag: "05 Innomatics",
+    title: "MERN Full Stack Web Development",
+    subtitle: "Innomatics Research Labs",
+    issuer: "Innomatics Research Labs",
+    issuerIcon: <Award size={15} className={styles.issuerIcon} />,
     badge: "Verified Credential",
     period: "INNOMATICS VERIFIED",
     description:
@@ -147,11 +153,46 @@ const RIBBON_ITEMS: RibbonItem[] = [
 ];
 
 export default function ExperienceSection() {
-  const [expandedId, setExpandedId] = useState<string>("qdelta");
+  const [currentIndex, setCurrentIndex] = useState(0);
+  const [direction, setDirection] = useState<number>(1);
+  const [mouseOffset, setMouseOffset] = useState({ x: 0, y: 0 });
+  const cardRef = useRef<HTMLDivElement>(null);
 
-  const toggleExpand = (id: string) => {
-    setExpandedId((prev) => (prev === id ? "" : id));
+  const activeItem = SPOTLIGHT_ITEMS[currentIndex];
+
+  const handlePrev = () => {
+    setDirection(-1);
+    setCurrentIndex((prev) => (prev === 0 ? SPOTLIGHT_ITEMS.length - 1 : prev - 1));
   };
+
+  const handleNext = () => {
+    setDirection(1);
+    setCurrentIndex((prev) => (prev === SPOTLIGHT_ITEMS.length - 1 ? 0 : prev + 1));
+  };
+
+  const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
+    if (!cardRef.current) return;
+    const rect = cardRef.current.getBoundingClientRect();
+    const x = ((e.clientX - rect.left) / rect.width - 0.5) * 12;
+    const y = ((e.clientY - rect.top) / rect.height - 0.5) * -12;
+    setMouseOffset({ x, y });
+  };
+
+  const handleMouseLeave = () => {
+    setMouseOffset({ x: 0, y: 0 });
+  };
+
+  // Keyboard navigation
+  useEffect(() => {
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (e.key === "ArrowLeft") handlePrev();
+      if (e.key === "ArrowRight") handleNext();
+    };
+    window.addEventListener("keydown", handleKeyDown);
+    return () => window.removeEventListener("keydown", handleKeyDown);
+  }, []);
+
+  const progressPercent = (currentIndex / (SPOTLIGHT_ITEMS.length - 1)) * 90;
 
   return (
     <section id="experience" className={styles.experienceSection}>
@@ -172,131 +213,160 @@ export default function ExperienceSection() {
 
         <ScrollReveal delay={0.25} direction="up" distance={22}>
           <p className={styles.subtitle}>
-            An interactive editorial ledger spanning agency architecture, industry engineering, and verified Google credentials.
+            An interactive 3D horizon spotlighting agency architecture, industry engineering, and verified Google credentials.
           </p>
         </ScrollReveal>
       </div>
 
-      {/* Full-Width Kinetic Ribbon Accordion */}
-      <div className={styles.ribbonList}>
-        {RIBBON_ITEMS.map((item, idx) => {
-          const isExpanded = expandedId === item.id;
+      {/* Top Horizon Timeline Tracker */}
+      <div className={styles.timelineHorizon}>
+        <div className={styles.horizonTrackLine} />
+        <div
+          className={styles.horizonProgressLine}
+          style={{ width: `${progressPercent}%` }}
+        />
 
+        {SPOTLIGHT_ITEMS.map((item, idx) => {
+          const isNodeActive = idx === currentIndex;
           return (
-            <ScrollReveal
+            <button
               key={item.id}
-              delay={0.05 + idx * 0.08}
-              direction="up"
-              distance={20}
+              type="button"
+              onClick={() => {
+                setDirection(idx > currentIndex ? 1 : -1);
+                setCurrentIndex(idx);
+              }}
+              className={`${styles.stationNode} ${
+                isNodeActive ? styles.stationNodeActive : ""
+              }`}
+              aria-label={`Jump to ${item.title}`}
             >
               <div
-                className={`${styles.ribbonRow} ${
-                  isExpanded ? styles.ribbonRowExpanded : ""
+                className={`${styles.nodeDot} ${
+                  isNodeActive ? styles.nodeDotActive : ""
                 }`}
-              >
-                {/* Clickable Ribbon Header */}
-                <button
-                  type="button"
-                  onClick={() => toggleExpand(item.id)}
-                  className={styles.ribbonHeader}
-                  aria-expanded={isExpanded}
-                >
-                  <div className={styles.ribbonLeft}>
-                    <span className={styles.giantIndex}>{item.index}</span>
-
-                    <div className={styles.ribbonTitleGroup}>
-                      <h3 className={styles.ribbonRole}>{item.role}</h3>
-                      <div className={styles.ribbonCompanyRow}>
-                        {item.issuerIcon}
-                        <span>{item.company}</span>
-                      </div>
-                    </div>
-                  </div>
-
-                  <div className={styles.ribbonRight}>
-                    <span className={styles.typePill}>{item.category}</span>
-
-                    <span
-                      className={`${styles.scoreBadge} ${
-                        item.isActiveVenture ? styles.activeVentureBadge : ""
-                      }`}
-                    >
-                      {item.isActiveVenture && <span className={styles.pulseDot} />}
-                      <span>{item.badge}</span>
-                    </span>
-
-                    <div className={styles.expandCircle}>
-                      <ChevronRight size={17} />
-                    </div>
-                  </div>
-                </button>
-
-                {/* Expanded Dossier with Spring Kinetics */}
-                <AnimatePresence>
-                  {isExpanded && (
-                    <motion.div
-                      initial={{ height: 0, opacity: 0 }}
-                      animate={{ height: "auto", opacity: 1 }}
-                      exit={{ height: 0, opacity: 0 }}
-                      transition={{ duration: 0.38, ease: [0.16, 1, 0.3, 1] }}
-                      className={styles.accordionBody}
-                    >
-                      <div className={styles.accordionContent}>
-                        {/* Left Details & Metrics */}
-                        <div className={styles.accordionDetails}>
-                          <p className={styles.accordionDesc}>{item.description}</p>
-
-                          <div className={styles.metricsRow}>
-                            {item.metrics.map((m, i) => (
-                              <div key={i} className={styles.metricBadge}>
-                                <span className={styles.metricBullet} />
-                                <span>{m}</span>
-                              </div>
-                            ))}
-                          </div>
-                        </div>
-
-                        {/* Right Verified Arsenal & Direct Link */}
-                        <div className={styles.accordionRight}>
-                          <span className={styles.skillsHeader}>Verified Competencies</span>
-                          <div className={styles.skillsPills}>
-                            {item.skills.map((s) => (
-                              <span key={s} className={styles.skillPill}>
-                                {s}
-                              </span>
-                            ))}
-                          </div>
-
-                          <div className={styles.actionRow}>
-                            <span className={styles.verifyIdCode}>
-                              {item.verifyCode || "PROD VERIFIED"}
-                            </span>
-
-                            {item.verifyUrl ? (
-                              <a
-                                href={item.verifyUrl}
-                                target="_blank"
-                                rel="noopener noreferrer"
-                                className={styles.actionBtn}
-                              >
-                                <span>{item.actionText}</span>
-                                <ArrowUpRight size={14} className={styles.arrowIcon} />
-                              </a>
-                            ) : (
-                              <span className={styles.scoreBadge}>
-                                <span>{item.actionText}</span>
-                              </span>
-                            )}
-                          </div>
-                        </div>
-                      </div>
-                    </motion.div>
-                  )}
-                </AnimatePresence>
-              </div>
-            </ScrollReveal>
+              />
+              <span className={styles.stationLabel}>{item.stationTag}</span>
+            </button>
           );
         })}
+      </div>
+
+      {/* Center Cinematic 3D Spotlight Stage */}
+      <div className={styles.spotlightStage}>
+        <AnimatePresence mode="wait">
+          <motion.div
+            key={activeItem.id}
+            ref={cardRef}
+            onMouseMove={handleMouseMove}
+            onMouseLeave={handleMouseLeave}
+            initial={{ opacity: 0, x: direction * 40, scale: 0.96 }}
+            animate={{
+              opacity: 1,
+              x: 0,
+              scale: 1,
+              transform: `perspective(1200px) rotateX(${mouseOffset.y}deg) rotateY(${mouseOffset.x}deg)`,
+            }}
+            exit={{ opacity: 0, x: direction * -40, scale: 0.96 }}
+            transition={{ duration: 0.45, ease: [0.16, 1, 0.3, 1] }}
+            className={styles.stageCard}
+          >
+            {/* Watermark Index Number */}
+            <span className={styles.watermarkIndex}>{activeItem.index}</span>
+
+            <div className={styles.cardInner}>
+              {/* Left Column: Role Details & Narrative */}
+              <div className={styles.cardLeft}>
+                <div className={styles.cardTopRow}>
+                  <span className={styles.issuerBadge}>
+                    {activeItem.issuerIcon}
+                    <span>{activeItem.issuer}</span>
+                  </span>
+
+                  <span
+                    className={`${styles.statusPill} ${
+                      activeItem.isActiveVenture ? styles.activeVenturePill : ""
+                    }`}
+                  >
+                    {activeItem.isActiveVenture && <span className={styles.greenPulse} />}
+                    <span>{activeItem.badge}</span>
+                  </span>
+                </div>
+
+                <h3 className={styles.cardTitle}>{activeItem.title}</h3>
+                <h4 className={styles.cardSubtitle}>{activeItem.subtitle}</h4>
+                <p className={styles.cardDescription}>{activeItem.description}</p>
+              </div>
+
+              {/* Right Column: Key Metrics + Tech Tags + Action */}
+              <div className={styles.cardRight}>
+                <div className={styles.metricsList}>
+                  {activeItem.metrics.map((m, i) => (
+                    <div key={i} className={styles.metricItem}>
+                      <span className={styles.metricDot} />
+                      <span>{m}</span>
+                    </div>
+                  ))}
+                </div>
+
+                <div className={styles.techTags}>
+                  {activeItem.skills.map((s) => (
+                    <span key={s} className={styles.techTag}>
+                      {s}
+                    </span>
+                  ))}
+                </div>
+
+                <div className={styles.cardActionRow}>
+                  <span className={styles.codeIdTag}>
+                    {activeItem.verifyCode || "PROD VERIFIED"}
+                  </span>
+
+                  {activeItem.verifyUrl ? (
+                    <a
+                      href={activeItem.verifyUrl}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className={styles.actionButton}
+                    >
+                      <span>{activeItem.actionText}</span>
+                      <ArrowUpRight size={14} className={styles.actionArrow} />
+                    </a>
+                  ) : (
+                    <span className={styles.statusPill}>
+                      <span>{activeItem.actionText}</span>
+                    </span>
+                  )}
+                </div>
+              </div>
+            </div>
+          </motion.div>
+        </AnimatePresence>
+      </div>
+
+      {/* Bottom Navigation Controls */}
+      <div className={styles.controlsRow}>
+        <button
+          type="button"
+          onClick={handlePrev}
+          className={styles.navButton}
+          aria-label="Previous Milestone"
+        >
+          <ArrowLeft size={18} />
+        </button>
+
+        <span className={styles.counter}>
+          <span className={styles.counterActive}>0{currentIndex + 1}</span> / 0{SPOTLIGHT_ITEMS.length}
+        </span>
+
+        <button
+          type="button"
+          onClick={handleNext}
+          className={styles.navButton}
+          aria-label="Next Milestone"
+        >
+          <ArrowRight size={18} />
+        </button>
       </div>
     </section>
   );
