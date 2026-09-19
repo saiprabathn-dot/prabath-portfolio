@@ -34,7 +34,7 @@ const LEDGER_ITEMS: LedgerItem[] = [
     title: "Co-Founder & Lead Architect",
     org: "QDelta Agency",
     orgIcon: <Zap size={14} className={styles.orgIcon} />,
-    statBadge: "⚡ 2024 — PRESENT",
+    statBadge: "⚡ 2026 — PRESENT",
     isActiveVenture: true,
     tech: ["Next.js 15", "TypeScript", "Node.js", "System Architecture"],
     verifyUrl: "https://qdelta.agency",
