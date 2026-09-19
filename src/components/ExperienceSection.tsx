@@ -16,7 +16,6 @@ import styles from "./ExperienceSection.module.css";
 
 interface LedgerItem {
   id: string;
-  index: string;
   title: string;
   org: string;
   orgIcon: React.ReactNode;
@@ -30,7 +29,6 @@ interface LedgerItem {
 const LEDGER_ITEMS: LedgerItem[] = [
   {
     id: "qdelta",
-    index: "01",
     title: "Co-Founder & Lead Architect",
     org: "QDelta Agency",
     orgIcon: <Zap size={14} className={styles.orgIcon} />,
@@ -42,7 +40,6 @@ const LEDGER_ITEMS: LedgerItem[] = [
   },
   {
     id: "rengy",
-    index: "02",
     title: "MERN Stack Developer Intern",
     org: "Rengy Private Limited",
     orgIcon: <Building2 size={14} className={styles.orgIcon} />,
@@ -52,7 +49,6 @@ const LEDGER_ITEMS: LedgerItem[] = [
   },
   {
     id: "google-cybersecurity",
-    index: "03",
     title: "Google Cybersecurity Specialization",
     org: "Google · Coursera",
     orgIcon: <SiGoogle size={13} className={styles.orgIcon} />,
@@ -64,7 +60,6 @@ const LEDGER_ITEMS: LedgerItem[] = [
   },
   {
     id: "google-ai",
-    index: "04",
     title: "Google AI Essentials",
     org: "Google · Coursera",
     orgIcon: <Bot size={14} className={styles.orgIcon} />,
@@ -76,7 +71,6 @@ const LEDGER_ITEMS: LedgerItem[] = [
   },
   {
     id: "innomatics-mern",
-    index: "05",
     title: "MERN Full Stack Web Development",
     org: "Innomatics Research Labs",
     orgIcon: <Award size={14} className={styles.orgIcon} />,
@@ -130,10 +124,7 @@ export default function ExperienceSection() {
                 className={styles.ledgerRow}
                 title={`Open ${item.title}`}
               >
-                {/* Col 1: Monospace Index */}
-                <span className={styles.indexCol}>{item.index}</span>
-
-                {/* Col 2: Title & Organization */}
+                {/* Col 1: Title & Organization */}
                 <div className={styles.mainCol}>
                   <h3 className={styles.itemTitle}>{item.title}</h3>
                   <div className={styles.itemOrg}>
@@ -142,7 +133,7 @@ export default function ExperienceSection() {
                   </div>
                 </div>
 
-                {/* Col 3: Stat Badge */}
+                {/* Col 2: Stat Badge */}
                 <div className={styles.statCol}>
                   <span
                     className={`${styles.statBadge} ${
@@ -154,7 +145,7 @@ export default function ExperienceSection() {
                   </span>
                 </div>
 
-                {/* Col 4: Tech Arsenal Tags */}
+                {/* Col 3: Tech Arsenal Tags */}
                 <div className={styles.techCol}>
                   {item.tech.map((t) => (
                     <span key={t} className={styles.techPill}>
@@ -163,7 +154,7 @@ export default function ExperienceSection() {
                   ))}
                 </div>
 
-                {/* Col 5: Action Link */}
+                {/* Col 4: Action Link */}
                 <div className={styles.actionCol}>
                   <span className={styles.actionBtn}>
                     <span>{item.actionText}</span>
@@ -173,10 +164,7 @@ export default function ExperienceSection() {
               </a>
             ) : (
               <div className={styles.ledgerRow}>
-                {/* Col 1: Monospace Index */}
-                <span className={styles.indexCol}>{item.index}</span>
-
-                {/* Col 2: Title & Organization */}
+                {/* Col 1: Title & Organization */}
                 <div className={styles.mainCol}>
                   <h3 className={styles.itemTitle}>{item.title}</h3>
                   <div className={styles.itemOrg}>
@@ -185,14 +173,14 @@ export default function ExperienceSection() {
                   </div>
                 </div>
 
-                {/* Col 3: Stat Badge */}
+                {/* Col 2: Stat Badge */}
                 <div className={styles.statCol}>
                   <span className={styles.statBadge}>
                     <span>{item.statBadge}</span>
                   </span>
                 </div>
 
-                {/* Col 4: Tech Arsenal Tags */}
+                {/* Col 3: Tech Arsenal Tags */}
                 <div className={styles.techCol}>
                   {item.tech.map((t) => (
                     <span key={t} className={styles.techPill}>
@@ -201,7 +189,7 @@ export default function ExperienceSection() {
                   ))}
                 </div>
 
-                {/* Col 5: Static Tag */}
+                {/* Col 4: Static Tag */}
                 <div className={styles.actionCol}>
                   <span className={styles.staticTag}>{item.actionText}</span>
                 </div>
