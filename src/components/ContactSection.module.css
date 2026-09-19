@@ -1,354 +1,284 @@
+/* ==========================================================================
+   CONTACT SECTION (SAY HELLO & SPLIT FORM STUDIO DESIGN)
+   ========================================================================== */
+
 .contactSection {
   position: relative;
   width: 100%;
-  max-width: 1000px;
+  max-width: 1240px;
   margin: 0 auto;
-  padding: 6rem 1.5rem 6rem;
+  padding: 6.5rem 1.75rem 6.5rem;
   box-sizing: border-box;
-  display: flex;
-  flex-direction: column;
-  gap: 4.5rem;
+  overflow: hidden;
 }
 
-/* Availability HUD */
-.topHud {
-  display: flex;
-  justify-content: flex-start;
+/* ==========================================================================
+   GIGANTIC FADED WATERMARK
+   ========================================================================== */
+.watermark {
+  position: absolute;
+  top: 1.8rem;
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: clamp(3.5rem, 8.5vw, 7.5rem);
+  font-weight: 800;
+  letter-spacing: -0.04em;
+  color: rgba(255, 255, 255, 0.035);
+  white-space: nowrap;
+  pointer-events: none;
+  user-select: none;
+  z-index: 0;
 }
 
-.statusBadge {
+/* ==========================================================================
+   TOP HEADER BADGE
+   ========================================================================== */
+.topHeader {
+  position: relative;
+  z-index: 1;
+  margin-bottom: 2.75rem;
+}
+
+.contactBadge {
   display: inline-flex;
   align-items: center;
-  gap: 0.55rem;
   padding: 0.35rem 0.95rem;
   border-radius: 9999px;
   background: rgba(255, 255, 255, 0.03);
-  border: 1px solid rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.1);
   font-size: 0.72rem;
-  font-weight: 600;
-  letter-spacing: 0.1em;
+  font-weight: 700;
+  letter-spacing: 0.14em;
   color: #a1a1aa;
   text-transform: uppercase;
 }
 
-.pulseDot {
-  width: 6px;
-  height: 6px;
-  border-radius: 50%;
-  background: #10b981;
-  box-shadow: 0 0 8px #10b981;
-  animation: pulseEmerald 2s infinite ease-in-out;
+/* ==========================================================================
+   MAIN TWO-COLUMN SPLIT GRID
+   ========================================================================== */
+.mainGrid {
+  position: relative;
+  z-index: 1;
+  display: grid;
+  grid-template-columns: 1fr 1.12fr;
+  gap: 4.5rem;
+  align-items: start;
+  margin-bottom: 3.5rem;
 }
 
-@keyframes pulseEmerald {
-  0%, 100% {
-    transform: scale(1);
-    opacity: 1;
-  }
-  50% {
-    transform: scale(1.35);
-    opacity: 0.7;
-  }
-}
-
-/* Heroic Statement & Email Block (100% Boxless) */
-.heroBlock {
+/* Left Column */
+.leftCol {
   display: flex;
   flex-direction: column;
-  gap: 1.5rem;
+  gap: 1.4rem;
 }
 
-.headline {
-  font-size: clamp(2.4rem, 5.5vw, 3.8rem);
-  font-weight: 800;
-  letter-spacing: -0.04em;
-  line-height: 1.1;
-  color: #ffffff;
-  margin: 0;
-}
-
-.headlineGradient {
-  color: #d4d4d8;
-  background: linear-gradient(180deg, #ffffff 0%, #71717a 100%);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-}
-
-.subtext {
-  font-size: clamp(1rem, 2vw, 1.2rem);
-  color: #71717a;
-  line-height: 1.6;
-  max-width: 680px;
-  margin: 0;
-}
-
-/* Boxless Email Action */
-.emailWrapper {
-  display: flex;
-  align-items: center;
-  gap: 1.25rem;
-  flex-wrap: wrap;
-  margin-top: 0.75rem;
-}
-
-.emailButton {
+.sayHelloRow {
   display: inline-flex;
   align-items: center;
+  gap: 0.65rem;
+}
+
+.sayHelloTitle {
+  font-size: clamp(2.4rem, 4.5vw, 3.4rem);
+  font-weight: 800;
+  letter-spacing: -0.035em;
+  color: #ffffff;
+  margin: 0;
+  line-height: 1.1;
+}
+
+.helloArrow {
+  color: #ffffff;
+  opacity: 0.9;
+  flex-shrink: 0;
+}
+
+.description {
+  font-size: 0.96rem;
+  line-height: 1.65;
+  color: #888892;
+  margin: 0;
+  max-width: 460px;
+}
+
+/* Checkmarks list */
+.checkList {
+  display: flex;
+  flex-direction: column;
+  gap: 0.9rem;
+  margin-top: 0.4rem;
+}
+
+.checkItem {
+  display: flex;
+  align-items: center;
   gap: 0.85rem;
-  padding: 0.65rem 0;
-  background: transparent;
-  border: none;
-  cursor: pointer;
-  border-bottom: 2px solid rgba(255, 255, 255, 0.2);
+}
+
+.checkIconWrapper {
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.checkIcon {
+  color: #e4e4e7;
+}
+
+.checkText {
+  font-size: 0.88rem;
+  color: #a1a1aa;
+  font-weight: 500;
+}
+
+/* Social Buttons Row */
+.socialRow {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  margin-top: 0.8rem;
+}
+
+.socialBtn {
+  width: 42px;
+  height: 42px;
+  border-radius: 10px;
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #a1a1aa;
+  text-decoration: none;
   transition: all 0.25s ease;
 }
 
-.emailButton:hover {
-  border-bottom-color: #ffffff;
-}
-
-.emailAddress {
-  font-family: monospace;
-  font-size: clamp(1.2rem, 3vw, 1.75rem);
-  font-weight: 700;
-  color: #ffffff;
-  letter-spacing: -0.02em;
-  transition: color 0.2s ease;
-}
-
-.emailButton:hover .emailAddress {
-  color: #f4f4f5;
-  text-shadow: 0 0 20px rgba(255, 255, 255, 0.3);
-}
-
-.copyPill {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.35rem;
-  padding: 0.3rem 0.75rem;
-  border-radius: 9999px;
-  background: rgba(255, 255, 255, 0.06);
-  border: 1px solid rgba(255, 255, 255, 0.12);
-  color: #a1a1aa;
-  font-size: 0.72rem;
-  font-weight: 600;
-  transition: all 0.2s ease;
-}
-
-.emailButton:hover .copyPill {
-  background: rgba(255, 255, 255, 0.12);
-  color: #ffffff;
-}
-
-.copiedPill {
-  background: #10b981 !important;
-  color: #ffffff !important;
-  border-color: #10b981 !important;
-}
-
-.directMailLink {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.45rem;
-  padding: 0.55rem 1rem;
-  border-radius: 9999px;
-  background: rgba(255, 255, 255, 0.04);
-  border: 1px solid rgba(255, 255, 255, 0.1);
-  color: #a1a1aa;
-  font-size: 0.8rem;
-  font-weight: 500;
-  text-decoration: none;
-  transition: all 0.2s ease;
-}
-
-.directMailLink:hover {
-  background: rgba(255, 255, 255, 0.09);
-  color: #ffffff;
+.socialBtn:hover {
+  background: rgba(255, 255, 255, 0.1);
   border-color: rgba(255, 255, 255, 0.25);
-}
-
-.directMailLink:hover .arrowIcon {
-  transform: translate(2px, -2px);
-}
-
-.arrowIcon {
-  transition: transform 0.2s ease;
-}
-
-/* Boxless Frameless Form */
-.formSection {
-  display: flex;
-  flex-direction: column;
-  gap: 2rem;
-  padding-top: 1rem;
-  border-top: 1px solid rgba(255, 255, 255, 0.08);
-}
-
-.formHeader {
-  display: flex;
-  flex-direction: column;
-  gap: 0.35rem;
-}
-
-.formTag {
-  font-size: 0.68rem;
-  font-weight: 700;
-  letter-spacing: 0.1em;
-  color: #71717a;
-}
-
-.formTitle {
-  font-size: 1.45rem;
-  font-weight: 700;
-  letter-spacing: -0.025em;
   color: #ffffff;
-  margin: 0;
+  transform: translateY(-2px);
 }
 
-.framelessForm {
-  display: flex;
-  flex-direction: column;
-  gap: 2.25rem;
-}
-
-.fieldBlock {
-  display: flex;
-  flex-direction: column;
-  gap: 0.75rem;
-}
-
-.inputLabel {
-  font-size: 0.68rem;
-  font-weight: 700;
-  letter-spacing: 0.08em;
-  color: #71717a;
-  text-transform: uppercase;
-}
-
-/* Type Pills */
-.typePills {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 0.55rem;
-}
-
-.typePill {
-  padding: 0.45rem 0.95rem;
-  border-radius: 9999px;
-  background: rgba(255, 255, 255, 0.03);
-  border: 1px solid rgba(255, 255, 255, 0.08);
-  color: #a1a1aa;
-  font-size: 0.75rem;
-  font-weight: 500;
-  cursor: pointer;
-  transition: all 0.2s ease;
-}
-
-.typePill:hover {
-  background: rgba(255, 255, 255, 0.08);
-  color: #f4f4f5;
-  border-color: rgba(255, 255, 255, 0.2);
-}
-
-.activePill {
-  background: #ffffff;
-  border-color: #ffffff;
-  color: #09090b;
-  font-weight: 600;
-  box-shadow: 0 0 16px rgba(255, 255, 255, 0.2);
-}
-
-/* Frameless Inputs */
-.twoColInputs {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 2.5rem;
-}
-
-.inputGroup {
-  display: flex;
-  flex-direction: column;
-  gap: 0.5rem;
-}
-
-.framelessInput,
-.framelessTextarea {
+/* ==========================================================================
+   RIGHT COLUMN: FORM CARD
+   ========================================================================== */
+.formRevealWrapper {
   width: 100%;
-  padding: 0.75rem 0;
-  background: transparent;
-  border: none;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.15);
-  color: #ffffff;
-  font-size: 1rem;
-  font-family: inherit;
-  outline: none;
-  transition: border-color 0.25s ease;
+}
+
+.formCard {
+  background: rgba(18, 18, 20, 0.7);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 20px;
+  padding: 2.25rem;
   box-sizing: border-box;
 }
 
-.framelessInput::placeholder,
-.framelessTextarea::placeholder {
-  color: #3f3f46;
-  font-size: 0.95rem;
-}
-
-.framelessInput:focus,
-.framelessTextarea:focus {
-  border-bottom-color: #ffffff;
-  box-shadow: 0 1px 0 #ffffff;
-}
-
-.framelessTextarea {
-  resize: vertical;
-  min-height: 80px;
-}
-
-/* Action Row */
-.actionRow {
+.form {
   display: flex;
-  align-items: center;
-  gap: 1.5rem;
-  flex-wrap: wrap;
-  padding-top: 0.5rem;
+  flex-direction: column;
+  gap: 1.15rem;
 }
 
-.sendButton {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.6rem;
-  padding: 0.85rem 1.75rem;
+.inputsRow {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+}
+
+.inputWrapper {
+  position: relative;
+  width: 100%;
+}
+
+.inputField,
+.textareaField {
+  width: 100%;
+  box-sizing: border-box;
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 12px;
+  padding: 1rem 1.25rem;
+  color: #ffffff;
+  font-size: 0.94rem;
+  font-family: inherit;
+  outline: none;
+  transition: all 0.2s ease;
+}
+
+.inputField::placeholder,
+.textareaField::placeholder {
+  color: #52525b;
+  font-size: 0.9rem;
+}
+
+.inputField:focus,
+.textareaField:focus {
+  background: rgba(255, 255, 255, 0.06);
+  border-color: rgba(255, 255, 255, 0.25);
+  box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.15);
+}
+
+.textareaField {
+  resize: vertical;
+  min-height: 140px;
+}
+
+/* Submit Button */
+.submitBtn {
+  width: 100%;
+  padding: 1rem 1.5rem;
   border-radius: 9999px;
-  background: #ffffff;
+  background: #e4e4e7;
   color: #09090b;
   border: none;
-  font-size: 0.9rem;
+  font-size: 0.95rem;
   font-weight: 600;
   cursor: pointer;
   transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
-  box-shadow: 0 4px 20px rgba(255, 255, 255, 0.12);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 0.35rem;
 }
 
-.sendButton:hover:not(:disabled) {
-  background: #e4e4e7;
-  transform: translateY(-2px);
-  box-shadow: 0 8px 25px rgba(255, 255, 255, 0.25);
+.submitBtn:hover:not(:disabled) {
+  background: #ffffff;
+  transform: translateY(-1px);
+  box-shadow: 0 4px 20px rgba(255, 255, 255, 0.2);
 }
 
-.sendButton:disabled {
-  opacity: 0.7;
+.submitBtn:disabled {
+  opacity: 0.75;
   cursor: not-allowed;
 }
 
-.sendSuccess {
+.submitSuccess {
   background: #10b981 !important;
   color: #ffffff !important;
   box-shadow: 0 4px 20px rgba(16, 185, 129, 0.3) !important;
 }
 
+.btnContent {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
 .spinner {
   width: 14px;
   height: 14px;
-  border: 2px solid rgba(0, 0, 0, 0.3);
+  border: 2px solid rgba(0, 0, 0, 0.25);
   border-top-color: #000000;
   border-radius: 50%;
   animation: spin 0.6s linear infinite;
@@ -360,85 +290,135 @@
   }
 }
 
-.responseTime {
-  font-size: 0.78rem;
-  color: #71717a;
+/* ==========================================================================
+   BOTTOM 2-CARD INFORMATION ROW
+   ========================================================================== */
+.infoCardsGrid {
+  position: relative;
+  z-index: 1;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1.25rem;
 }
 
-/* Floating Presence Links (Boxless) */
-.footerPresence {
+.infoCard {
+  position: relative;
+  background: rgba(255, 255, 255, 0.02);
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  border-radius: 16px;
+  padding: 1.5rem 1.4rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1.15rem;
+  text-decoration: none;
+  transition: all 0.25s ease;
+  box-sizing: border-box;
+}
+
+.infoCard:hover {
+  background: rgba(255, 255, 255, 0.04);
+  border-color: rgba(255, 255, 255, 0.12);
+  transform: translateY(-2px);
+}
+
+.interactiveCard {
+  cursor: pointer;
+}
+
+.cardIconBox {
+  width: 34px;
+  height: 34px;
+  border-radius: 8px;
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #a1a1aa;
+}
+
+.cardContent {
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+}
+
+.cardTitle {
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: #f4f4f5;
+  margin: 0;
+}
+
+.cardValue {
+  font-size: 0.82rem;
+  color: #71717a;
+  margin: 0;
+  line-height: 1.4;
+  word-break: break-all;
+}
+
+.emailCardHeader {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  flex-wrap: wrap;
-  gap: 1.5rem;
-  padding-top: 2rem;
-  border-top: 1px solid rgba(255, 255, 255, 0.08);
 }
 
-.presenceLinks {
-  display: flex;
-  align-items: center;
-  gap: 1.75rem;
-  flex-wrap: wrap;
-}
-
-.presenceLink {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.45rem;
+.cardCopyTag {
+  font-size: 0.68rem;
+  font-weight: 600;
   color: #a1a1aa;
-  font-size: 0.86rem;
-  font-weight: 500;
-  text-decoration: none;
+  padding: 0.15rem 0.45rem;
+  border-radius: 9999px;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.08);
   transition: all 0.2s ease;
 }
 
-.presenceLink:hover {
+.interactiveCard:hover .cardCopyTag {
+  background: rgba(255, 255, 255, 0.1);
   color: #ffffff;
 }
 
-.presenceLink:hover .subArrow {
-  color: #ffffff;
-  transform: translate(2px, -2px);
-}
-
-.subArrow {
-  color: #71717a;
-  transition: all 0.2s ease;
-}
-
-.locationMeta {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.5rem;
-  font-size: 0.75rem;
-  color: #71717a;
-}
-
-.metaDot {
-  color: #3f3f46;
-}
-
-/* Responsive */
-@media (max-width: 768px) {
-  .contactSection {
-    padding: 4rem 1.25rem 5rem;
-    gap: 3.5rem;
-  }
-
-  .twoColInputs {
+/* ==========================================================================
+   RESPONSIVE DESIGN
+   ========================================================================== */
+@media (max-width: 980px) {
+  .mainGrid {
     grid-template-columns: 1fr;
-    gap: 1.75rem;
+    gap: 3rem;
   }
 
-  .footerPresence {
-    flex-direction: column;
-    align-items: flex-start;
-    gap: 1.25rem;
+  .infoCardsGrid {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+  }
+}
+
+@media (max-width: 640px) {
+  .contactSection {
+    padding: 4.5rem 1.25rem 5rem;
   }
 
-  .presenceLinks {
-    gap: 1.25rem;
+  .watermark {
+    font-size: 3.2rem;
+    top: 1.2rem;
+  }
+
+  .formCard {
+    padding: 1.5rem;
+  }
+
+  .inputsRow {
+    grid-template-columns: 1fr;
+  }
+
+  .sayHelloTitle {
+    font-size: 2.2rem;
+  }
+
+  .helloArrow {
+    width: 24px;
+    height: 24px;
   }
 }

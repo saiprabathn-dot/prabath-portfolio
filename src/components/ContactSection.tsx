@@ -4,28 +4,47 @@ import React, { useState } from "react";
 import {
   ArrowUpRight,
   Send,
-  Sparkles,
   Check,
-  Copy,
   Mail,
   CheckCircle2,
-  Globe,
+  MapPin,
+  Copy,
 } from "lucide-react";
-import { FaGithub, FaLinkedin, FaXTwitter } from "react-icons/fa6";
+import { FaGithub, FaLinkedin, FaXTwitter, FaInstagram } from "react-icons/fa6";
 import ScrollReveal from "./ScrollReveal";
 import styles from "./ContactSection.module.css";
 
-const PROJECT_TYPES = [
-  "Full-Stack Web App",
-  "AI & Autonomous Agents",
-  "Product Architecture",
-  "MVP & Startup Build",
-  "Advisory / Consulting",
+const VALUE_PROPS = [
+  "A reply within one working day",
+  "Direct communication throughout",
+  "Support that continues after launch",
+];
+
+const SOCIAL_LINKS = [
+  {
+    name: "X / Twitter",
+    url: "https://twitter.com",
+    icon: <FaXTwitter size={15} />,
+  },
+  {
+    name: "GitHub",
+    url: "https://github.com",
+    icon: <FaGithub size={15} />,
+  },
+  {
+    name: "LinkedIn",
+    url: "https://linkedin.com",
+    icon: <FaLinkedin size={15} />,
+  },
+  {
+    name: "Instagram",
+    url: "https://instagram.com",
+    icon: <FaInstagram size={15} />,
+  },
 ];
 
 export default function ContactSection() {
-  const [copied, setCopied] = useState(false);
-  const [selectedType, setSelectedType] = useState("Full-Stack Web App");
+  const [copiedEmail, setCopiedEmail] = useState(false);
   const [formState, setFormState] = useState({
     name: "",
     email: "",
@@ -38,8 +57,8 @@ export default function ContactSection() {
 
   const handleCopyEmail = () => {
     navigator.clipboard.writeText(emailAddress);
-    setCopied(true);
-    setTimeout(() => setCopied(false), 2400);
+    setCopiedEmail(true);
+    setTimeout(() => setCopiedEmail(false), 2400);
   };
 
   const handleSubmit = (e: React.FormEvent) => {
@@ -51,229 +70,200 @@ export default function ContactSection() {
       setIsSubmitting(false);
       setIsSuccess(true);
       setFormState({ name: "", email: "", message: "" });
-      setTimeout(() => setIsSuccess(false), 4500);
+      setTimeout(() => setIsSuccess(false), 5000);
     }, 850);
   };
 
   return (
     <section id="contact" className={styles.contactSection}>
-      {/* Availability HUD */}
-      <ScrollReveal delay={0.05} direction="up" distance={15}>
-        <div className={styles.topHud}>
-          <div className={styles.statusBadge}>
-            <span className={styles.pulseDot} />
-            <span>AVAILABLE FOR SELECTIVE PROJECTS &amp; VENTURES</span>
+      {/* Huge Faded Background Watermark */}
+      <div className={styles.watermark} aria-hidden="true">
+        Get In Touch
+      </div>
+
+      {/* Top Header Badge */}
+      <div className={styles.topHeader}>
+        <ScrollReveal delay={0.05} direction="up" distance={15}>
+          <div className={styles.contactBadge}>
+            <span>CONTACT</span>
           </div>
-        </div>
-      </ScrollReveal>
+        </ScrollReveal>
+      </div>
 
-      {/* Heroic Statement & Direct Touch */}
-      <ScrollReveal delay={0.15} direction="up" distance={25}>
-        <div className={styles.heroBlock}>
-          <h2 className={styles.headline}>
-            Have an ambitious project? <br />
-            <span className={styles.headlineGradient}>Let&apos;s build together.</span>
-          </h2>
-          <p className={styles.subtext}>
-            Open for full-stack product engineering, distributed architectures, and autonomous AI integrations.
-          </p>
-
-          {/* Boxless Giant Interactive Email Trigger */}
-          <div className={styles.emailWrapper}>
-            <button
-              type="button"
-              className={styles.emailButton}
-              onClick={handleCopyEmail}
-              aria-label="Click to copy email address"
-            >
-              <span className={styles.emailAddress}>{emailAddress}</span>
-              <span className={`${styles.copyPill} ${copied ? styles.copiedPill : ""}`}>
-                {copied ? <Check size={13} /> : <Copy size={13} />}
-                <span>{copied ? "Copied!" : "Click to copy"}</span>
-              </span>
-            </button>
-
-            <a
-              href={`mailto:${emailAddress}?subject=Project%20Inquiry%20-%20NSP`}
-              className={styles.directMailLink}
-              aria-label="Open default email client"
-            >
-              <Mail size={15} />
-              <span>Open in Mail</span>
-              <ArrowUpRight size={14} className={styles.arrowIcon} />
-            </a>
-          </div>
-        </div>
-      </ScrollReveal>
-
-      {/* Boxless Frameless Project Inquirer */}
-      <ScrollReveal delay={0.2} direction="up" distance={30}>
-        <div className={styles.formSection}>
-          <div className={styles.formHeader}>
-            <span className={styles.formTag}>START A CONVERSATION</span>
-            <h3 className={styles.formTitle}>Or drop a quick message</h3>
-          </div>
-
-          <form onSubmit={handleSubmit} className={styles.framelessForm}>
-            {/* Project Type Filter Capsules */}
-            <div className={styles.fieldBlock}>
-              <label className={styles.inputLabel}>PROJECT SCOPE</label>
-              <div className={styles.typePills}>
-                {PROJECT_TYPES.map((type) => (
-                  <button
-                    key={type}
-                    type="button"
-                    className={`${styles.typePill} ${
-                      selectedType === type ? styles.activePill : ""
-                    }`}
-                    onClick={() => setSelectedType(type)}
-                  >
-                    {type}
-                  </button>
-                ))}
-              </div>
+      {/* Main Two-Column Split Layout */}
+      <div className={styles.mainGrid}>
+        {/* Left Column: Say hello & Benefits */}
+        <div className={styles.leftCol}>
+          <ScrollReveal delay={0.1} direction="up" distance={20}>
+            <div className={styles.sayHelloRow}>
+              <h2 className={styles.sayHelloTitle}>Say hello</h2>
+              <ArrowUpRight size={32} className={styles.helloArrow} />
             </div>
+          </ScrollReveal>
 
-            {/* Frameless Underline Inputs */}
-            <div className={styles.twoColInputs}>
-              <div className={styles.inputGroup}>
-                <label htmlFor="contact-name" className={styles.inputLabel}>
-                  YOUR NAME
-                </label>
-                <input
-                  id="contact-name"
-                  type="text"
+          <ScrollReveal delay={0.16} direction="up" distance={20}>
+            <p className={styles.description}>
+              Got a project in mind, or just want to sanity-check an idea before
+              you commit? Send it over. We read everything that comes through
+              this form.
+            </p>
+          </ScrollReveal>
+
+          {/* Checkmark list */}
+          <div className={styles.checkList}>
+            {VALUE_PROPS.map((prop, i) => (
+              <ScrollReveal
+                key={prop}
+                delay={0.22 + i * 0.08}
+                direction="up"
+                distance={16}
+              >
+                <div className={styles.checkItem}>
+                  <div className={styles.checkIconWrapper}>
+                    <Check size={13} className={styles.checkIcon} />
+                  </div>
+                  <span className={styles.checkText}>{prop}</span>
+                </div>
+              </ScrollReveal>
+            ))}
+          </div>
+
+          {/* Social Rounded Square Icons */}
+          <ScrollReveal delay={0.4} direction="up" distance={18}>
+            <div className={styles.socialRow}>
+              {SOCIAL_LINKS.map((item) => (
+                <a
+                  key={item.name}
+                  href={item.url}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className={styles.socialBtn}
+                  aria-label={item.name}
+                  title={item.name}
+                >
+                  {item.icon}
+                </a>
+              ))}
+            </div>
+          </ScrollReveal>
+        </div>
+
+        {/* Right Column: Glassmorphic Inset Form Card */}
+        <ScrollReveal delay={0.2} direction="up" distance={25} className={styles.formRevealWrapper}>
+          <div className={styles.formCard}>
+            <form onSubmit={handleSubmit} className={styles.form}>
+              {/* Name & Email Row */}
+              <div className={styles.inputsRow}>
+                <div className={styles.inputWrapper}>
+                  <input
+                    id="contact-name"
+                    type="text"
+                    required
+                    placeholder="Name"
+                    value={formState.name}
+                    onChange={(e) =>
+                      setFormState({ ...formState, name: e.target.value })
+                    }
+                    className={styles.inputField}
+                  />
+                </div>
+
+                <div className={styles.inputWrapper}>
+                  <input
+                    id="contact-email"
+                    type="email"
+                    required
+                    placeholder="Email"
+                    value={formState.email}
+                    onChange={(e) =>
+                      setFormState({ ...formState, email: e.target.value })
+                    }
+                    className={styles.inputField}
+                  />
+                </div>
+              </div>
+
+              {/* Message Textarea */}
+              <div className={styles.inputWrapper}>
+                <textarea
+                  id="contact-message"
                   required
-                  placeholder="What should I call you?"
-                  value={formState.name}
+                  rows={5}
+                  placeholder="Message"
+                  value={formState.message}
                   onChange={(e) =>
-                    setFormState({ ...formState, name: e.target.value })
+                    setFormState({ ...formState, message: e.target.value })
                   }
-                  className={styles.framelessInput}
+                  className={styles.textareaField}
                 />
               </div>
 
-              <div className={styles.inputGroup}>
-                <label htmlFor="contact-email" className={styles.inputLabel}>
-                  EMAIL ADDRESS
-                </label>
-                <input
-                  id="contact-email"
-                  type="email"
-                  required
-                  placeholder="Where can I reach you?"
-                  value={formState.email}
-                  onChange={(e) =>
-                    setFormState({ ...formState, email: e.target.value })
-                  }
-                  className={styles.framelessInput}
-                />
-              </div>
-            </div>
-
-            <div className={styles.inputGroup}>
-              <label htmlFor="contact-message" className={styles.inputLabel}>
-                PROJECT BRIEF &amp; TIMELINE
-              </label>
-              <textarea
-                id="contact-message"
-                required
-                rows={3}
-                placeholder="Tell me about your product vision, goals, or what you'd like to build..."
-                value={formState.message}
-                onChange={(e) =>
-                  setFormState({ ...formState, message: e.target.value })
-                }
-                className={styles.framelessTextarea}
-              />
-            </div>
-
-            {/* Action Row */}
-            <div className={styles.actionRow}>
+              {/* Solid Light Submit Button */}
               <button
                 type="submit"
                 disabled={isSubmitting}
-                className={`${styles.sendButton} ${
-                  isSuccess ? styles.sendSuccess : ""
+                className={`${styles.submitBtn} ${
+                  isSuccess ? styles.submitSuccess : ""
                 }`}
               >
                 {isSuccess ? (
-                  <>
+                  <span className={styles.btnContent}>
                     <CheckCircle2 size={16} />
-                    <span>Message Sent Successfully!</span>
-                  </>
+                    <span>Message Sent!</span>
+                  </span>
                 ) : isSubmitting ? (
-                  <>
+                  <span className={styles.btnContent}>
                     <span className={styles.spinner} />
-                    <span>Dispatching...</span>
-                  </>
+                    <span>Sending...</span>
+                  </span>
                 ) : (
-                  <>
-                    <span>Send Message</span>
-                    <Send size={14} />
-                  </>
+                  <span>Submit</span>
                 )}
               </button>
+            </form>
+          </div>
+        </ScrollReveal>
+      </div>
 
-              <span className={styles.responseTime}>
-                ⚡ Typically responds within 12 hours
-              </span>
+      {/* Bottom 2-Card Information Row */}
+      <div className={styles.infoCardsGrid}>
+        {/* Card 1: Location */}
+        <ScrollReveal delay={0.28} direction="up" distance={20}>
+          <div className={styles.infoCard}>
+            <div className={styles.cardIconBox}>
+              <MapPin size={15} />
             </div>
-          </form>
-        </div>
-      </ScrollReveal>
-
-      {/* Floating Minimal Presence Links (No Box Containers) */}
-      <ScrollReveal delay={0.25} direction="up" distance={20}>
-        <div className={styles.footerPresence}>
-          <div className={styles.presenceLinks}>
-            <a
-              href="https://github.com"
-              target="_blank"
-              rel="noopener noreferrer"
-              className={styles.presenceLink}
-            >
-              <FaGithub size={15} />
-              <span>GitHub</span>
-              <ArrowUpRight size={13} className={styles.subArrow} />
-            </a>
-
-            <a
-              href="https://linkedin.com"
-              target="_blank"
-              rel="noopener noreferrer"
-              className={styles.presenceLink}
-            >
-              <FaLinkedin size={15} />
-              <span>LinkedIn</span>
-              <ArrowUpRight size={13} className={styles.subArrow} />
-            </a>
-
-            <a
-              href="https://twitter.com"
-              target="_blank"
-              rel="noopener noreferrer"
-              className={styles.presenceLink}
-            >
-              <FaXTwitter size={14} />
-              <span>Twitter / X</span>
-              <ArrowUpRight size={13} className={styles.subArrow} />
-            </a>
-
-            <a href="#qdelta" className={styles.presenceLink}>
-              <Globe size={15} />
-              <span>QDelta Studio</span>
-              <ArrowUpRight size={13} className={styles.subArrow} />
-            </a>
+            <div className={styles.cardContent}>
+              <h3 className={styles.cardTitle}>Location</h3>
+              <p className={styles.cardValue}>
+                Hyderabad / Remote Worldwide · IST (UTC+5:30)
+              </p>
+            </div>
           </div>
+        </ScrollReveal>
 
-          <div className={styles.locationMeta}>
-            <span>Hyderabad / Remote Worldwide</span>
-            <span className={styles.metaDot}>·</span>
-            <span>IST (UTC+5:30)</span>
+        {/* Card 2: Email */}
+        <ScrollReveal delay={0.36} direction="up" distance={20}>
+          <div
+            onClick={handleCopyEmail}
+            className={`${styles.infoCard} ${styles.interactiveCard}`}
+            title="Click to copy email"
+          >
+            <div className={styles.cardIconBox}>
+              <Mail size={15} />
+            </div>
+            <div className={styles.cardContent}>
+              <div className={styles.emailCardHeader}>
+                <h3 className={styles.cardTitle}>Email</h3>
+                <span className={styles.cardCopyTag}>
+                  {copiedEmail ? "Copied!" : "Click to copy"}
+                </span>
+              </div>
+              <p className={styles.cardValue}>{emailAddress}</p>
+            </div>
           </div>
-        </div>
-      </ScrollReveal>
+        </ScrollReveal>
+      </div>
     </section>
   );
 }

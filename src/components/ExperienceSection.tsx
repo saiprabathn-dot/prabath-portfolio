@@ -20,7 +20,6 @@ interface LedgerItem {
   org: string;
   orgIcon: React.ReactNode;
   statBadge: string;
-  isActiveVenture?: boolean;
   tech: string[];
   verifyUrl?: string;
   actionText: string;
@@ -32,8 +31,7 @@ const LEDGER_ITEMS: LedgerItem[] = [
     title: "Co-Founder & Lead Architect",
     org: "QDelta Agency",
     orgIcon: <Zap size={14} className={styles.orgIcon} />,
-    statBadge: "⚡ 2026 — PRESENT",
-    isActiveVenture: true,
+    statBadge: "2026 — PRESENT",
     tech: ["Next.js 15", "TypeScript", "Node.js", "System Architecture"],
     verifyUrl: "https://qdelta.agency",
     actionText: "Explore Platform",
@@ -135,12 +133,7 @@ export default function ExperienceSection() {
 
                 {/* Col 2: Stat Badge */}
                 <div className={styles.statCol}>
-                  <span
-                    className={`${styles.statBadge} ${
-                      item.isActiveVenture ? styles.activeVentureStat : ""
-                    }`}
-                  >
-                    {item.isActiveVenture && <span className={styles.greenDot} />}
+                  <span className={styles.statBadge}>
                     <span>{item.statBadge}</span>
                   </span>
                 </div>
