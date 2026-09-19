@@ -28,12 +28,12 @@ const SOCIAL_LINKS = [
   },
   {
     name: "GitHub",
-    url: "https://github.com",
+    url: "https://github.com/Prabathsai1",
     icon: <FaGithub size={15} />,
   },
   {
     name: "LinkedIn",
-    url: "https://linkedin.com",
+    url: "https://www.linkedin.com/in/sai-prabath-nagireddy/",
     icon: <FaLinkedin size={15} />,
   },
   {

@@ -83,7 +83,7 @@ export default function Footer() {
             {/* Minimalist Social Links */}
             <div className={styles.socialLinks}>
               <a
-                href="https://github.com"
+                href="https://github.com/Prabathsai1"
                 target="_blank"
                 rel="noopener noreferrer"
                 className={styles.socialIcon}
@@ -92,7 +92,7 @@ export default function Footer() {
                 <GithubIcon size={17} />
               </a>
               <a
-                href="https://linkedin.com"
+                href="https://www.linkedin.com/in/sai-prabath-nagireddy/"
                 target="_blank"
                 rel="noopener noreferrer"
                 className={styles.socialIcon}

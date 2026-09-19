@@ -167,7 +167,7 @@ export default function Navbar() {
             </Link>
           ))}
           <a
-            href="https://github.com"
+            href="https://github.com/Prabathsai1"
             target="_blank"
             rel="noopener noreferrer"
             className={styles.mobileGithubBtn}

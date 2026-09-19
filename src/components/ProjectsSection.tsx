@@ -44,8 +44,8 @@ const PROJECTS: Project[] = [
     title: "Mustify",
     tagline: "Modern music streaming & playlist platform.",
     image: "/projects/mustify.png",
-    demoUrl: "https://render.com",
-    githubUrl: "https://github.com",
+    demoUrl: "https://mustify.onrender.com/",
+    githubUrl: "https://github.com/Prabathsai1",
   },
   {
     id: "payroll-system",
