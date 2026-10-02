@@ -110,7 +110,7 @@ export default function Footer() {
                 <TwitterIcon size={17} />
               </a>
               <a
-                href="mailto:saiprabath.n@gmail.com"
+                href="mailto:saiprabathn@gmail.com"
                 className={styles.socialIcon}
                 aria-label="Send Email"
               >
