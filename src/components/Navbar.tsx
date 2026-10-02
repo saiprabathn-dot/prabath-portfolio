@@ -51,8 +51,15 @@ export default function Navbar() {
   return (
     <header className={`${styles.header} ${isScrolled ? styles.scrolled : ""}`}>
       <div className={styles.navContainer}>
-        {/* Clean White NSP Logo with FoldText */}
+        {/* Clean White NSP Logo with FoldText and Micro-Avatar */}
         <Link href="/" className={styles.brand} onClick={closeMenu} aria-label="NSP Home">
+          <div className={styles.brandAvatar}>
+            <img
+              src="/prabath-avatar.jpg"
+              alt="Sai Prabath"
+              className={styles.brandAvatarImg}
+            />
+          </div>
           <FoldText
             text="NSP"
             trigger="hover"

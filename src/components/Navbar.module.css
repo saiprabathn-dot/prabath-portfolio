@@ -36,14 +36,37 @@
   transform: translateY(-1px);
 }
 
-/* Standalone Muted Soft-White Brand Text */
+/* Standalone Muted Soft-White Brand Text with Micro-Avatar */
 .brand {
   display: inline-flex;
   align-items: center;
+  gap: 0.55rem;
   text-decoration: none;
-  padding: 0.35rem 0.5rem;
+  padding: 0.25rem 0.5rem;
   border-radius: var(--radius-sm);
   transition: var(--transition-smooth);
+}
+
+.brandAvatar {
+  position: relative;
+  width: 26px;
+  height: 26px;
+  border-radius: 50%;
+  overflow: hidden;
+  border: 1.5px solid rgba(255, 255, 255, 0.2);
+  flex-shrink: 0;
+  transition: transform 0.2s ease, border-color 0.2s ease;
+}
+
+.brand:hover .brandAvatar {
+  transform: scale(1.08);
+  border-color: rgba(255, 255, 255, 0.45);
+}
+
+.brandAvatarImg {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
 }
 
 .brandLogoText {

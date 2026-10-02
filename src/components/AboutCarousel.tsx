@@ -26,6 +26,7 @@ interface CardData {
   lead?: string;
   body: string;
   src: string;
+  objectPosition?: string;
   pills: { label: string; icon?: React.ReactNode }[];
   footerNote: string;
   bulletItems?: { name: string; tag: string; desc: string; icon: React.ReactNode }[];
@@ -39,7 +40,8 @@ const CARDS: CardData[] = [
     heading: "Nagireddy Sai Prabath",
     lead: "Full-Stack Developer & Co-Founder of QDelta.",
     body: "I build practical digital products where engineering rigor, product thinking, and modern design come together to create seamless experiences.",
-    src: "https://images.unsplash.com/photo-1506744038136-46273834b3fb?q=80&w=1200&auto=format&fit=crop",
+    src: "/prabath-founder.jpg",
+    objectPosition: "center 16%",
     pills: [
       { label: "Full-Stack Dev", icon: <Code2 size={12} /> },
       { label: "Product Engineering", icon: <FolderGit2 size={12} /> },
@@ -54,7 +56,8 @@ const CARDS: CardData[] = [
     heading: "Interface to Infrastructure",
     lead: "Complete web applications built for scale.",
     body: "Engineering end-to-end architectures — from responsive Next.js interfaces to robust Node.js backends, databases, APIs, and cloud deployments.",
-    src: "https://images.unsplash.com/photo-1518770660439-4636190af475?q=80&w=1200&auto=format&fit=crop",
+    src: "/workspace-code.jpg",
+    objectPosition: "center 48%",
     pills: [
       { label: "Next.js 15" },
       { label: "React 19" },
@@ -127,7 +130,8 @@ const CARDS: CardData[] = [
     heading: "Build · Solve · Refine",
     lead: "Zero compromise on craft and speed.",
     body: "“Build software that is technically solid, genuinely useful, and simple to use — with zero bloat and sub-100ms response times.”",
-    src: "https://images.unsplash.com/photo-1607604276583-eef5d076aa5f?q=80&w=1200&auto=format&fit=crop",
+    src: "/prabath-coding.jpg",
+    objectPosition: "center 32%",
     pills: [
       { label: "Sub-100ms Latency" },
       { label: "60fps Motion" },
@@ -225,6 +229,82 @@ export default function AboutCarousel() {
     touchStartRef.current = null;
   };
 
+  // Scroll-driven horizontal expansion of stage & cards from center outwards
+  useEffect(() => {
+    const wrapper = wrapperRef.current;
+    if (!wrapper) return;
+
+    const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    if (reduceMotion) {
+      wrapper.style.setProperty("--spread", "1");
+      return;
+    }
+
+    let rafId = 0;
+    let currentSpread = 0;
+    let targetSpread = 0;
+    let running = false;
+    let scrollTimer: ReturnType<typeof setTimeout>;
+
+    const calculateTarget = () => {
+      if (!wrapper) return 1;
+      const rect = wrapper.getBoundingClientRect();
+      const vh = window.innerHeight;
+
+      // Start expanding as carousel enters viewport (vh * 0.95)
+      // Fully expanded when carousel is centered/prominent in view (vh * 0.35)
+      const start = vh * 0.95;
+      const end = vh * 0.35;
+      const progress = (start - rect.top) / (start - end);
+      return Math.max(0, Math.min(1, progress));
+    };
+
+    const tick = () => {
+      const k = 0.12;
+      currentSpread += (targetSpread - currentSpread) * k;
+
+      if (Math.abs(targetSpread - currentSpread) < 0.001) {
+        currentSpread = targetSpread;
+        running = false;
+      }
+
+      wrapper.style.setProperty("--spread", currentSpread.toFixed(4));
+
+      if (running) {
+        rafId = requestAnimationFrame(tick);
+      }
+    };
+
+    const handleScroll = () => {
+      wrapper.setAttribute("data-scrolling", "true");
+      clearTimeout(scrollTimer);
+      scrollTimer = setTimeout(() => {
+        wrapper.removeAttribute("data-scrolling");
+      }, 120);
+
+      targetSpread = calculateTarget();
+      if (!running) {
+        running = true;
+        rafId = requestAnimationFrame(tick);
+      }
+    };
+
+    // Initial check on mount
+    targetSpread = calculateTarget();
+    currentSpread = targetSpread;
+    wrapper.style.setProperty("--spread", currentSpread.toFixed(4));
+
+    window.addEventListener("scroll", handleScroll, { passive: true });
+    window.addEventListener("resize", handleScroll, { passive: true });
+
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+      window.removeEventListener("resize", handleScroll);
+      clearTimeout(scrollTimer);
+      if (rafId) cancelAnimationFrame(rafId);
+    };
+  }, []);
+
   return (
     <section id="about" className={styles.aboutSection} ref={containerRef}>
       {/* Section Header */}
@@ -304,8 +384,8 @@ export default function AboutCarousel() {
             const imgTranslateX = isActive ? mouseOffset.x * -20 : 0;
             const imgTranslateY = isActive ? mouseOffset.y * -20 : 0;
 
-            const tiltTransform = isActive
-              ? `translateX(0) scale(${isHovered ? 1.02 : 1}) translateZ(0px) rotateX(${tiltRotateX}deg) rotateY(${tiltRotateY}deg)`
+            const tiltTransform = isActive && isHovered
+              ? `translateX(0) scale(1.02) translateZ(0px) rotateX(${tiltRotateX}deg) rotateY(${tiltRotateY}deg)`
               : undefined;
 
             return (
@@ -318,10 +398,11 @@ export default function AboutCarousel() {
                 tabIndex={!isActive ? 0 : undefined}
                 aria-label={!isActive ? `Switch to ${card.heading}` : undefined}
                 data-offset={offset}
+                data-card-id={card.id}
                 style={{
                   transform: tiltTransform,
                   zIndex: isActive ? 20 : 10 - Math.abs(offset),
-                  opacity: isActive ? 1 : isVisible ? 0.65 : 0,
+                  opacity: isActive ? 1 : isVisible ? undefined : 0,
                   pointerEvents: isVisible ? "auto" : "none",
                 }}
                 onClick={() => {
@@ -348,7 +429,8 @@ export default function AboutCarousel() {
                     alt={card.heading}
                     className={styles.cardImage}
                     style={{
-                      transform: `scale(1.18) translate3d(${imgTranslateX}px, ${imgTranslateY}px, 0)`,
+                      transform: `scale(1.02) translate3d(${imgTranslateX}px, ${imgTranslateY}px, 0)`,
+                      objectPosition: card.objectPosition || "center center",
                     }}
                   />
                   <div className={styles.imageOverlay} />

@@ -266,17 +266,28 @@ export default function QDeltaSection() {
                 I co-founded QDelta and lead the development of our digital
                 products.
               </p>
+
+              <div className={styles.founderMetrics}>
+                <div className={styles.metricBox}>
+                  <span className={styles.metricNumber}>03</span>
+                  <span className={styles.metricLabel}>PRODUCTS</span>
+                </div>
+                <div className={styles.metricDivider} />
+                <div className={styles.metricBox}>
+                  <span className={styles.metricNumber}>2026</span>
+                  <span className={styles.metricLabel}>FOUNDED</span>
+                </div>
+              </div>
             </div>
 
-            <div className={styles.founderMetrics}>
-              <div className={styles.metricBox}>
-                <span className={styles.metricNumber}>03</span>
-                <span className={styles.metricLabel}>PRODUCTS</span>
-              </div>
-              <div className={styles.metricDivider} />
-              <div className={styles.metricBox}>
-                <span className={styles.metricNumber}>2026</span>
-                <span className={styles.metricLabel}>FOUNDED</span>
+            <div className={styles.founderVisual}>
+              <div className={styles.founderImageWrapper}>
+                <img
+                  src="/prabath-studio.png"
+                  alt="Nagireddy Sai Prabath — Co-Founder & Developer"
+                  className={styles.founderImage}
+                />
+                <div className={styles.founderImageFade} />
               </div>
             </div>
           </div>

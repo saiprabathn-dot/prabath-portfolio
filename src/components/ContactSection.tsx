@@ -94,6 +94,32 @@ export default function ContactSection() {
       <div className={styles.mainGrid}>
         {/* Left Column: Say hello & Benefits */}
         <div className={styles.leftCol}>
+          {/* Founder Presence Card with Photo 2 */}
+          <ScrollReveal delay={0.06} direction="up" distance={16}>
+            <div className={styles.founderCard}>
+              <div className={styles.avatarWrapper}>
+                <img
+                  src="/prabath-avatar.jpg"
+                  alt="Nagireddy Sai Prabath"
+                  className={styles.avatarImg}
+                />
+                <span className={styles.statusPulse} title="Available for projects">
+                  <span className={styles.pulseDot} />
+                </span>
+              </div>
+              <div className={styles.founderMeta}>
+                <div className={styles.founderNameRow}>
+                  <span className={styles.founderName}>Nagireddy Sai Prabath</span>
+                  <span className={styles.founderRoleBadge}>CO-FOUNDER</span>
+                </div>
+                <div className={styles.founderStatus}>
+                  <span className={styles.statusLiveDot} />
+                  <span>Available for architecture & new products</span>
+                </div>
+              </div>
+            </div>
+          </ScrollReveal>
+
           <ScrollReveal delay={0.1} direction="up" distance={20}>
             <div className={styles.sayHelloRow}>
               <h2 className={styles.sayHelloTitle}>Say hello</h2>

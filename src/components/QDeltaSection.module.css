@@ -138,8 +138,8 @@
   padding: 2.25rem 2.5rem;
   box-shadow: 0 16px 36px -10px rgba(0, 0, 0, 0.4), 0 1px 3px rgba(0, 0, 0, 0.2);
   display: grid;
-  grid-template-columns: 1.8fr auto;
-  gap: 3rem;
+  grid-template-columns: 1fr 240px;
+  gap: 2.75rem;
   align-items: center;
   position: relative;
   overflow: hidden;
@@ -154,7 +154,7 @@
 .founderCardContent {
   display: flex;
   flex-direction: column;
-  gap: 0.95rem;
+  gap: 1.1rem;
 }
 
 .founderTag {
@@ -199,15 +199,16 @@
   display: flex;
   align-items: center;
   gap: 2.25rem;
-  border-left: 1px solid rgba(255, 255, 255, 0.1);
-  padding-left: 2.5rem;
+  padding-top: 1rem;
+  margin-top: 0.25rem;
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
 }
 
 .metricBox {
   display: flex;
   flex-direction: column;
-  align-items: center;
-  gap: 0.2rem;
+  align-items: flex-start;
+  gap: 0.25rem;
 }
 
 .metricNumber {
@@ -230,8 +231,53 @@
 
 .metricDivider {
   width: 1px;
-  height: 36px;
+  height: 32px;
   background-color: rgba(255, 255, 255, 0.1);
+}
+
+/* Founder Visual (Photo 1) */
+.founderVisual {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+}
+
+.founderImageWrapper {
+  position: relative;
+  width: 100%;
+  height: 280px;
+  border-radius: 18px;
+  overflow: hidden;
+  background: #18181f;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  box-shadow: 0 16px 32px rgba(0, 0, 0, 0.5);
+}
+
+.founderImage {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center 10%;
+  display: block;
+  filter: contrast(1.04) brightness(0.98);
+  transition: transform 0.5s cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+
+.founderCard:hover .founderImage {
+  transform: scale(1.05);
+}
+
+.founderImageFade {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    to bottom,
+    transparent 55%,
+    rgba(20, 20, 24, 0.5) 100%
+  );
+  pointer-events: none;
 }
 
 /* 3. Products Section */
@@ -504,12 +550,20 @@
     padding: 1.75rem;
   }
 
+  .founderVisual {
+    max-width: 320px;
+    margin: 0 auto;
+    width: 100%;
+  }
+
+  .founderImageWrapper {
+    height: 300px;
+  }
+
   .founderMetrics {
-    border-left: none;
-    border-top: 1px solid rgba(255, 255, 255, 0.1);
-    padding-left: 0;
-    padding-top: 1.5rem;
-    justify-content: space-around;
+    padding-top: 1.25rem;
+    justify-content: flex-start;
+    gap: 2rem;
   }
 
   .productsGrid {

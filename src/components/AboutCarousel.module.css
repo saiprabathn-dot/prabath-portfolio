@@ -65,17 +65,24 @@
   max-width: 580px;
 }
 
-/* 3D Carousel Stage Wrapper */
+/* 3D Carousel Stage Wrapper with horizontal expansion */
 .carouselWrapper {
   position: relative;
   width: 100%;
-  max-width: 1250px;
+  max-width: calc(800px + 450px * var(--spread, 1));
   height: 540px;
   display: flex;
   align-items: center;
   justify-content: center;
   perspective: 1200px;
   user-select: none;
+  transform: scale(calc(0.92 + 0.08 * var(--spread, 1)));
+  will-change: transform, max-width;
+  transition: transform 0.15s ease-out, max-width 0.15s ease-out;
+}
+
+.carouselWrapper[data-scrolling="true"] .cardSlide {
+  transition: transform 0.06s linear, opacity 0.06s linear;
 }
 
 /* Left & Right Full-Surface Hitboxes */
@@ -139,22 +146,33 @@
   background: #09090b;
 }
 
-/* Transform positioning with increased left & right separation */
+/* Transform positioning with dynamic scroll-driven left & right expansion */
 .cardSlide[data-offset="0"] {
-  transform: translateX(0) scale(1) translateZ(0px) rotateY(0deg) rotateX(0deg);
+  transform: translateX(0) scale(calc(0.94 + 0.06 * var(--spread, 1))) translateZ(0px) rotateY(0deg) rotateX(0deg);
 }
 
 .cardSlide[data-offset="1"] {
-  transform: translateX(475px) scale(0.84) translateZ(-95px) rotateY(-14deg);
+  transform: translateX(calc(475px * var(--spread, 1)))
+             scale(calc(0.78 + 0.06 * var(--spread, 1)))
+             translateZ(calc(-140px + 45px * var(--spread, 1)))
+             rotateY(calc(-14deg * var(--spread, 1)));
+  opacity: calc(0.12 + 0.53 * var(--spread, 1));
 }
 
 .cardSlide[data-offset="-1"] {
-  transform: translateX(-475px) scale(0.84) translateZ(-95px) rotateY(14deg);
+  transform: translateX(calc(-475px * var(--spread, 1)))
+             scale(calc(0.78 + 0.06 * var(--spread, 1)))
+             translateZ(calc(-140px + 45px * var(--spread, 1)))
+             rotateY(calc(14deg * var(--spread, 1)));
+  opacity: calc(0.12 + 0.53 * var(--spread, 1));
 }
 
 .cardSlide[data-offset="2"],
 .cardSlide[data-offset="-2"] {
-  transform: translateX(calc(var(--offset, 2) * 560px)) scale(0.68) translateZ(-180px);
+  transform: translateX(calc(var(--offset, 2) * 560px * var(--spread, 1)))
+             scale(calc(0.58 + 0.10 * var(--spread, 1)))
+             translateZ(-180px);
+  opacity: calc(0.35 * var(--spread, 1));
 }
 
 .activeSlide {
@@ -261,6 +279,15 @@
   flex-direction: column;
   gap: 0.85rem;
   margin: auto 0;
+}
+
+/* Lower text placement on cards to give the imagery maximum breathing room */
+.cardSlide[data-card-id="founder"] .cardContent,
+.cardSlide[data-card-id="engineering"] .cardContent,
+.cardSlide[data-card-id="ai"] .cardContent,
+.cardSlide[data-card-id="philosophy"] .cardContent {
+  margin-top: auto;
+  margin-bottom: 0.35rem;
 }
 
 .headingGroup {
@@ -455,15 +482,24 @@
 
 /* Tablet & Intermediate View */
 @media (max-width: 1200px) and (min-width: 769px) {
+  .carouselWrapper {
+    max-width: calc(680px + 320px * var(--spread, 1));
+  }
   .cardSlide {
     width: 390px;
     height: 500px;
   }
   .cardSlide[data-offset="1"] {
-    transform: translateX(420px) scale(0.84) translateZ(-85px) rotateY(-12deg);
+    transform: translateX(calc(420px * var(--spread, 1)))
+               scale(calc(0.78 + 0.06 * var(--spread, 1)))
+               translateZ(calc(-130px + 45px * var(--spread, 1)))
+               rotateY(calc(-12deg * var(--spread, 1)));
   }
   .cardSlide[data-offset="-1"] {
-    transform: translateX(-420px) scale(0.84) translateZ(-85px) rotateY(12deg);
+    transform: translateX(calc(-420px * var(--spread, 1)))
+               scale(calc(0.78 + 0.06 * var(--spread, 1)))
+               translateZ(calc(-130px + 45px * var(--spread, 1)))
+               rotateY(calc(12deg * var(--spread, 1)));
   }
 }
 
@@ -497,13 +533,19 @@
     border-radius: 22px;
   }
 
-  /* Well-separated mobile offsets */
+  /* Well-separated mobile offsets with expansion */
   .cardSlide[data-offset="1"] {
-    transform: translateX(96%) scale(0.86) translateZ(-60px) rotateY(-8deg) !important;
+    transform: translateX(calc(96% * var(--spread, 1)))
+               scale(calc(0.80 + 0.06 * var(--spread, 1)))
+               translateZ(calc(-90px + 30px * var(--spread, 1)))
+               rotateY(calc(-8deg * var(--spread, 1))) !important;
   }
 
   .cardSlide[data-offset="-1"] {
-    transform: translateX(-96%) scale(0.86) translateZ(-60px) rotateY(8deg) !important;
+    transform: translateX(calc(-96% * var(--spread, 1)))
+               scale(calc(0.80 + 0.06 * var(--spread, 1)))
+               translateZ(calc(-90px + 30px * var(--spread, 1)))
+               rotateY(calc(8deg * var(--spread, 1))) !important;
   }
 
   .cardTitle {
