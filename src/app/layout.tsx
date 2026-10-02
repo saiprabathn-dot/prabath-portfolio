@@ -16,6 +16,7 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
+  metadataBase: new URL("https://prabath-portfolio-xi.vercel.app"),
   title: "Sai Prabath — Full-Stack Developer & Software Architect",
   description:
     "Official portfolio of Sai Prabath — Full-Stack Developer, Systems Architect, and Co-Founder at QDelta. Engineering high-craft web systems, scalable backend platforms, and fluid digital products.",
@@ -30,6 +31,33 @@ export const metadata: Metadata = {
     "React",
     "TypeScript",
   ],
+  authors: [{ name: "Sai Prabath", url: "https://prabath-portfolio-xi.vercel.app" }],
+  creator: "Sai Prabath",
+  openGraph: {
+    title: "Sai Prabath — Full-Stack Developer & Software Architect",
+    description:
+      "Official portfolio of Sai Prabath — Full-Stack Developer, Systems Architect, and Co-Founder at QDelta. Engineering high-craft web systems, scalable backend platforms, and fluid digital products.",
+    url: "https://prabath-portfolio-xi.vercel.app",
+    siteName: "Sai Prabath — Portfolio",
+    images: [
+      {
+        url: "/og-image.jpg",
+        width: 1200,
+        height: 630,
+        alt: "Sai Prabath — Full-Stack Developer & Software Architect",
+        type: "image/jpeg",
+      },
+    ],
+    locale: "en_US",
+    type: "website",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Sai Prabath — Full-Stack Developer & Software Architect",
+    description:
+      "Official portfolio of Sai Prabath — Full-Stack Developer, Systems Architect, and Co-Founder at QDelta.",
+    images: ["/og-image.jpg"],
+  },
   icons: {
     icon: "/favicon.svg",
     shortcut: "/favicon.svg",
