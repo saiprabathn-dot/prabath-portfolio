@@ -7,13 +7,13 @@ import FoldText from "./FoldText";
 import styles from "./Navbar.module.css";
 
 const NAV_ITEMS = [
-  { label: "Home", href: "/" },
-  { label: "About", href: "#about" },
-  { label: "QDelta", href: "#qdelta" },
-  { label: "Projects", href: "#projects" },
-  { label: "Skills", href: "#skills" },
-  { label: "Experience", href: "#experience" },
-  { label: "Contact", href: "#contact" },
+  { id: "home", label: "Home", href: "#home" },
+  { id: "about", label: "About", href: "#about" },
+  { id: "qdelta", label: "QDelta", href: "#qdelta" },
+  { id: "projects", label: "Projects", href: "#projects" },
+  { id: "skills", label: "Skills", href: "#skills" },
+  { id: "experience", label: "Experience", href: "#experience" },
+  { id: "contact", label: "Contact", href: "#contact" },
 ];
 
 function GithubIcon({ size = 18 }: { size?: number }) {
@@ -36,23 +36,85 @@ function GithubIcon({ size = 18 }: { size?: number }) {
 export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
+  const [activeSection, setActiveSection] = useState<string>("home");
 
   useEffect(() => {
+    const sectionIds = ["home", "about", "qdelta", "projects", "skills", "experience", "contact"];
+
     const handleScroll = () => {
       setIsScrolled(window.scrollY > 20);
+
+      // Check if user has scrolled near bottom of page (Contact)
+      const isNearBottom =
+        window.innerHeight + window.scrollY >= document.documentElement.scrollHeight - 80;
+      if (isNearBottom) {
+        setActiveSection("contact");
+        return;
+      }
+
+      // Check sections from bottom to top
+      for (let i = sectionIds.length - 1; i >= 0; i--) {
+        const id = sectionIds[i];
+        const el = document.getElementById(id);
+        if (el) {
+          const rect = el.getBoundingClientRect();
+          const topDoc = window.scrollY + rect.top;
+          if (window.scrollY >= topDoc - 160) {
+            setActiveSection(id);
+            break;
+          }
+        }
+      }
     };
 
-    window.addEventListener("scroll", handleScroll);
+    window.addEventListener("scroll", handleScroll, { passive: true });
+    handleScroll();
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
   const closeMenu = () => setIsOpen(false);
 
+  const handleNavClick = (
+    e: React.MouseEvent<HTMLAnchorElement>,
+    href: string,
+    id: string
+  ) => {
+    e.preventDefault();
+    closeMenu();
+
+    if (id === "home") {
+      window.scrollTo({ top: 0, behavior: "smooth" });
+      setActiveSection("home");
+      return;
+    }
+
+    const targetEl = document.getElementById(id);
+    if (!targetEl) return;
+
+    if (id === "about" || id === "qdelta") {
+      const rect = targetEl.getBoundingClientRect();
+      const topDoc = window.scrollY + rect.top;
+      window.scrollTo({ top: topDoc, behavior: "smooth" });
+    } else {
+      const navOffset = 80;
+      const rect = targetEl.getBoundingClientRect();
+      const topDoc = window.scrollY + rect.top - navOffset;
+      window.scrollTo({ top: topDoc, behavior: "smooth" });
+    }
+
+    setActiveSection(id);
+  };
+
   return (
     <header className={`${styles.header} ${isScrolled ? styles.scrolled : ""}`}>
       <div className={styles.navContainer}>
         {/* Clean White NSP Logo with FoldText and Micro-Avatar */}
-        <Link href="/" className={styles.brand} onClick={closeMenu} aria-label="NSP Home">
+        <a
+          href="#home"
+          className={styles.brand}
+          onClick={(e) => handleNavClick(e, "#home", "home")}
+          aria-label="NSP Home"
+        >
           <div className={styles.brandAvatar}>
             <img
               src="/prabath-avatar.jpg"
@@ -72,28 +134,36 @@ export default function Navbar() {
             color="inherit"
             style={{ letterSpacing: "0.08em" }}
           />
-        </Link>
+        </a>
 
-        {/* Desktop Navigation Links with FoldText on hover */}
+        {/* Desktop Navigation Links with FoldText on hover & Active Section indicator */}
         <nav>
           <ul className={styles.navLinks}>
-            {NAV_ITEMS.map((item) => (
-              <li key={item.label}>
-                <Link href={item.href} className={styles.navLink}>
-                  <FoldText
-                    text={item.label}
-                    trigger="hover"
-                    splitBy="char"
-                    hinge="top"
-                    duration={0.42}
-                    stagger={0.03}
-                    fontSize="0.88rem"
-                    fontWeight={500}
-                    color="inherit"
-                  />
-                </Link>
-              </li>
-            ))}
+            {NAV_ITEMS.map((item) => {
+              const isActive = activeSection === item.id;
+              return (
+                <li key={item.label}>
+                  <a
+                    href={item.href}
+                    className={`${styles.navLink} ${isActive ? styles.active : ""}`}
+                    onClick={(e) => handleNavClick(e, item.href, item.id)}
+                    aria-current={isActive ? "page" : undefined}
+                  >
+                    <FoldText
+                      text={item.label}
+                      trigger="hover"
+                      splitBy="char"
+                      hinge="top"
+                      duration={0.42}
+                      stagger={0.03}
+                      fontSize="0.88rem"
+                      fontWeight={isActive ? 600 : 500}
+                      color="inherit"
+                    />
+                  </a>
+                </li>
+              );
+            })}
           </ul>
         </nav>
 
@@ -123,6 +193,7 @@ export default function Navbar() {
           <a
             href="#contact"
             className={styles.connectButton}
+            onClick={(e) => handleNavClick(e, "#contact", "contact")}
             aria-label="Let's Connect"
           >
             <FoldText
@@ -153,26 +224,29 @@ export default function Navbar() {
       {/* Mobile Drawer Menu */}
       {isOpen && (
         <div className={styles.mobileMenu}>
-          {NAV_ITEMS.map((item) => (
-            <Link
-              key={item.label}
-              href={item.href}
-              className={styles.mobileNavLink}
-              onClick={closeMenu}
-            >
-              <FoldText
-                text={item.label}
-                trigger="hover"
-                splitBy="char"
-                hinge="top"
-                duration={0.45}
-                stagger={0.035}
-                fontSize="0.95rem"
-                fontWeight={500}
-                color="inherit"
-              />
-            </Link>
-          ))}
+          {NAV_ITEMS.map((item) => {
+            const isActive = activeSection === item.id;
+            return (
+              <a
+                key={item.label}
+                href={item.href}
+                className={`${styles.mobileNavLink} ${isActive ? styles.active : ""}`}
+                onClick={(e) => handleNavClick(e, item.href, item.id)}
+              >
+                <FoldText
+                  text={item.label}
+                  trigger="hover"
+                  splitBy="char"
+                  hinge="top"
+                  duration={0.45}
+                  stagger={0.035}
+                  fontSize="0.95rem"
+                  fontWeight={isActive ? 600 : 500}
+                  color="inherit"
+                />
+              </a>
+            );
+          })}
           <a
             href="https://github.com/Prabathsai1"
             target="_blank"
@@ -186,7 +260,7 @@ export default function Navbar() {
           <a
             href="#contact"
             className={styles.mobileConnectBtn}
-            onClick={closeMenu}
+            onClick={(e) => handleNavClick(e, "#contact", "contact")}
           >
             <span>Let's Connect</span>
             <ArrowUpRight size={15} />
