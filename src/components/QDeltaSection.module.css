@@ -567,14 +567,14 @@
 @media (max-width: 860px) {
   .sectionWrapper {
     margin-top: -100vh;
-    padding: 1rem 0 2rem;
+    padding: 0.5rem 0 1.25rem;
   }
 
   .section {
     width: calc(100% - 0.75rem);
-    margin: 0.5rem auto 2rem;
+    margin: 0.25rem auto 1.5rem;
     border-radius: 20px;
-    padding: 2.5rem 1.15rem 3.5rem;
+    padding: 2.25rem 1.15rem 2.75rem;
   }
 
   .founderCard {

@@ -173,7 +173,12 @@ const ScrollExpand: React.FC<ScrollExpandProps> = ({
       stageH = c.useWindowScroll ? window.innerHeight : root.clientHeight;
       if (stageH <= 0) return;
       stage.style.height = `${stageH}px`;
-      track.style.height = `${stageH * (1 + Math.max(0, c.scrollDistance) + Math.max(0, c.holdDistance))}px`;
+
+      const isMobile = typeof window !== "undefined" && window.innerWidth <= 768;
+      const effectiveScrollDist = isMobile ? Math.min(0.9, c.scrollDistance) : c.scrollDistance;
+      const effectiveHoldDist = isMobile ? 0.05 : c.holdDistance;
+
+      track.style.height = `${stageH * (1 + Math.max(0, effectiveScrollDist) + Math.max(0, effectiveHoldDist))}px`;
 
       const w = root.clientWidth || stageH;
       stage.style.setProperty("--se-title-size", `${clamp(w * 0.075, 20, 84)}px`);
@@ -182,7 +187,9 @@ const ScrollExpand: React.FC<ScrollExpandProps> = ({
     const readProgress = () => {
       const c = propsRef.current;
       if (!c.enabled) return 1;
-      const span = stageH * Math.max(0.01, c.scrollDistance);
+      const isMobile = typeof window !== "undefined" && window.innerWidth <= 768;
+      const effectiveScrollDist = isMobile ? Math.min(0.9, c.scrollDistance) : c.scrollDistance;
+      const span = stageH * Math.max(0.01, effectiveScrollDist);
       if (c.useWindowScroll) {
         const top = track.getBoundingClientRect().top;
         return clamp(-top / span, 0, 1);

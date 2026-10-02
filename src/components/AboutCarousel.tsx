@@ -267,9 +267,12 @@ export default function AboutCarousel() {
   // Card 2: 0.28 .. 0.42
   // Card 3: 0.42 .. 0.56
   // Card 4 (5th card: Philosophy): 0.56 .. 0.84 (Huge buffer where Card 5 sits centered alone)
-  // Section 3 Slide-over: 0.84 .. 1.00 (Section 3 slides UP over Section 2)
+  // Section 3 Slide-over: 0.84 .. 1.00 (desktop) or 0.72 .. 1.00 (mobile)
   const getIndexWithHysteresis = (progress: number, currentIdx: number): number => {
-    const thresholds = [0.14, 0.28, 0.42, 0.56];
+    const isMobileDevice = typeof window !== "undefined" && window.innerWidth <= 768;
+    const thresholds = isMobileDevice
+      ? [0.15, 0.30, 0.45, 0.60]
+      : [0.14, 0.28, 0.42, 0.56];
     const delta = 0.02;
 
     // Raw zone based on progress
@@ -386,11 +389,12 @@ export default function AboutCarousel() {
         setMouseOffset({ x: 0, y: 0 });
       }
 
-      // Layer Stacking Depth: Section 3 slides over ONLY during smoothProgress 0.84..1.00
+      // Layer Stacking Depth: Section 3 slides over seamlessly
       const stickyEl = stickyWrapperRef.current;
+      const exitThreshold = mobile ? 0.72 : 0.84;
       if (stickyEl) {
-        if (smoothProgress > 0.84) {
-          const exitT = (smoothProgress - 0.84) / 0.16; // 0 to 1
+        if (smoothProgress > exitThreshold) {
+          const exitT = (smoothProgress - exitThreshold) / (1 - exitThreshold); // 0 to 1
           const scale = 1 - exitT * 0.05; // 1.0 down to 0.95
           const opacity = 1 - exitT * 0.35; // 1.0 down to 0.65
           stickyEl.style.transform = `scale(${scale.toFixed(4)})`;

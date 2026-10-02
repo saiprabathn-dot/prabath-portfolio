@@ -468,11 +468,19 @@
 /* Responsive Mobile & Tablet View */
 @media (max-width: 768px) {
   .pinSection {
-    height: 380vh;
+    height: 300vh;
+    margin-top: -140px;
+    position: relative;
+    z-index: 5;
+  }
+
+  .stickyWrapper {
+    align-items: flex-start;
+    justify-content: flex-start;
   }
 
   .aboutSection {
-    padding: calc(var(--nav-height, 68px) + 0.5rem) 0.5rem 0.5rem;
+    padding: calc(var(--nav-height, 68px) + 0.75rem) 0.5rem 0.5rem;
     justify-content: flex-start;
   }
 
