@@ -148,6 +148,7 @@ export default function AboutCarousel() {
   const touchStartRef = useRef<{ x: number; y: number; time: number } | null>(null);
   const wrapperRef = useRef<HTMLDivElement>(null);
   const containerRef = useRef<HTMLDivElement>(null);
+  const stickyWrapperRef = useRef<HTMLDivElement>(null);
 
   const lastIndexChangeTimeRef = useRef(0);
 
@@ -163,7 +164,9 @@ export default function AboutCarousel() {
     currentIndexRef.current = clampedIndex;
     setCurrentIndex(clampedIndex);
 
-    const targetProgress = (clampedIndex + 0.5) / CARDS.length;
+    // Target centers: Card 0-3 in active zones, Card 4 in wide hold zone well before Section 3 rises (at 0.84)
+    const CARD_TARGET_PROGRESS = [0.065, 0.21, 0.355, 0.50, 0.65];
+    const targetProgress = CARD_TARGET_PROGRESS[clampedIndex] ?? 0.5;
     const targetScrollY = pinTopDoc + targetProgress * totalScrollable;
 
     window.scrollTo({
@@ -258,43 +261,43 @@ export default function AboutCarousel() {
     touchStartRef.current = null;
   };
 
-  // Rate-limited single-step card transition:
-  // Guarantees ONE scroll gesture moves exactly ONE card at a time, never skipping multiple!
+  // Wide distinct card zones across the 720vh pinned track:
+  // Card 0: 0.00 .. 0.14
+  // Card 1: 0.14 .. 0.28
+  // Card 2: 0.28 .. 0.42
+  // Card 3: 0.42 .. 0.56
+  // Card 4 (5th card: Philosophy): 0.56 .. 0.84 (Huge buffer where Card 5 sits centered alone)
+  // Section 3 Slide-over: 0.84 .. 1.00 (Section 3 slides UP over Section 2)
   const getIndexWithHysteresis = (progress: number, currentIdx: number): number => {
-    const thresholds = [0.20, 0.40, 0.60, 0.80];
-    const delta = 0.035;
+    const thresholds = [0.14, 0.28, 0.42, 0.56];
+    const delta = 0.02;
 
-    let candidate = currentIdx;
+    // Raw zone based on progress
+    let rawIndex = 0;
+    if (progress >= thresholds[3]) rawIndex = 4;
+    else if (progress >= thresholds[2]) rawIndex = 3;
+    else if (progress >= thresholds[1]) rawIndex = 2;
+    else if (progress >= thresholds[0]) rawIndex = 1;
+    else rawIndex = 0;
 
-    if (currentIdx === 0 && progress > thresholds[0] + delta) {
-      candidate = 1;
-    } else if (currentIdx === 1) {
-      if (progress < thresholds[0] - delta) candidate = 0;
-      else if (progress > thresholds[1] + delta) candidate = 2;
-    } else if (currentIdx === 2) {
-      if (progress < thresholds[1] - delta) candidate = 1;
-      else if (progress > thresholds[2] + delta) candidate = 3;
-    } else if (currentIdx === 3) {
-      if (progress < thresholds[2] - delta) candidate = 2;
-      else if (progress > thresholds[3] + delta) candidate = 4;
-    } else if (currentIdx === 4 && progress < thresholds[3] - delta) {
-      candidate = 3;
-    }
-
-    // Step clamp: strictly prevent multi-card skips in a single scroll motion
-    if (candidate !== currentIdx) {
-      const now = Date.now();
-      // 420ms cooldown absorbs scroll momentum so 1 flick lands on 1 card
-      if (now - lastIndexChangeTimeRef.current < 420) {
+    // If adjacent, apply hysteresis delta to prevent boundary flicker
+    if (Math.abs(rawIndex - currentIdx) === 1) {
+      if (rawIndex > currentIdx) {
+        // Stepping forward
+        if (progress > thresholds[currentIdx] + delta) {
+          return currentIdx + 1;
+        }
+        return currentIdx;
+      } else {
+        // Stepping backward
+        if (progress < thresholds[rawIndex] - delta) {
+          return currentIdx - 1;
+        }
         return currentIdx;
       }
-      lastIndexChangeTimeRef.current = now;
-      // Clamp to at most +/- 1 card step
-      const step = candidate > currentIdx ? 1 : -1;
-      return currentIdx + step;
     }
 
-    return currentIdx;
+    return rawIndex;
   };
 
   // Scroll listener: Drives card index and stage expansion with 60fps physics lerping
@@ -346,8 +349,8 @@ export default function AboutCarousel() {
     };
 
     const tick = () => {
-      // Smooth progress damping
-      const kProgress = 0.08;
+      // Smooth progress damping (responsive & fluid)
+      const kProgress = 0.12;
       smoothProgress += (targetProgress - smoothProgress) * kProgress;
 
       // Smooth spread damping
@@ -365,6 +368,23 @@ export default function AboutCarousel() {
         currentIndexRef.current = newIndex;
         setCurrentIndex(newIndex);
         setMouseOffset({ x: 0, y: 0 });
+      }
+
+      // Layer Stacking Depth: Section 3 slides over ONLY during smoothProgress 0.84..1.00
+      const stickyEl = stickyWrapperRef.current;
+      if (stickyEl) {
+        if (smoothProgress > 0.84) {
+          const exitT = (smoothProgress - 0.84) / 0.16; // 0 to 1
+          const scale = 1 - exitT * 0.05; // 1.0 down to 0.95
+          const opacity = 1 - exitT * 0.35; // 1.0 down to 0.65
+          stickyEl.style.transform = `scale(${scale.toFixed(4)})`;
+          stickyEl.style.opacity = `${opacity.toFixed(4)}`;
+          stickyEl.style.filter = `brightness(${(1 - exitT * 0.35).toFixed(4)})`;
+        } else {
+          stickyEl.style.transform = "scale(1)";
+          stickyEl.style.opacity = "1";
+          stickyEl.style.filter = "none";
+        }
       }
 
       const progressDiff = Math.abs(targetProgress - smoothProgress);
@@ -407,7 +427,7 @@ export default function AboutCarousel() {
 
   return (
     <section id="about" className={styles.pinSection} ref={containerRef}>
-      <div className={styles.stickyWrapper}>
+      <div ref={stickyWrapperRef} className={styles.stickyWrapper}>
         <div className={styles.aboutSection}>
           {/* Section Header */}
           <div className={styles.header}>

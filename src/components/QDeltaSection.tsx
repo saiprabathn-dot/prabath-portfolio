@@ -212,8 +212,9 @@ export default function QDeltaSection() {
   }, []);
 
   return (
-    <section id="qdelta" className={styles.section}>
-      <div className={styles.container}>
+    <section id="qdelta" className={styles.sectionWrapper}>
+      <div className={styles.section}>
+        <div className={styles.container}>
         {/* 1. HEADER & HERO INTRODUCTION */}
         <ScrollReveal delay={0.05} direction="up" distance={25}>
           <div className={styles.headerBlock}>
@@ -390,6 +391,7 @@ export default function QDeltaSection() {
           </div>
         </div>
       </div>
-    </section>
-  );
+    </div>
+  </section>
+);
 }
