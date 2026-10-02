@@ -42,11 +42,18 @@ export default function Navbar() {
     const sectionIds = ["home", "about", "qdelta", "projects", "skills", "experience", "contact"];
 
     const handleScroll = () => {
-      setIsScrolled(window.scrollY > 20);
+      const scrollY = window.scrollY;
+      setIsScrolled(scrollY > 20);
+
+      // If at or near the top of the page, always keep "home" active
+      if (scrollY <= 140) {
+        setActiveSection("home");
+        return;
+      }
 
       // Check if user has scrolled near bottom of page (Contact)
       const isNearBottom =
-        window.innerHeight + window.scrollY >= document.documentElement.scrollHeight - 80;
+        window.innerHeight + scrollY >= document.documentElement.scrollHeight - 80;
       if (isNearBottom) {
         setActiveSection("contact");
         return;
@@ -58,8 +65,7 @@ export default function Navbar() {
         const el = document.getElementById(id);
         if (el) {
           const rect = el.getBoundingClientRect();
-          const topDoc = window.scrollY + rect.top;
-          if (window.scrollY >= topDoc - 160) {
+          if (rect.top <= 160) {
             setActiveSection(id);
             break;
           }
@@ -68,8 +74,19 @@ export default function Navbar() {
     };
 
     window.addEventListener("scroll", handleScroll, { passive: true });
+    window.addEventListener("resize", handleScroll);
+
+    // Initial check + delayed checks to handle dynamic hydration/measurements
     handleScroll();
-    return () => window.removeEventListener("scroll", handleScroll);
+    const timer1 = setTimeout(handleScroll, 100);
+    const timer2 = setTimeout(handleScroll, 400);
+
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+      window.removeEventListener("resize", handleScroll);
+      clearTimeout(timer1);
+      clearTimeout(timer2);
+    };
   }, []);
 
   const closeMenu = () => setIsOpen(false);
@@ -84,6 +101,9 @@ export default function Navbar() {
 
     if (id === "home") {
       window.scrollTo({ top: 0, behavior: "smooth" });
+      if (window.history.pushState) {
+        window.history.pushState(null, "", window.location.pathname);
+      }
       setActiveSection("home");
       return;
     }
@@ -100,6 +120,10 @@ export default function Navbar() {
       const rect = targetEl.getBoundingClientRect();
       const topDoc = window.scrollY + rect.top - navOffset;
       window.scrollTo({ top: topDoc, behavior: "smooth" });
+    }
+
+    if (window.history.pushState) {
+      window.history.pushState(null, "", href);
     }
 
     setActiveSection(id);
