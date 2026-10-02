@@ -54,7 +54,7 @@ export default function Home() {
               margin: "0 auto",
               textAlign: "center",
               gap: "1.25rem",
-              padding: "0 1rem",
+              padding: "clamp(4.5rem, 9vh, 6rem) 1rem 1.5rem",
             }}
           >
             <div

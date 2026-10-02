@@ -403,48 +403,48 @@
   }
 
   .orbitWrapper {
-    width: 380px;
-    height: 380px;
+    width: min(340px, 92vw);
+    height: min(340px, 92vw);
     margin-bottom: 2.5rem;
   }
 
   .coreBadge {
-    width: 66px;
-    height: 66px;
+    width: 60px;
+    height: 60px;
   }
 
   .coreLogo {
-    font-size: 0.9rem;
+    font-size: 0.82rem;
   }
 
   .orbitRing1 {
-    --r: 60px;
-    width: 120px;
-    height: 120px;
+    --r: 50px;
+    width: 100px;
+    height: 100px;
   }
 
   .orbitRing2 {
-    --r: 96px;
-    width: 192px;
-    height: 192px;
+    --r: 82px;
+    width: 164px;
+    height: 164px;
   }
 
   .orbitRing3 {
-    --r: 134px;
-    width: 268px;
-    height: 268px;
+    --r: 116px;
+    width: 232px;
+    height: 232px;
   }
 
   .orbitRing4 {
-    --r: 172px;
-    width: 344px;
-    height: 344px;
+    --r: 150px;
+    width: 300px;
+    height: 300px;
   }
 
   .orbitNode .nodePill {
-    padding: 0.22rem 0.5rem;
-    font-size: 0.6rem;
-    gap: 0.3rem;
+    padding: 0.2rem 0.45rem;
+    font-size: 0.58rem;
+    gap: 0.25rem;
   }
 
   .nodePill svg {

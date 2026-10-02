@@ -138,3 +138,10 @@
   gap: 0.35rem;
   z-index: 3;
 }
+
+@media (max-width: 768px) {
+  .scroll-expand__overlay {
+    padding-top: 5rem;
+    padding-bottom: 2rem;
+  }
+}

@@ -79,11 +79,8 @@
   }
 }
 
-@media (max-width: 640px) {
+@media (max-width: 768px) {
   .container {
-    bottom: 1.25rem;
-  }
-  .pill {
-    padding: 0.4rem 0.95rem;
+    display: none !important;
   }
 }

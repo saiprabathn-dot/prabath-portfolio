@@ -112,8 +112,13 @@ const ScrollExpand: React.FC<ScrollExpandProps> = ({
     const r = c.startRadius + (c.endRadius - c.startRadius) * e;
     frame.style.clipPath = `inset(${iy}% ${ix}% ${iy}% ${ix}% round ${r}px)`;
 
+    const isMobile = typeof window !== "undefined" && window.innerWidth <= 768;
     media.style.transform = `scale(${c.mediaZoom + (1 - c.mediaZoom) * e})`;
-    media.style.filter = `brightness(${0.25 + (0.85 - 0.25) * e}) contrast(${1.15 - 0.1 * e})`;
+    if (!isMobile) {
+      media.style.filter = `brightness(${0.25 + (0.85 - 0.25) * e}) contrast(${1.15 - 0.1 * e})`;
+    } else {
+      media.style.filter = "brightness(0.75)";
+    }
     media.style.opacity = `${0.45 + (1 - 0.45) * e}`;
 
     if (scrimRef.current) scrimRef.current.style.opacity = `${c.overlayScrim * e}`;
@@ -205,7 +210,8 @@ const ScrollExpand: React.FC<ScrollExpandProps> = ({
 
     const onScroll = () => {
       target = readProgress();
-      if (propsRef.current.smoothing <= 0 || reduceMotion) {
+      const isMobile = window.innerWidth <= 768;
+      if (propsRef.current.smoothing <= 0 || reduceMotion || isMobile) {
         current = target;
         applyProgress(current);
         return;

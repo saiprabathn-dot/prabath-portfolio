@@ -55,24 +55,31 @@ export default function GlobalScrollHint() {
       return true;
     };
 
+    let isCurrentlyVisible = false;
+
     // Initial appearance on page load (if in an allowed section)
     const initialTimer = setTimeout(() => {
       if (isSectionAllowed()) {
+        isCurrentlyVisible = true;
         setIsVisible(true);
       }
     }, 600);
 
     const handleScroll = () => {
-      // 1. Immediately hide while active scrolling is happening
-      setIsVisible(false);
+      // 1. Only trigger state update if it was visible
+      if (isCurrentlyVisible) {
+        isCurrentlyVisible = false;
+        setIsVisible(false);
+      }
 
       if (scrollTimeoutRef.current) {
         clearTimeout(scrollTimeoutRef.current);
       }
 
-      // 2. Only become visible after user stops scrolling (idle pause) and if the section allows it
+      // 2. Only become visible after user stops scrolling (idle pause) and if allowed
       scrollTimeoutRef.current = setTimeout(() => {
         if (isSectionAllowed()) {
+          isCurrentlyVisible = true;
           setIsVisible(true);
         }
       }, 700);

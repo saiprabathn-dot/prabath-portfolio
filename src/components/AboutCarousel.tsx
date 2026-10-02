@@ -318,14 +318,24 @@ export default function AboutCarousel() {
     let currentSpread = 1;
     let running = false;
 
+    let cachedTotalScrollable = 0;
+    const isMobile = () => typeof window !== "undefined" && window.innerWidth <= 768;
+
+    const measureContainer = () => {
+      if (!container) return;
+      const vh = window.innerHeight;
+      cachedTotalScrollable = container.offsetHeight - vh;
+    };
+    measureContainer();
+
     const updateTargets = () => {
       if (!container || !wrapper) return;
       const rect = container.getBoundingClientRect();
-      const vh = window.innerHeight;
-      const totalScrollable = container.offsetHeight - vh;
+      const mobile = isMobile();
 
-      // 1. Stage expansion spread target
-      if (!reduceMotion) {
+      // 1. Stage expansion spread target (desktop only)
+      if (!reduceMotion && !mobile) {
+        const vh = window.innerHeight;
         if (rect.top > 0) {
           const start = vh * 0.95;
           const end = 0;
@@ -334,12 +344,17 @@ export default function AboutCarousel() {
         } else {
           targetSpread = 1;
         }
+      } else {
+        targetSpread = 1;
       }
 
-      // 2. Card progress target
-      if (totalScrollable > 0) {
+      // 2. Card progress target (using cached height to avoid layout reflow)
+      if (cachedTotalScrollable <= 0) {
+        measureContainer();
+      }
+      if (cachedTotalScrollable > 0) {
         const scrollWithin = -rect.top;
-        targetProgress = Math.max(0, Math.min(1, scrollWithin / totalScrollable));
+        targetProgress = Math.max(0, Math.min(1, scrollWithin / cachedTotalScrollable));
       }
 
       if (!running) {
@@ -349,12 +364,13 @@ export default function AboutCarousel() {
     };
 
     const tick = () => {
-      // Smooth progress damping (responsive & fluid)
-      const kProgress = 0.12;
+      const mobile = isMobile();
+      // Snappier damping on mobile for immediate response to touch flicks
+      const kProgress = mobile ? 0.28 : 0.12;
       smoothProgress += (targetProgress - smoothProgress) * kProgress;
 
-      // Smooth spread damping
-      if (!reduceMotion) {
+      // Smooth spread damping (desktop only)
+      if (!reduceMotion && !mobile) {
         const kSpread = 0.14;
         currentSpread += (targetSpread - currentSpread) * kSpread;
         if (wrapper) {
@@ -379,7 +395,10 @@ export default function AboutCarousel() {
           const opacity = 1 - exitT * 0.35; // 1.0 down to 0.65
           stickyEl.style.transform = `scale(${scale.toFixed(4)})`;
           stickyEl.style.opacity = `${opacity.toFixed(4)}`;
-          stickyEl.style.filter = `brightness(${(1 - exitT * 0.35).toFixed(4)})`;
+          // Skip GPU filter on mobile to preserve 60/120fps
+          if (!mobile) {
+            stickyEl.style.filter = `brightness(${(1 - exitT * 0.35).toFixed(4)})`;
+          }
         } else {
           stickyEl.style.transform = "scale(1)";
           stickyEl.style.opacity = "1";
@@ -388,7 +407,7 @@ export default function AboutCarousel() {
       }
 
       const progressDiff = Math.abs(targetProgress - smoothProgress);
-      const spreadDiff = Math.abs(targetSpread - currentSpread);
+      const spreadDiff = mobile ? 0 : Math.abs(targetSpread - currentSpread);
 
       if (progressDiff > 0.0004 || spreadDiff > 0.001) {
         rafId = requestAnimationFrame(tick);
@@ -403,10 +422,15 @@ export default function AboutCarousel() {
       updateTargets();
     };
 
+    const handleResize = () => {
+      measureContainer();
+      updateTargets();
+    };
+
     updateTargets();
     smoothProgress = targetProgress;
     currentSpread = targetSpread;
-    if (reduceMotion) {
+    if (reduceMotion || isMobile()) {
       wrapper.style.setProperty("--spread", "1");
     } else {
       wrapper.style.setProperty("--spread", currentSpread.toFixed(4));
@@ -416,11 +440,11 @@ export default function AboutCarousel() {
     setCurrentIndex(initialIndex);
 
     window.addEventListener("scroll", handleScroll, { passive: true });
-    window.addEventListener("resize", handleScroll, { passive: true });
+    window.addEventListener("resize", handleResize, { passive: true });
 
     return () => {
       window.removeEventListener("scroll", handleScroll);
-      window.removeEventListener("resize", handleScroll);
+      window.removeEventListener("resize", handleResize);
       if (rafId) cancelAnimationFrame(rafId);
     };
   }, []);
