@@ -43,6 +43,7 @@ html {
   color-scheme: dark;
   background-color: #000000;
   -webkit-text-size-adjust: 100%;
+  overflow-x: hidden;
 }
 
 body {

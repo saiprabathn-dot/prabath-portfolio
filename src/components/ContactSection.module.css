@@ -534,3 +534,22 @@
     height: 24px;
   }
 }
+
+@media (max-width: 420px) {
+  .contactSection {
+    padding: 3.5rem 0.75rem 4rem;
+  }
+
+  .formCard {
+    padding: 1.15rem;
+    border-radius: 16px;
+  }
+
+  .sayHelloTitle {
+    font-size: 1.85rem;
+  }
+
+  .founderCard {
+    padding: 0.6rem 0.85rem;
+  }
+}

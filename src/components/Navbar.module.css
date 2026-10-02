@@ -45,6 +45,8 @@
   padding: 0.25rem 0.5rem;
   border-radius: var(--radius-sm);
   transition: var(--transition-smooth);
+  white-space: nowrap;
+  flex-shrink: 0;
 }
 
 .brandAvatar {
@@ -77,6 +79,7 @@
   text-transform: uppercase;
   color: #d4d4d8;
   transition: color 0.2s ease;
+  white-space: nowrap;
 }
 
 .brand:hover .brandLogoText {
@@ -91,6 +94,7 @@
   list-style: none;
   background: transparent;
   padding: 0;
+  flex-shrink: 0;
 }
 
 .navLink {
@@ -103,6 +107,8 @@
   transition: var(--transition-smooth);
   position: relative;
   text-decoration: none;
+  white-space: nowrap;
+  flex-shrink: 0;
 }
 
 .navLink:hover {
@@ -122,6 +128,7 @@
   display: flex;
   align-items: center;
   gap: 0.75rem;
+  flex-shrink: 0;
 }
 
 .githubButton {
@@ -137,6 +144,8 @@
   letter-spacing: -0.01em;
   border: 1px solid rgba(255, 255, 255, 0.06);
   transition: var(--transition-smooth);
+  white-space: nowrap;
+  flex-shrink: 0;
 }
 
 .githubButton:hover {
@@ -158,6 +167,8 @@
   text-decoration: none;
   transition: var(--transition-smooth);
   box-shadow: 0 4px 14px rgba(255, 255, 255, 0.12);
+  white-space: nowrap;
+  flex-shrink: 0;
 }
 
 .connectButton:hover {
@@ -185,6 +196,7 @@
   background: rgba(255, 255, 255, 0.04);
   border: 1px solid rgba(255, 255, 255, 0.08);
   transition: var(--transition-smooth);
+  flex-shrink: 0;
 }
 
 .mobileMenuToggle:hover {
@@ -197,7 +209,7 @@
   display: none;
 }
 
-@media (max-width: 860px) {
+@media (max-width: 1040px) {
   .navLinks {
     display: none;
   }
@@ -287,6 +299,31 @@
 
   .mobileConnectBtn:hover {
     background: #e4e4e7;
+  }
+}
+
+@media (max-width: 480px) {
+  .header {
+    padding: 0.65rem 0.85rem;
+  }
+
+  .navContainer {
+    height: 52px;
+    padding: 0 0.85rem;
+  }
+
+  .brandLogoText {
+    font-size: 1rem;
+  }
+
+  .brandAvatar {
+    width: 24px;
+    height: 24px;
+  }
+
+  .mobileMenuToggle {
+    width: 32px;
+    height: 32px;
   }
 }
 
